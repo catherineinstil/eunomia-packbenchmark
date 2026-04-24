@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Type Browser — Best in Class Packaging Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F8F9FA;
+      color: #0F172A;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Top nav ── */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 0 32px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-brand {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.3px;
+    }
+    .topbar-brand span { color: #1D4ED8; }
+    .topbar-nav {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: #6B7280;
+    }
+    .topbar-nav a { text-decoration: none; color: inherit; }
+    .topbar-nav a.active { color: #0F172A; font-weight: 600; }
+    .topbar-nav a:hover { color: #0F172A; }
+    .topbar-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #374151;
+    }
+    .avatar {
+      width: 28px; height: 28px;
+      background: #1D4ED8;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-pro {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* ── Layout: sidebar + main ── */
+    .layout {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 32px 64px;
+      gap: 28px;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .sidebar-section {
+      margin-bottom: 24px;
+    }
+    .sidebar-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #9CA3AF;
+      margin-bottom: 10px;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #374151;
+      cursor: pointer;
+      margin-bottom: 2px;
+      transition: background 0.1s;
+    }
+    .sidebar-item:hover { background: #F3F4F6; }
+    .sidebar-item.active {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-weight: 600;
+    }
+    .sidebar-item .count {
+      font-size: 11px;
+      color: #9CA3AF;
+      font-weight: 400;
+      background: #F3F4F6;
+      padding: 1px 7px;
+      border-radius: 99px;
+    }
+    .sidebar-item.active .count {
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    /* ── Main content ── */
+    .main { flex: 1; min-width: 0; }
+
+    /* ── Page header ── */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.3px;
+    }
+    .page-header .meta {
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-top: 2px;
+    }
+
+    /* ── Search + toolbar ── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .search-wrap {
+      flex: 1;
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9CA3AF;
+      font-size: 14px;
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      padding: 8px 12px 8px 36px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      background: #fff;
+      color: #0F172A;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: #1D4ED8; }
+    .search-input::placeholder { color: #9CA3AF; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .btn-ghost {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      color: #374151;
+    }
+    .btn-ghost:hover { background: #F9FAFB; }
+    .btn-ghost.active {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #1D4ED8;
+    }
+
+    /* Sort / filter chips */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 12px;
+      color: #9CA3AF;
+      font-weight: 500;
+    }
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid #E5E7EB;
+      background: #fff;
+      color: #374151;
+      cursor: pointer;
+    }
+    .filter-chip:hover { background: #F9FAFB; }
+    .filter-chip.active {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #1D4ED8;
+    }
+    .filter-chip .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    /* View toggle */
+    .view-toggle {
+      display: flex;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .view-btn {
+      padding: 6px 11px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #9CA3AF;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+    }
+    .view-btn:hover { color: #374151; background: #F9FAFB; }
+    .view-btn.active { background: #EFF6FF; color: #1D4ED8; }
+
+    /* Results count */
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .results-count {
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+    .results-count strong { color: #374151; }
+    .sort-select {
+      font-size: 12px;
+      font-family: inherit;
+      color: #374151;
+      border: 1px solid #E5E7EB;
+      border-radius: 5px;
+      padding: 4px 24px 4px 8px;
+      background: #fff;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+    }
+
+    /* ── Grid cards ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .category-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 18px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+    .category-card:hover {
+      border-color: #93C5FD;
+      box-shadow: 0 2px 8px rgba(29,78,216,0.07);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: #F3F4F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .card-rating {
+      font-size: 13px;
+      font-weight: 700;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rating-a { background: #F0FDF4; color: #166534; }
+    .rating-b { background: #F0FDF4; color: #166534; }
+    .rating-c { background: #FFFBEB; color: #92400E; }
+    .rating-d { background: #FEF2F2; color: #991B1B; }
+
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0F172A;
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .card-sector {
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-bottom: 14px;
+    }
+
+    .card-stats {
+      display: flex;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #F3F4F6;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .stat-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+    .stat-lbl {
+      font-size: 10px;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    .card-updated {
+      font-size: 11px;
+      color: #9CA3AF;
+    }
+    .card-arrow {
+      font-size: 14px;
+      color: #D1D5DB;
+    }
+    .category-card:hover .card-arrow { color: #1D4ED8; }
+
+    /* Coverage bar */
+    .coverage-bar {
+      height: 4px;
+      background: #F3F4F6;
+      border-radius: 99px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .coverage-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: #2D7D46;
+    }
+    .coverage-label {
+      font-size: 10px;
+      color: #9CA3AF;
+      margin-top: 4px;
+    }
+
+    /* ── Annotation bar ── */
+    .annotation-bar {
+      background: #FEFCE8;
+      border: 1px solid #FDE68A;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .annotation-bar .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .annotation-bar p { font-size: 12px; color: #78350F; line-height: 1.5; }
+    .annotation-bar p strong { font-weight: 600; }
+
+    /* ── Summary stats strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stats-strip-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+    .stats-strip-card .val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+    }
+    .stats-strip-card .lbl {
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-top: 2px;
+    }
+    .stats-strip-card .delta {
+      font-size: 11px;
+      color: #2D7D46;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top nav -->
+<nav class="topbar">
+  <div class="topbar-brand">Best in Class <span>Packaging Tool</span></div>
+  <div class="topbar-nav">
+    <a href="#" class="active">Categories</a>
+    <a href="#">Reports</a>
+    <a href="#">Fee Thresholds</a>
+    <a href="#">Admin</a>
+  </div>
+  <div class="topbar-user">
+    <div class="avatar">CA</div>
+    <span>CAA User</span>
+    <span class="badge-pro">Pro</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Sector</div>
+      <div class="sidebar-item active">All Categories <span class="count">42</span></div>
+      <div class="sidebar-item">Household Cleaning <span class="count">14</span></div>
+      <div class="sidebar-item">Food &amp; Beverage <span class="count">16</span></div>
+      <div class="sidebar-item">Personal Care <span class="count">8</span></div>
+      <div class="sidebar-item">Garden &amp; Outdoor <span class="count">4</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Best-in-class rating</div>
+      <div class="sidebar-item">Rating A <span class="count">18</span></div>
+      <div class="sidebar-item">Rating B <span class="count">12</span></div>
+      <div class="sidebar-item">Rating C or below <span class="count">12</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Coverage</div>
+      <div class="sidebar-item">High (&gt;150 products) <span class="count">11</span></div>
+      <div class="sidebar-item">Medium (50–150) <span class="count">21</span></div>
+      <div class="sidebar-item">Low (&lt;50 products) <span class="count">10</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Last updated</div>
+      <div class="sidebar-item">This month <span class="count">23</span></div>
+      <div class="sidebar-item">Last 3 months <span class="count">15</span></div>
+      <div class="sidebar-item">Older <span class="count">4</span></div>
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Annotation -->
+    <div class="annotation-bar">
+      <div class="icon">📌</div>
+      <p><strong>Design annotation:</strong> This is Screen 1 — Product Type Browser. Entry point for all users. CAA users browse to a category then drill into the Benchmarking View (Screen 2). Yellow bar is a design note — remove before including in pitch deck.</p>
+    </div>
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div>
+        <h1>Packaging Categories</h1>
+        <div class="meta">Browse all benchmarked product types</div>
+      </div>
+    </div>
+
+    <!-- Summary stats strip -->
+    <div class="stats-strip">
+      <div class="stats-strip-card">
+        <div class="val">42</div>
+        <div class="lbl">Product categories</div>
+        <div class="delta">↑ 4 added this month</div>
+      </div>
+      <div class="stats-strip-card">
+        <div class="val">8,341</div>
+        <div class="lbl">Products benchmarked</div>
+        <div class="delta">↑ 312 this month</div>
+      </div>
+      <div class="stats-strip-card">
+        <div class="val">26</div>
+        <div class="lbl">Categories with thresholds set</div>
+        <div class="delta" style="color:#B8860B;">16 pending review</div>
+      </div>
+      <div class="stats-strip-card">
+        <div class="val">Apr '26</div>
+        <div class="lbl">Last data refresh</div>
+        <div class="delta">By Touch Packaging Ltd</div>
+      </div>
+    </div>
+
+    <!-- Search + toolbar -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" type="text" placeholder="Search product types, e.g. "floor cleaner", "bleach"…" />
+      </div>
+      <button class="btn btn-ghost">⇅ Sort</button>
+      <div class="view-toggle">
+        <button class="view-btn active" title="Grid view">▦</button>
+        <button class="view-btn" title="List view">☰</button>
+      </div>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <span class="filter-chip active"><span class="dot"></span> All</span>
+      <span class="filter-chip">Thresholds set</span>
+      <span class="filter-chip">Threshold pending</span>
+      <span class="filter-chip">New this month</span>
+      <span class="filter-chip">Rating A</span>
+    </div>
+
+    <!-- Results count + sort -->
+    <div class="results-bar">
+      <div class="results-count">Showing <strong>42</strong> product categories</div>
+      <select class="sort-select">
+        <option>Sort: Most products</option>
+        <option>Sort: A–Z</option>
+        <option>Sort: Recently updated</option>
+        <option>Sort: Best-in-class rating</option>
+      </select>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid">
+
+      <!-- Card 1 -->
+      <a href="screen-2-benchmarking.html" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🧴</div>
+          <div class="card-rating rating-a">A</div>
+        </div>
+        <div class="card-name">1L Floor Cleaner Bottle</div>
+        <div class="card-sector">Household Cleaning</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">234</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">28g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">85%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:88%;"></div></div>
+        <div class="coverage-label">88% coverage · Threshold set</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 18 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🫧</div>
+          <div class="card-rating rating-b">B</div>
+        </div>
+        <div class="card-name">750ml Bleach Bottle</div>
+        <div class="card-sector">Household Cleaning</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">187</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">34g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">62%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:74%;"></div></div>
+        <div class="coverage-label">74% coverage · Threshold set</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 15 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🫙</div>
+          <div class="card-rating rating-a">A</div>
+        </div>
+        <div class="card-name">500g Tomato Paste Jar</div>
+        <div class="card-sector">Food &amp; Beverage</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">312</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">145g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">100%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:95%;"></div></div>
+        <div class="coverage-label">95% coverage · Threshold set</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 20 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🧼</div>
+          <div class="card-rating rating-b">B</div>
+        </div>
+        <div class="card-name">500ml Washing-Up Liquid</div>
+        <div class="card-sector">Household Cleaning</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">156</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">22g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">70%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:68%;"></div></div>
+        <div class="coverage-label">68% coverage · Threshold pending</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 11 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🥛</div>
+          <div class="card-rating rating-a">A</div>
+        </div>
+        <div class="card-name">2L Milk Bottle (HDPE)</div>
+        <div class="card-sector">Food &amp; Beverage</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">421</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">38g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">90%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:92%;"></div></div>
+        <div class="coverage-label">92% coverage · Threshold set</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 19 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🧴</div>
+          <div class="card-rating rating-c">C</div>
+        </div>
+        <div class="card-name">250ml Shampoo Bottle</div>
+        <div class="card-sector">Personal Care</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">98</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">18g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">45%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:51%; background:#B8860B;"></div></div>
+        <div class="coverage-label">51% coverage · Threshold pending</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 2 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 7 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🫗</div>
+          <div class="card-rating rating-a">A</div>
+        </div>
+        <div class="card-name">1L Cooking Oil Bottle</div>
+        <div class="card-sector">Food &amp; Beverage</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">203</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">31g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">78%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:81%;"></div></div>
+        <div class="coverage-label">81% coverage · Threshold set</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 17 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 8 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🧹</div>
+          <div class="card-rating rating-b">B</div>
+        </div>
+        <div class="card-name">500ml Spray Cleaner</div>
+        <div class="card-sector">Household Cleaning</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">144</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">26g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">55%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:63%;"></div></div>
+        <div class="coverage-label">63% coverage · Threshold pending</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 10 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Card 9 -->
+      <a href="#" class="category-card">
+        <div class="card-top">
+          <div class="card-icon">🥤</div>
+          <div class="card-rating rating-a">A</div>
+        </div>
+        <div class="card-name">500ml Water Bottle (PET)</div>
+        <div class="card-sector">Food &amp; Beverage</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val">567</span>
+            <span class="stat-lbl">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">12g</span>
+            <span class="stat-lbl">Best weight</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">100%</span>
+            <span class="stat-lbl">Best recycled</span>
+          </div>
+        </div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:97%;"></div></div>
+        <div class="coverage-label">97% coverage · Threshold set</div>
+        <div class="card-footer">
+          <span class="card-updated">Updated 21 Apr 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

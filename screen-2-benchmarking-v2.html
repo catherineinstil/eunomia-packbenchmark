@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recyclability Benchmarking (RAG) — Best in Class Packaging Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #0F172A; font-size: 14px; line-height: 1.5; }
+
+    /* ── Topbar ── */
+    .topbar { background:#fff; border-bottom:1px solid #E5E7EB; padding:0 32px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; }
+    .topbar-brand { font-size:15px; font-weight:700; color:#0F172A; letter-spacing:-0.3px; }
+    .topbar-brand span { color:#1D4ED8; }
+    .topbar-nav { display:flex; gap:24px; font-size:13px; color:#6B7280; }
+    .topbar-nav a { text-decoration:none; color:inherit; }
+    .topbar-nav a:hover { color:#0F172A; }
+    .topbar-user { display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; }
+    .avatar { width:28px; height:28px; background:#1D4ED8; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600; }
+    .badge-pro { background:#EFF6FF; color:#1D4ED8; font-size:10px; font-weight:600; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:0.4px; }
+
+    /* ── Layout ── */
+    .page-wrap { display:flex; align-items:flex-start; }
+    .main-col { flex:1 1 0; min-width:0; padding:28px 32px 64px; }
+    .fee-panel { width:320px; flex-shrink:0; position:sticky; top:52px; height:calc(100vh - 52px); overflow-y:auto; background:#fff; border-left:1px solid #E5E7EB; padding:24px 22px; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb { font-size:12px; color:#9CA3AF; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+    .breadcrumb a { color:#6B7280; text-decoration:none; }
+    .breadcrumb a:hover { color:#0F172A; text-decoration:underline; }
+
+    /* ── Page header ── */
+    .page-header { margin-bottom:24px; }
+    .page-header-top { display:flex; align-items:flex-start; justify-content:space-between; }
+    .page-header h1 { font-size:22px; font-weight:700; color:#0F172A; letter-spacing:-0.4px; margin-bottom:6px; }
+    .page-header .meta-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .meta-chip { display:inline-flex; align-items:center; gap:5px; background:#F1F5F9; border:1px solid #E5E7EB; border-radius:99px; padding:3px 10px; font-size:12px; color:#475569; font-weight:500; }
+    .meta-chip.material { background:#EFF6FF; border-color:#BFDBFE; color:#1D4ED8; }
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; border:none; font-family:inherit; transition:background 0.15s; white-space:nowrap; }
+    .btn-ghost { background:#fff; border:1px solid #E5E7EB; color:#374151; }
+    .btn-ghost:hover { background:#F9FAFB; }
+    .btn-primary { background:#1D4ED8; color:#fff; }
+    .btn-primary:hover { background:#1e40af; }
+
+    /* ── Tabs ── */
+    .tabs { display:flex; border-bottom:1px solid #E5E7EB; margin-bottom:28px; }
+    .tab { padding:10px 18px; font-size:13px; font-weight:500; color:#6B7280; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all 0.15s; white-space:nowrap; }
+    .tab.active { color:#1D4ED8; border-bottom-color:#1D4ED8; }
+    .tab:hover:not(.active) { color:#374151; }
+
+    /* ── Section heading ── */
+    .section-heading { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.7px; color:#9CA3AF; margin-bottom:14px; }
+
+    /* ── RAG Distribution Card ── */
+    .rag-summary-card { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:24px; margin-bottom:20px; }
+    .rag-summary-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .rag-summary-title { font-size:14px; font-weight:600; color:#0F172A; }
+    .rag-source { font-size:11px; color:#9CA3AF; }
+    .rag-counts { display:flex; gap:20px; margin-bottom:16px; }
+    .rag-count-item { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .rag-count-num { font-size:28px; font-weight:700; line-height:1; }
+    .rag-count-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+    .rag-count-pct { font-size:11px; color:#9CA3AF; }
+    .rag-count-item.red .rag-count-num { color:#C0392B; }
+    .rag-count-item.red .rag-count-label { color:#C0392B; }
+    .rag-count-item.amber .rag-count-num { color:#B45309; }
+    .rag-count-item.amber .rag-count-label { color:#B45309; }
+    .rag-count-item.green .rag-count-num { color:#166534; }
+    .rag-count-item.green .rag-count-label { color:#166534; }
+    .rag-count-divider { width:1px; background:#E5E7EB; }
+    .rag-bar-track { height:20px; border-radius:6px; overflow:hidden; display:flex; margin-bottom:10px; }
+    .rag-bar-seg { height:100%; transition:width 0.4s ease; }
+    .rag-bar-seg.red { background:#C0392B; }
+    .rag-bar-seg.amber { background:#D97706; }
+    .rag-bar-seg.green { background:#16A34A; }
+    .rag-bar-legend { display:flex; gap:16px; }
+    .rag-legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:#6B7280; }
+    .rag-legend-dot { width:8px; height:8px; border-radius:50%; }
+    .rag-legend-dot.red { background:#C0392B; }
+    .rag-legend-dot.amber { background:#D97706; }
+    .rag-legend-dot.green { background:#16A34A; }
+
+    /* ── Criteria breakdown ── */
+    .criteria-card { background:#fff; border:1px solid #E5E7EB; border-radius:10px; margin-bottom:16px; overflow:hidden; }
+    .criteria-header { padding:14px 20px; display:flex; align-items:center; gap:12px; cursor:pointer; user-select:none; }
+    .criteria-header:hover { background:#F9FAFB; }
+    .rag-band-pill { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:99px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+    .rag-band-pill.red { background:#FEF2F2; color:#991B1B; border:1px solid #FECACA; }
+    .rag-band-pill.amber { background:#FFFBEB; color:#92400E; border:1px solid #FDE68A; }
+    .rag-band-pill.green { background:#F0FDF4; color:#166534; border:1px solid #BBF7D0; }
+    .criteria-header-text { flex:1; }
+    .criteria-header-title { font-size:13px; font-weight:600; color:#0F172A; margin-bottom:2px; }
+    .criteria-header-sub { font-size:11px; color:#9CA3AF; }
+    .criteria-toggle { color:#9CA3AF; font-size:16px; transition:transform 0.2s; }
+    .criteria-toggle.open { transform:rotate(180deg); }
+    .criteria-body { border-top:1px solid #E5E7EB; padding:16px 20px; display:flex; flex-direction:column; gap:12px; }
+    .criterion-row { display:flex; flex-direction:column; gap:6px; }
+    .criterion-row-top { display:flex; align-items:center; justify-content:space-between; }
+    .criterion-label { font-size:12px; color:#374151; font-weight:500; flex:1; padding-right:12px; }
+    .criterion-stat { font-size:12px; font-weight:600; white-space:nowrap; }
+    .criterion-stat.red { color:#C0392B; }
+    .criterion-stat.amber { color:#B45309; }
+    .criterion-stat.green { color:#166534; }
+    .criterion-bar-track { height:6px; background:#F3F4F6; border-radius:3px; overflow:hidden; }
+    .criterion-bar-fill { height:100%; border-radius:3px; transition:width 0.4s ease; }
+    .criterion-bar-fill.red { background:#FCA5A5; }
+    .criterion-bar-fill.amber { background:#FCD34D; }
+    .criterion-bar-fill.green { background:#86EFAC; }
+    .green-note { font-size:12px; color:#166534; background:#F0FDF4; border:1px solid #BBF7D0; border-radius:6px; padding:10px 14px; line-height:1.5; }
+
+    /* ── Info callout ── */
+    .info-callout { background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:flex; gap:10px; align-items:flex-start; }
+    .info-callout-icon { font-size:15px; margin-top:1px; }
+    .info-callout-text { font-size:12px; color:#1E40AF; line-height:1.6; }
+    .info-callout-text strong { font-weight:600; }
+
+    /* ── Fee Panel (right rail) ── */
+    .fee-panel-title { font-size:14px; font-weight:700; color:#0F172A; margin-bottom:4px; }
+    .fee-panel-sub { font-size:12px; color:#6B7280; margin-bottom:20px; line-height:1.5; }
+    .fee-band-row { margin-bottom:16px; padding:14px 14px 12px; border:1px solid #E5E7EB; border-radius:8px; transition:border-color 0.2s; }
+    .fee-band-row.red { border-color:#FECACA; background:#FEF2F2; }
+    .fee-band-row.amber { border-color:#FDE68A; background:#FFFBEB; }
+    .fee-band-row.green { border-color:#BBF7D0; background:#F0FDF4; }
+    .fee-band-label-row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .fee-band-label { font-size:12px; font-weight:600; }
+    .fee-band-label.red { color:#991B1B; }
+    .fee-band-label.amber { color:#92400E; }
+    .fee-band-label.green { color:#166534; }
+    .fee-band-count { font-size:11px; color:#9CA3AF; margin-left:auto; }
+    .fee-band-desc { font-size:11px; margin-bottom:10px; line-height:1.5; }
+    .fee-band-desc.red { color:#7F1D1D; }
+    .fee-band-desc.amber { color:#78350F; }
+    .fee-band-desc.green { color:#14532D; }
+    .fee-input-row { display:flex; align-items:center; gap:8px; }
+    .fee-input-label { font-size:11px; color:#6B7280; white-space:nowrap; }
+    .fee-input-wrap { display:flex; align-items:center; border:1px solid #D1D5DB; border-radius:6px; overflow:hidden; background:#fff; flex:1; }
+    .fee-input { border:none; outline:none; font-family:inherit; font-size:13px; font-weight:600; color:#0F172A; padding:6px 8px; width:100%; text-align:right; }
+    .fee-input-suffix { padding:6px 10px 6px 4px; font-size:13px; font-weight:600; color:#6B7280; white-space:nowrap; }
+    .fee-divider { height:1px; background:#E5E7EB; margin:18px 0; }
+    .impact-preview { background:#F8F9FA; border:1px solid #E5E7EB; border-radius:8px; padding:14px; margin-bottom:16px; }
+    .impact-preview-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#9CA3AF; margin-bottom:10px; }
+    .impact-row { display:flex; justify-content:space-between; align-items:center; font-size:12px; margin-bottom:6px; }
+    .impact-row:last-child { margin-bottom:0; }
+    .impact-row .label { color:#6B7280; }
+    .impact-row .value { font-weight:600; color:#0F172A; }
+    .impact-row .value.red { color:#C0392B; }
+    .impact-row .value.amber { color:#B45309; }
+    .impact-row .value.green { color:#166534; }
+    .fee-save-btn { width:100%; padding:9px; background:#1D4ED8; color:#fff; border:none; border-radius:6px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; }
+    .fee-save-btn:hover { background:#1e40af; }
+    .fee-saved-note { text-align:center; font-size:11px; color:#9CA3AF; margin-top:8px; display:none; }
+    .fee-saved-note.visible { display:block; }
+    .fee-panel-section-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.6px; color:#9CA3AF; margin-bottom:12px; }
+
+    /* ── Unsaved indicator ── */
+    .unsaved-dot { display:none; width:7px; height:7px; background:#F59E0B; border-radius:50%; }
+    .unsaved-dot.visible { display:inline-block; }
+
+    /* ── Product sample table ── */
+    .sample-card { background:#fff; border:1px solid #E5E7EB; border-radius:10px; margin-bottom:16px; overflow:hidden; }
+    .sample-card-header { padding:14px 20px; border-bottom:1px solid #E5E7EB; display:flex; align-items:center; justify-content:space-between; }
+    .sample-card-title { font-size:13px; font-weight:600; color:#0F172A; }
+    .sample-card-sub { font-size:11px; color:#9CA3AF; }
+    table { width:100%; border-collapse:collapse; }
+    th { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; color:#9CA3AF; text-align:left; padding:10px 20px; border-bottom:1px solid #E5E7EB; }
+    td { font-size:12px; color:#374151; padding:10px 20px; border-bottom:1px solid #F3F4F6; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:#F9FAFB; }
+    .rag-dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; }
+    .rag-dot.red { background:#C0392B; }
+    .rag-dot.amber { background:#D97706; }
+    .rag-dot.green { background:#16A34A; }
+    .product-name { font-weight:500; color:#0F172A; }
+    .trigger-tags { display:flex; flex-wrap:wrap; gap:4px; }
+    .trigger-tag { font-size:10px; padding:2px 7px; border-radius:99px; font-weight:500; }
+    .trigger-tag.red { background:#FEF2F2; color:#991B1B; border:1px solid #FECACA; }
+    .trigger-tag.amber { background:#FFFBEB; color:#92400E; border:1px solid #FDE68A; }
+  </style>
+</head>
+<body>
+
+<!-- ── Topbar ── -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:32px">
+    <div class="topbar-brand">Pack<span>Benchmark</span></div>
+    <div class="topbar-nav">
+      <a href="#">Browse</a>
+      <a href="#">Benchmarks</a>
+      <a href="#">Fee Schedule</a>
+      <a href="#">Data Sources</a>
+    </div>
+  </div>
+  <div class="topbar-user">
+    <div class="avatar">CA</div>
+    <span>CAA Admin</span>
+    <span class="badge-pro">PRO</span>
+  </div>
+</div>
+
+<!-- ── Page wrap ── -->
+<div class="page-wrap">
+
+  <!-- ── Main column ── -->
+  <div class="main-col">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="screen-1-browser.html">Packaging Browser</a>
+      <span>›</span>
+      <a href="#">Plastics Rigids</a>
+      <span>›</span>
+      <span style="color:#0F172A">1L Floor Cleaner Bottle</span>
+    </div>
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-header-top">
+        <div>
+          <h1>1L Floor Cleaner Bottle</h1>
+          <div class="meta-row" style="margin-top:8px">
+            <span class="meta-chip material">⬡ Plastics Rigids — HDPE</span>
+            <span class="meta-chip">47 products benchmarked</span>
+            <span class="meta-chip">Last updated 14 Apr 2026</span>
+            <span class="meta-chip">Source: Touch Reference Dataset</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button class="btn btn-ghost">↓ Export CSV</button>
+          <button class="btn btn-ghost">⧉ Share</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active">Recyclability (RAG)</div>
+      <div class="tab">Physical Attributes</div>
+      <div class="tab">Recycled Content</div>
+      <div class="tab">Product Records</div>
+    </div>
+
+    <!-- Info callout -->
+    <div class="info-callout">
+      <div class="info-callout-icon">ℹ</div>
+      <div class="info-callout-text">
+        <strong>RAG ratings are system-determined</strong> — assigned based on the PackUK Recyclability Framework criteria for <strong>Plastics Rigids (HDPE)</strong>. 
+        CAA sets the eco-modulation fee surcharge per band in the panel on the right. The criteria themselves are fixed.
+      </div>
+    </div>
+
+    <!-- RAG Summary card -->
+    <div class="rag-summary-card">
+      <div class="rag-summary-top">
+        <div>
+          <div class="rag-summary-title">RAG Distribution — 47 products</div>
+          <div class="rag-source" style="margin-top:3px">PackUK Recyclability Framework · Plastics Rigids (HDPE/PP)</div>
+        </div>
+        <button class="btn btn-ghost" style="font-size:12px">View framework criteria ↗</button>
+      </div>
+
+      <div class="rag-counts">
+        <div class="rag-count-item red">
+          <div class="rag-count-num">8</div>
+          <div class="rag-count-label">Red</div>
+          <div class="rag-count-pct">17%</div>
+        </div>
+        <div class="rag-count-divider"></div>
+        <div class="rag-count-item amber">
+          <div class="rag-count-num">22</div>
+          <div class="rag-count-label">Amber</div>
+          <div class="rag-count-pct">47%</div>
+        </div>
+        <div class="rag-count-divider"></div>
+        <div class="rag-count-item green">
+          <div class="rag-count-num">17</div>
+          <div class="rag-count-label">Green</div>
+          <div class="rag-count-pct">36%</div>
+        </div>
+        <div style="flex:1"></div>
+        <div style="text-align:right;align-self:center">
+          <div style="font-size:11px;color:#9CA3AF;margin-bottom:4px">Benchmark against sector average</div>
+          <div style="font-size:12px;font-weight:600;color:#374151">Sector avg: 28% GREEN · 45% AMBER · 27% RED</div>
+          <div style="font-size:11px;color:#166534;margin-top:2px">↑ This category performs better than sector average</div>
+        </div>
+      </div>
+
+      <div class="rag-bar-track">
+        <div class="rag-bar-seg red" style="width:17%"></div>
+        <div class="rag-bar-seg amber" style="width:47%"></div>
+        <div class="rag-bar-seg green" style="width:36%"></div>
+      </div>
+      <div class="rag-bar-legend">
+        <div class="rag-legend-item"><div class="rag-legend-dot red"></div> Not practically recyclable</div>
+        <div class="rag-legend-item"><div class="rag-legend-dot amber"></div> Recyclable with caveats</div>
+        <div class="rag-legend-item"><div class="rag-legend-dot green"></div> Widely recyclable</div>
+      </div>
+    </div>
+
+    <!-- Criteria breakdown heading -->
+    <div class="section-heading" style="margin-bottom:10px">Criteria breakdown — what is triggering each rating</div>
+
+    <!-- RED Criteria card -->
+    <div class="criteria-card" id="red-card">
+      <div class="criteria-header" onclick="toggleCriteria('red-card')">
+        <span class="rag-band-pill red">● Red</span>
+        <div class="criteria-header-text" style="margin-left:12px">
+          <div class="criteria-header-title">Not practically recyclable — 8 products (17%)</div>
+          <div class="criteria-header-sub">Products with any RED criterion cannot achieve AMBER or GREEN rating</div>
+        </div>
+        <span class="criteria-toggle open" id="red-toggle">▾</span>
+      </div>
+      <div class="criteria-body" id="red-body">
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Contains carbon black pigment (prevents NIR sorting)</span>
+            <span class="criterion-stat red">5 products · 11%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill red" style="width:11%"></div></div>
+        </div>
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Polymer purity &lt;95% HDPE (fails composition threshold)</span>
+            <span class="criterion-stat red">3 products · 6%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill red" style="width:6%"></div></div>
+        </div>
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">PVC sleeve present (&gt;5% by weight)</span>
+            <span class="criterion-stat red">2 products · 4%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill red" style="width:4%"></div></div>
+        </div>
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Foam or foamed plastic component attached</span>
+            <span class="criterion-stat red">1 product · 2%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill red" style="width:2%"></div></div>
+        </div>
+        <div style="font-size:11px;color:#9CA3AF;padding-top:4px;border-top:1px solid #F3F4F6;margin-top:4px">
+          Note: some products trigger multiple RED criteria — only unique product count is shown per row.
+        </div>
+      </div>
+    </div>
+
+    <!-- AMBER Criteria card -->
+    <div class="criteria-card" id="amber-card">
+      <div class="criteria-header" onclick="toggleCriteria('amber-card')">
+        <span class="rag-band-pill amber">● Amber</span>
+        <div class="criteria-header-text" style="margin-left:12px">
+          <div class="criteria-header-title">Recyclable with caveats — 22 products (47%)</div>
+          <div class="criteria-header-sub">Products free from RED criteria but triggering at least one AMBER criterion</div>
+        </div>
+        <span class="criteria-toggle open" id="amber-toggle">▾</span>
+      </div>
+      <div class="criteria-body" id="amber-body">
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Non-HDPE label covers &gt;10% of bottle surface area</span>
+            <span class="criterion-stat amber">14 products · 30%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill amber" style="width:30%"></div></div>
+        </div>
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Collected at kerbside by 50–74% of local authorities only</span>
+            <span class="criterion-stat amber">11 products · 23%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill amber" style="width:23%"></div></div>
+        </div>
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Oxo-degradable additives present</span>
+            <span class="criterion-stat amber">6 products · 13%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill amber" style="width:13%"></div></div>
+        </div>
+        <div class="criterion-row">
+          <div class="criterion-row-top">
+            <span class="criterion-label">Non-HDPE component not removable by hand (cap/trigger)</span>
+            <span class="criterion-stat amber">4 products · 9%</span>
+          </div>
+          <div class="criterion-bar-track"><div class="criterion-bar-fill amber" style="width:9%"></div></div>
+        </div>
+        <div style="font-size:11px;color:#9CA3AF;padding-top:4px;border-top:1px solid #F3F4F6;margin-top:4px">
+          Note: some products trigger multiple AMBER criteria — only unique product count is shown per row.
+        </div>
+      </div>
+    </div>
+
+    <!-- GREEN Criteria card -->
+    <div class="criteria-card" id="green-card">
+      <div class="criteria-header" onclick="toggleCriteria('green-card')">
+        <span class="rag-band-pill green">● Green</span>
+        <div class="criteria-header-text" style="margin-left:12px">
+          <div class="criteria-header-title">Widely recyclable — 17 products (36%)</div>
+          <div class="criteria-header-sub">Products free from all RED and AMBER criteria</div>
+        </div>
+        <span class="criteria-toggle" id="green-toggle">▾</span>
+      </div>
+      <div class="criteria-body" id="green-body" style="display:none">
+        <div class="green-note">
+          GREEN products meet <strong>all</strong> of the following:
+          <ul style="margin-top:6px;margin-left:16px;display:flex;flex-direction:column;gap:4px">
+            <li>Collected at kerbside by ≥75% of local authorities</li>
+            <li>Natural or translucent HDPE colour (NIR-sortable)</li>
+            <li>No carbon black pigment</li>
+            <li>Polymer purity ≥95% HDPE</li>
+            <li>No PVC sleeves, foamed components, or oxo-degradable additives</li>
+            <li>Non-HDPE label &lt;10% of surface area, or removable without tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product sample table -->
+    <div class="section-heading" style="margin-top:24px;margin-bottom:10px">Sample product records</div>
+    <div class="sample-card">
+      <div class="sample-card-header">
+        <div>
+          <div class="sample-card-title">Products in this category</div>
+          <div class="sample-card-sub">Showing 8 of 47 records · Sorted by RAG rating</div>
+        </div>
+        <button class="btn btn-ghost" style="font-size:12px">View all records</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Brand</th>
+            <th>RAG</th>
+            <th>Triggered criteria</th>
+            <th>Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="product-name">HygienePro 1L Trigger Bottle</td>
+            <td>HygienePro</td>
+            <td><span class="rag-dot red"></span><span style="color:#C0392B;font-weight:600">Red</span></td>
+            <td><div class="trigger-tags"><span class="trigger-tag red">Carbon black pigment</span></div></td>
+            <td>Feb 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">CleanShield Pro 1L</td>
+            <td>CleanShield</td>
+            <td><span class="rag-dot red"></span><span style="color:#C0392B;font-weight:600">Red</span></td>
+            <td><div class="trigger-tags"><span class="trigger-tag red">PVC sleeve &gt;5%</span><span class="trigger-tag red">Carbon black</span></div></td>
+            <td>Jan 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">FloorGuard Original 1L</td>
+            <td>FloorGuard</td>
+            <td><span class="rag-dot amber"></span><span style="color:#B45309;font-weight:600">Amber</span></td>
+            <td><div class="trigger-tags"><span class="trigger-tag amber">Label &gt;10% surface</span></div></td>
+            <td>Mar 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">BrightFloor Concentrate 1L</td>
+            <td>BrightFloor</td>
+            <td><span class="rag-dot amber"></span><span style="color:#B45309;font-weight:600">Amber</span></td>
+            <td><div class="trigger-tags"><span class="trigger-tag amber">50–74% kerbside</span><span class="trigger-tag amber">Oxo-degradable</span></div></td>
+            <td>Feb 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">SterilClean HDPE 1L</td>
+            <td>SterilClean</td>
+            <td><span class="rag-dot amber"></span><span style="color:#B45309;font-weight:600">Amber</span></td>
+            <td><div class="trigger-tags"><span class="trigger-tag amber">Label &gt;10% surface</span></div></td>
+            <td>Apr 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">EcoFloor Natural 1L</td>
+            <td>EcoFloor</td>
+            <td><span class="rag-dot green"></span><span style="color:#166534;font-weight:600">Green</span></td>
+            <td><div class="trigger-tags"><span style="font-size:11px;color:#9CA3AF">None — all criteria met</span></div></td>
+            <td>Mar 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">PureClean HDPE Clear 1L</td>
+            <td>PureClean</td>
+            <td><span class="rag-dot green"></span><span style="color:#166534;font-weight:600">Green</span></td>
+            <td><div class="trigger-tags"><span style="font-size:11px;color:#9CA3AF">None — all criteria met</span></div></td>
+            <td>Jan 2026</td>
+          </tr>
+          <tr>
+            <td class="product-name">FreshStep Ultra 1L</td>
+            <td>FreshStep</td>
+            <td><span class="rag-dot green"></span><span style="color:#166534;font-weight:600">Green</span></td>
+            <td><div class="trigger-tags"><span style="font-size:11px;color:#9CA3AF">None — all criteria met</span></div></td>
+            <td>Apr 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- ── Right: Fee Modulation Panel ── -->
+  <div class="fee-panel">
+
+    <div class="fee-panel-title">
+      Eco-Modulation Fees
+      <span class="unsaved-dot" id="unsaved-dot" title="Unsaved changes"></span>
+    </div>
+    <div class="fee-panel-sub">Set the fee surcharge applied to producers per RAG band. Applies to all product types using the Plastics Rigids (HDPE) framework.</div>
+
+    <div class="fee-panel-section-label">Surcharge by band</div>
+
+    <!-- RED band -->
+    <div class="fee-band-row red">
+      <div class="fee-band-label-row">
+        <span class="rag-band-pill red" style="font-size:10px">● Red</span>
+        <span class="fee-band-count">8 products affected</span>
+      </div>
+      <div class="fee-band-desc red">Not practically recyclable. Highest surcharge tier.</div>
+      <div class="fee-input-row">
+        <span class="fee-input-label">Surcharge</span>
+        <div class="fee-input-wrap">
+          <input class="fee-input" type="number" id="fee-red" value="20" min="0" max="100" onchange="updateImpact()" oninput="markUnsaved()" />
+          <span class="fee-input-suffix">%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMBER band -->
+    <div class="fee-band-row amber">
+      <div class="fee-band-label-row">
+        <span class="rag-band-pill amber" style="font-size:10px">● Amber</span>
+        <span class="fee-band-count">22 products affected</span>
+      </div>
+      <div class="fee-band-desc amber">Recyclable with caveats. Mid-level surcharge.</div>
+      <div class="fee-input-row">
+        <span class="fee-input-label">Surcharge</span>
+        <div class="fee-input-wrap">
+          <input class="fee-input" type="number" id="fee-amber" value="10" min="0" max="100" onchange="updateImpact()" oninput="markUnsaved()" />
+          <span class="fee-input-suffix">%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GREEN band -->
+    <div class="fee-band-row green">
+      <div class="fee-band-label-row">
+        <span class="rag-band-pill green" style="font-size:10px">● Green</span>
+        <span class="fee-band-count">17 products</span>
+      </div>
+      <div class="fee-band-desc green">Widely recyclable. No surcharge — baseline rate.</div>
+      <div class="fee-input-row">
+        <span class="fee-input-label">Surcharge</span>
+        <div class="fee-input-wrap" style="background:#F9FAFB">
+          <input class="fee-input" type="number" id="fee-green" value="0" min="0" max="100" disabled style="color:#9CA3AF;background:#F9FAFB" />
+          <span class="fee-input-suffix" style="color:#9CA3AF">%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fee-divider"></div>
+
+    <!-- Impact preview -->
+    <div class="impact-preview">
+      <div class="impact-preview-title">Projected impact — this category</div>
+      <div class="impact-row">
+        <span class="label">RED (8 products)</span>
+        <span class="value red" id="impact-red">+20% surcharge</span>
+      </div>
+      <div class="impact-row">
+        <span class="label">AMBER (22 products)</span>
+        <span class="value amber" id="impact-amber">+10% surcharge</span>
+      </div>
+      <div class="impact-row">
+        <span class="label">GREEN (17 products)</span>
+        <span class="value green">Baseline (0%)</span>
+      </div>
+      <div style="height:1px;background:#E5E7EB;margin:10px 0"></div>
+      <div class="impact-row">
+        <span class="label" style="font-weight:600;color:#0F172A">Products above baseline</span>
+        <span class="value" id="impact-total" style="color:#0F172A">30 of 47 (64%)</span>
+      </div>
+    </div>
+
+    <button class="fee-save-btn" id="save-btn" onclick="saveRates()">
+      ✓ Save fee rates
+    </button>
+    <div class="fee-saved-note" id="save-note">Rates saved · Last saved just now</div>
+
+    <div class="fee-divider"></div>
+
+    <!-- Framework reference note -->
+    <div style="font-size:11px;color:#9CA3AF;line-height:1.6">
+      <strong style="color:#374151">RAG criteria source:</strong> PackUK Recyclability Framework 2024. 
+      Criteria are set by the industry body and updated periodically. 
+      CAA may not modify individual criteria — contact the Technical Advisory Committee for framework updates.
+    </div>
+
+  </div><!-- /fee-panel -->
+
+</div><!-- /page-wrap -->
+
+<script>
+  function toggleCriteria(cardId) {
+    const body = document.getElementById(cardId).querySelector('.criteria-body');
+    const toggle = document.getElementById(cardId.replace('-card','-toggle'));
+    const isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'flex';
+    toggle.classList.toggle('open', !isOpen);
+  }
+  // init green as collapsed
+  document.getElementById('green-body').style.display = 'none';
+
+  function markUnsaved() {
+    document.getElementById('unsaved-dot').classList.add('visible');
+    document.getElementById('save-note').classList.remove('visible');
+  }
+
+  function updateImpact() {
+    const red = parseInt(document.getElementById('fee-red').value) || 0;
+    const amber = parseInt(document.getElementById('fee-amber').value) || 0;
+    document.getElementById('impact-red').textContent = red > 0 ? `+${red}% surcharge` : 'No surcharge';
+    document.getElementById('impact-amber').textContent = amber > 0 ? `+${amber}% surcharge` : 'No surcharge';
+    const affected = (red > 0 ? 8 : 0) + (amber > 0 ? 22 : 0);
+    const pct = Math.round(affected / 47 * 100);
+    document.getElementById('impact-total').textContent = `${affected} of 47 (${pct}%)`;
+  }
+
+  function saveRates() {
+    document.getElementById('unsaved-dot').classList.remove('visible');
+    const note = document.getElementById('save-note');
+    note.classList.add('visible');
+    const btn = document.getElementById('save-btn');
+    btn.textContent = '✓ Saved';
+    btn.style.background = '#166534';
+    setTimeout(() => {
+      btn.textContent = '✓ Save fee rates';
+      btn.style.background = '#1D4ED8';
+    }, 2000);
+  }
+</script>
+</body>
+</html>
