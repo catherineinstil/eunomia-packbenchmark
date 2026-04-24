@@ -121,23 +121,129 @@
     .breadcrumb-sep { color: #D1D5DB; }
     .breadcrumb-current { color: #374151; font-weight: 600; }
 
-    /* ── Page header ────────────────────────────────── */
-    .page-header {
+    /* ── Product hero card ──────────────────────────── */
+    .product-hero {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .hero-image-panel {
+      background: linear-gradient(160deg, #F1F5F9 0%, #E2E8F0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+      border-right: 1px solid #E5E7EB;
+      position: relative;
+    }
+    .hero-image-panel svg {
+      height: 160px;
+      width: auto;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.13));
+    }
+    .hero-yours-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1D4ED8;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .hero-content {
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .hero-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 24px;
+      gap: 16px;
+      margin-bottom: 14px;
     }
-
-    .page-header-left {}
-
-    .page-title {
-      font-size: 24px;
-      font-weight: 700;
+    .hero-title {
+      font-size: 22px;
+      font-weight: 800;
       color: #111827;
-      letter-spacing: -0.5px;
-      margin-bottom: 10px;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid #E5E7EB;
+      margin-top: 6px;
+    }
+    .hero-stat {
+      padding: 14px 20px;
+      border-right: 1px solid #E5E7EB;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #9CA3AF;
+      margin-bottom: 6px;
+    }
+    .hero-stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-value.amber { color: #B45309; }
+    .hero-stat-value.neutral { color: #111827; }
+    .hero-stat-sub { font-size: 11px; color: #9CA3AF; line-height: 1.4; }
+
+    .rank-bar-outer {
+      height: 8px;
+      background: #F3F4F6;
+      border-radius: 4px;
+      position: relative;
+      margin: 8px 0 4px;
+    }
+    .rank-bar-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      background: linear-gradient(to right, #16A34A, #D97706 55%, #C0392B);
+      border-radius: 4px;
+      width: 100%;
+    }
+    .rank-bar-dot {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #1D4ED8;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+    .rank-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #9CA3AF;
+      font-weight: 500;
     }
 
     .meta-chips {
@@ -780,22 +886,82 @@
     <span class="breadcrumb-current">HygienePro 1L Trigger Spray</span>
   </nav>
 
-  <!-- Page header -->
-  <header class="page-header">
-    <div class="page-header-left">
-      <h1 class="page-title">HygienePro 1L Trigger Spray</h1>
-      <div class="meta-chips">
-        <span class="chip" style="font-weight:600;color:#374151">HygienePro Ltd</span>
-        <span class="chip">Plastics Rigids — HDPE</span>
-        <span class="chip">Rank 14th of 20</span>
-        <span class="chip">Last updated Feb 2026</span>
+  <!-- Product hero card -->
+  <div class="product-hero">
+
+    <!-- Bottle image -->
+    <div class="hero-image-panel">
+      <svg viewBox="0 0 80 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#FFFFFF"/>
+            <stop offset="18%"  stop-color="#EEF2F7"/>
+            <stop offset="60%"  stop-color="#DDE3EC"/>
+            <stop offset="85%"  stop-color="#C8D0DC"/>
+            <stop offset="100%" stop-color="#B8C2CF"/>
+          </linearGradient>
+          <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#E2E8F0"/>
+            <stop offset="100%" stop-color="#94A3B8"/>
+          </linearGradient>
+          <linearGradient id="shoulderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#F0F4F8"/>
+            <stop offset="100%" stop-color="#BCC5D1"/>
+          </linearGradient>
+        </defs>
+        <rect x="28" y="5" width="24" height="16" rx="4" fill="url(#capGrad)"/>
+        <rect x="25" y="19" width="30" height="5" rx="2" fill="#94A3B8"/>
+        <path d="M22,24 Q22,32 15,38 L15,46 Q22,40 22,38 L58,38 Q58,40 65,46 L65,38 Q58,32 58,24 Z" fill="url(#shoulderGrad)"/>
+        <rect x="15" y="38" width="50" height="82" rx="6" fill="url(#bodyGrad)"/>
+        <rect x="19" y="40" width="5" height="76" rx="2.5" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="25" y="42" width="2" height="70" rx="1" fill="#FFFFFF" opacity="0.25"/>
+        <ellipse cx="40" cy="120" rx="24" ry="3" fill="#94A3B8" opacity="0.3"/>
+        <rect x="17" y="116" width="46" height="4" rx="2" fill="#B8C2CF"/>
+      </svg>
+      <div class="hero-yours-tag">Your product</div>
+    </div>
+
+    <!-- Product details -->
+    <div class="hero-content">
+      <div class="hero-top">
+        <div>
+          <div class="hero-title">HygienePro 1L Trigger Spray</div>
+          <div class="meta-chips">
+            <span class="chip" style="font-weight:600;color:#374151">HygienePro Ltd</span>
+            <span class="chip">Plastics Rigids — HDPE</span>
+            <span class="chip">Last updated Feb 2026</span>
+          </div>
+        </div>
+        <div class="page-header-actions">
+          <a href="#" class="btn-secondary">↓ Download report</a>
+          <a href="#" class="btn-secondary">⟳ Request re-assessment</a>
+        </div>
+      </div>
+
+      <!-- Key stats row -->
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <div class="hero-stat-label">Recyclability Status</div>
+          <div class="hero-stat-value amber">AMBER</div>
+          <div class="hero-stat-sub">Recyclable with caveats<br/>Fails 2 of 8 criteria</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Est. Annual Fee Surcharge</div>
+          <div class="hero-stat-value amber">+10%</div>
+          <div class="hero-stat-sub">Based on current CAA schedule<br/>Subject to change</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Category Rank</div>
+          <div class="hero-stat-value neutral">14 <span style="font-size:14px;font-weight:600;color:#6B7280">of 20</span></div>
+          <div class="rank-bar-outer">
+            <div class="rank-bar-fill"></div>
+            <div class="rank-bar-dot" style="left:68.4%"></div>
+          </div>
+          <div class="rank-bar-labels"><span>Best</span><span>Worst</span></div>
+        </div>
       </div>
     </div>
-    <div class="page-header-actions">
-      <a href="#" class="btn-secondary">↓ Download report</a>
-      <a href="#" class="btn-secondary">⟳ Request re-assessment</a>
-    </div>
-  </header>
+  </div>
 
   <!-- Tabs -->
   <div class="tabs">
@@ -810,47 +976,11 @@
     <!-- ─── LEFT COLUMN ──────────────────────────── -->
     <div class="left-col">
 
-      <!-- RAG Status Card -->
-      <div class="rag-status-card">
-        <div class="rag-status-cols">
-
-          <!-- Col 1: RAG badge -->
-          <div class="rag-status-col">
-            <div class="rag-col-label">Recyclability Status</div>
-            <div class="rag-big-badge rag-big-amber">AMBER</div>
-            <div class="rag-description">Recyclable with caveats — fails 2 of 8 assessed criteria</div>
-          </div>
-
-          <!-- Col 2: Fee surcharge -->
-          <div class="rag-status-col">
-            <div class="rag-col-label">Est. Annual Fee Surcharge</div>
-            <div class="fee-big">+10%</div>
-            <div class="fee-note">Based on current CAA fee schedule<br />Subject to change</div>
-          </div>
-
-          <!-- Col 3: Rank bar -->
-          <div class="rag-status-col">
-            <div class="rag-col-label">Category Rank</div>
-            <div class="rank-value">14<span style="font-size:15px;font-weight:600;color:#6B7280"> of 20</span></div>
-            <div class="rank-bar-outer">
-              <div class="rank-bar-fill"></div>
-              <!-- Rank 14 of 20: (14-1)/(20-1) ≈ 68.4% from left -->
-              <div class="rank-bar-dot" style="left:68.4%"></div>
-            </div>
-            <div class="rank-bar-labels">
-              <span style="color:#2D7D46">Best (1st)</span>
-              <span style="color:#C0392B">Worst (20th)</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Triggered criteria row -->
-        <div class="criteria-row">
-          <span class="criteria-label">Triggered criteria</span>
-          <span class="crit-tag crit-amber">⚠ Paper/card label: 13% (threshold: &lt;10%)</span>
-          <span class="crit-tag crit-amber">⚠ Kerbside coverage: 50–74% of LAs</span>
-        </div>
+      <!-- Triggered criteria row -->
+      <div class="criteria-row" style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;margin-top:20px;margin-bottom:16px;">
+        <span class="criteria-label">Triggered criteria</span>
+        <span class="crit-tag crit-amber">⚠ Paper/card label: 13% (threshold: &lt;10%)</span>
+        <span class="crit-tag crit-amber">⚠ Kerbside coverage: 50–74% of LAs</span>
       </div>
 
       <!-- Benchmark comparison section -->
