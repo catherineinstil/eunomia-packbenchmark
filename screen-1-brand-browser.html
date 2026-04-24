@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1L Floor Cleaner Bottle — PackBenchmark</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #0F172A; font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+    /* ── Topbar ── */
+    .topbar { background:#fff; border-bottom:1px solid #E5E7EB; padding:0 32px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; }
+    .topbar-brand { font-size:15px; font-weight:800; color:#0F172A; letter-spacing:-0.4px; }
+    .topbar-brand span { color:#1D4ED8; }
+    .topbar-nav { display:flex; gap:24px; font-size:13px; color:#6B7280; }
+    .topbar-nav a { text-decoration:none; color:inherit; }
+    .topbar-nav a:hover { color:#0F172A; }
+    .topbar-user { display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; }
+    .avatar { width:28px; height:28px; background:#EA580C; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:700; }
+    .badge-brand { background:#FFF7ED; color:#C2410C; font-size:10px; font-weight:600; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:0.4px; border:1px solid #FED7AA; }
+
+    /* ── Page wrap ── */
+    .page-wrap { max-width:1400px; margin:0 auto; padding:28px 32px 80px; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb { font-size:12px; color:#9CA3AF; margin-bottom:14px; display:flex; align-items:center; gap:6px; }
+    .breadcrumb a { color:#6B7280; text-decoration:none; }
+    .breadcrumb a:hover { color:#0F172A; }
+
+    /* ── Page header ── */
+    .page-header { margin-bottom:20px; }
+    .page-header h1 { font-size:22px; font-weight:700; color:#0F172A; letter-spacing:-0.4px; margin-bottom:8px; }
+    .meta-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .meta-chip { display:inline-flex; align-items:center; gap:5px; background:#F1F5F9; border:1px solid #E5E7EB; border-radius:99px; padding:3px 10px; font-size:12px; color:#475569; font-weight:500; }
+    .meta-chip.material { background:#EFF6FF; border-color:#BFDBFE; color:#1D4ED8; }
+
+    /* ── Your product summary strip ── */
+    .your-strip { background:#fff; border:1px solid #E5E7EB; border-left:4px solid #1D4ED8; border-radius:8px; padding:14px 20px; margin-bottom:20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+    .your-strip-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.6px; color:#1D4ED8; white-space:nowrap; }
+    .your-strip-product { font-size:14px; font-weight:600; color:#0F172A; }
+    .your-strip-divider { width:1px; height:28px; background:#E5E7EB; }
+    .stat-item { display:flex; flex-direction:column; gap:2px; }
+    .stat-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#9CA3AF; }
+    .stat-value { font-size:13px; font-weight:700; }
+    .stat-value.amber { color:#B45309; }
+    .stat-value.green { color:#166534; }
+    .stat-value.red { color:#C0392B; }
+    .strip-spacer { flex:1; }
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; border:none; font-family:inherit; transition:background 0.15s; white-space:nowrap; }
+    .btn-ghost { background:#fff; border:1px solid #E5E7EB; color:#374151; }
+    .btn-ghost:hover { background:#F9FAFB; }
+    .btn-primary { background:#1D4ED8; color:#fff; }
+    .btn-primary:hover { background:#1e40af; }
+
+    /* ── Toolbar ── */
+    .toolbar { display:flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+    .filter-chips { display:flex; gap:6px; }
+    .chip { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:99px; font-size:12px; font-weight:500; cursor:pointer; border:1px solid #E5E7EB; background:#fff; color:#6B7280; transition:all 0.15s; }
+    .chip.active { background:#0F172A; color:#fff; border-color:#0F172A; }
+    .chip.green-chip.active { background:#166534; border-color:#166534; }
+    .chip.amber-chip.active { background:#B45309; border-color:#B45309; }
+    .chip.red-chip.active { background:#C0392B; border-color:#C0392B; }
+    .chip-dot { width:7px; height:7px; border-radius:50%; }
+    .toolbar-spacer { flex:1; }
+    .sort-wrap { display:flex; align-items:center; gap:6px; font-size:12px; color:#6B7280; }
+    .sort-wrap select { border:1px solid #E5E7EB; border-radius:6px; padding:5px 28px 5px 10px; font-family:inherit; font-size:12px; color:#374151; background:#fff; outline:none; cursor:pointer; }
+    .results-count { font-size:12px; color:#9CA3AF; white-space:nowrap; }
+
+    /* ── Card grid ── */
+    .card-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:14px; }
+
+    /* ── Product card ── */
+    .product-card { background:#fff; border:1px solid #E5E7EB; border-radius:10px; overflow:hidden; cursor:pointer; transition:box-shadow 0.2s, border-color 0.2s; position:relative; }
+    .product-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.09); border-color:#CBD5E1; }
+    .product-card.yours { border:2px solid #1D4ED8; box-shadow:0 0 0 3px rgba(29,78,216,0.1); }
+
+    /* Rank badge */
+    .rank-badge { position:absolute; top:10px; left:10px; background:rgba(255,255,255,0.92); border:1px solid #E5E7EB; border-radius:99px; font-size:10px; font-weight:700; color:#6B7280; padding:2px 7px; z-index:2; backdrop-filter:blur(4px); }
+    .product-card.yours .rank-badge { background:#1D4ED8; color:#fff; border-color:#1D4ED8; }
+
+    /* Your product ribbon */
+    .yours-ribbon { position:absolute; top:10px; right:10px; background:#1D4ED8; color:#fff; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; padding:3px 8px; border-radius:99px; z-index:2; }
+
+    /* RAG corner indicator */
+    .rag-corner { position:absolute; bottom:0; left:0; right:0; height:4px; }
+    .rag-corner.green { background:#16A34A; }
+    .rag-corner.amber { background:#D97706; }
+    .rag-corner.red { background:#C0392B; }
+
+    /* Image area */
+    .card-image { height:140px; background:#F8FAFC; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+    .card-image svg { height:110px; width:auto; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.10)); }
+
+    /* Card body */
+    .card-body { padding:12px 14px 16px; }
+    .card-brand { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.6px; color:#9CA3AF; margin-bottom:3px; }
+    .card-name { font-size:13px; font-weight:600; color:#0F172A; line-height:1.3; margin-bottom:10px; }
+    .card-stats { display:flex; flex-direction:column; gap:6px; }
+    .card-stat-row { display:flex; align-items:center; justify-content:space-between; }
+    .card-stat-label { font-size:11px; color:#9CA3AF; }
+    .card-stat-value { font-size:11px; font-weight:600; color:#374151; }
+
+    /* RAG pill */
+    .rag-pill { display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:99px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; }
+    .rag-pill.green { background:#F0FDF4; color:#166534; border:1px solid #BBF7D0; }
+    .rag-pill.amber { background:#FFFBEB; color:#92400E; border:1px solid #FDE68A; }
+    .rag-pill.red { background:#FEF2F2; color:#991B1B; border:1px solid #FECACA; }
+    .rag-dot-sm { width:6px; height:6px; border-radius:50%; }
+    .rag-dot-sm.green { background:#16A34A; }
+    .rag-dot-sm.amber { background:#D97706; }
+    .rag-dot-sm.red { background:#C0392B; }
+
+    /* Recycled content mini bar */
+    .rc-bar-track { height:4px; background:#F3F4F6; border-radius:2px; overflow:hidden; margin-top:3px; }
+    .rc-bar-fill { height:100%; border-radius:2px; background:#16A34A; }
+
+    /* View button */
+    .card-action { display:flex; align-items:center; justify-content:space-between; margin-top:10px; padding-top:10px; border-top:1px solid #F3F4F6; }
+    .card-action-link { font-size:11px; color:#1D4ED8; font-weight:500; text-decoration:none; }
+    .card-action-link:hover { text-decoration:underline; }
+    .surcharge-badge { font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px; }
+    .surcharge-badge.none { background:#F0FDF4; color:#166534; }
+    .surcharge-badge.mid { background:#FFFBEB; color:#92400E; }
+    .surcharge-badge.high { background:#FEF2F2; color:#991B1B; }
+
+    /* Footer note */
+    .footer-note { margin-top:24px; font-size:11px; color:#9CA3AF; text-align:center; }
+  </style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:32px">
+    <div class="topbar-brand">Pack<span>Benchmark</span></div>
+    <div class="topbar-nav">
+      <a href="#">Browse</a>
+      <a href="#">My Products</a>
+      <a href="#">Benchmarks</a>
+      <a href="#">Subscription</a>
+    </div>
+  </div>
+  <div class="topbar-user">
+    <div class="avatar">HY</div>
+    <span>Sarah Mitchell</span>
+    <span class="badge-brand">Brand</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="#">Browse</a> <span>›</span>
+    <a href="#">Plastics Rigids</a> <span>›</span>
+    <span style="color:#0F172A">1L Floor Cleaner Bottle</span>
+  </div>
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>1L Floor Cleaner Bottle</h1>
+    <div class="meta-row">
+      <span class="meta-chip material">⬡ Plastics Rigids — HDPE</span>
+      <span class="meta-chip">20 products</span>
+      <span class="meta-chip">Updated 14 Apr 2026</span>
+    </div>
+  </div>
+
+  <!-- Your product strip -->
+  <div class="your-strip">
+    <div class="your-strip-label">Your product</div>
+    <div class="your-strip-product">HygienePro 1L Trigger Spray</div>
+    <div class="your-strip-divider"></div>
+    <div class="stat-item">
+      <div class="stat-label">RAG Status</div>
+      <div class="stat-value amber">AMBER</div>
+    </div>
+    <div class="your-strip-divider"></div>
+    <div class="stat-item">
+      <div class="stat-label">Rank</div>
+      <div class="stat-value">14th of 20</div>
+    </div>
+    <div class="your-strip-divider"></div>
+    <div class="stat-item">
+      <div class="stat-label">Est. surcharge</div>
+      <div class="stat-value amber">+10%</div>
+    </div>
+    <div class="your-strip-divider"></div>
+    <div class="stat-item">
+      <div class="stat-label">Best in class</div>
+      <div class="stat-value green">EcoFloor Natural 1L</div>
+    </div>
+    <div class="strip-spacer"></div>
+    <a href="screen-2-brand-benchmarking.html" class="btn btn-primary">View my benchmark →</a>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="filter-chips">
+      <div class="chip active">All (20)</div>
+      <div class="chip green-chip"><span class="chip-dot" style="background:#16A34A"></span> Green (6)</div>
+      <div class="chip amber-chip"><span class="chip-dot" style="background:#D97706"></span> Amber (10)</div>
+      <div class="chip red-chip"><span class="chip-dot" style="background:#C0392B"></span> Red (4)</div>
+    </div>
+    <div class="toolbar-spacer"></div>
+    <span class="results-count">20 products</span>
+    <div class="sort-wrap">
+      <span>Sort by</span>
+      <select><option>Rank</option><option>RAG Rating</option><option>Recycled Content</option><option>Weight</option></select>
+    </div>
+  </div>
+
+  <!-- Card grid -->
+  <div class="card-grid" id="grid"></div>
+
+  <div class="footer-note">Surcharge estimates based on current CAA fee schedule · Subject to change · Data provided by Touch Reference Dataset</div>
+
+</div>
+
+<script>
+const products = [
+  { rank:1,  brand:"EcoFloor",    name:"EcoFloor Natural 1L",         rag:"green", rc:45, weight:68,  surcharge:0,   labelColor:"#0F4C75", label:"ECO" },
+  { rank:2,  brand:"PureClean",   name:"PureClean HDPE Clear 1L",     rag:"green", rc:42, weight:71,  surcharge:0,   labelColor:"#1B5E7B", label:"PC"  },
+  { rank:3,  brand:"GreenWave",   name:"GreenWave Bio 1L",            rag:"green", rc:40, weight:73,  surcharge:0,   labelColor:"#1A3A5C", label:"GW"  },
+  { rank:4,  brand:"FreshStep",   name:"FreshStep Ultra 1L",          rag:"green", rc:38, weight:74,  surcharge:0,   labelColor:"#2D4A7A", label:"FS"  },
+  { rank:5,  brand:"ClearChoice", name:"ClearChoice Pro 1L",          rag:"green", rc:36, weight:76,  surcharge:0,   labelColor:"#374151", label:"CC"  },
+  { rank:6,  brand:"AlphaClean",  name:"AlphaClean Eco 1L",           rag:"green", rc:34, weight:78,  surcharge:0,   labelColor:"#1E3A5F", label:"AC"  },
+  { rank:7,  brand:"BrightFloor", name:"BrightFloor Concentrate 1L",  rag:"amber", rc:32, weight:80,  surcharge:10,  labelColor:"#4A235A", label:"BF"  },
+  { rank:8,  brand:"SterilClean", name:"SterilClean HDPE 1L",         rag:"amber", rc:30, weight:82,  surcharge:10,  labelColor:"#1A4A3A", label:"SC"  },
+  { rank:9,  brand:"FloorGuard",  name:"FloorGuard Original 1L",      rag:"amber", rc:28, weight:84,  surcharge:10,  labelColor:"#5B3A1A", label:"FG"  },
+  { rank:10, brand:"ProShield",   name:"ProShield Clean 1L",          rag:"amber", rc:26, weight:86,  surcharge:10,  labelColor:"#2A3A5A", label:"PS"  },
+  { rank:11, brand:"BioGuard",    name:"BioGuard Floor 1L",           rag:"amber", rc:25, weight:87,  surcharge:10,  labelColor:"#3A2A5A", label:"BG"  },
+  { rank:12, brand:"CrystalLine", name:"CrystalLine Pro 1L",          rag:"amber", rc:24, weight:88,  surcharge:10,  labelColor:"#1C3B5E", label:"CL"  },
+  { rank:13, brand:"SwiftClean",  name:"SwiftClean Daily 1L",         rag:"amber", rc:22, weight:89,  surcharge:10,  labelColor:"#3B2A1A", label:"SW"  },
+  { rank:14, brand:"HygienePro",  name:"HygienePro 1L Trigger Spray", rag:"amber", rc:30, weight:87,  surcharge:10,  labelColor:"#1D4ED8", label:"HY",  yours:true },
+  { rank:15, brand:"MaxClean",    name:"MaxClean Industrial 1L",      rag:"amber", rc:18, weight:91,  surcharge:10,  labelColor:"#374151", label:"MC"  },
+  { rank:16, brand:"ShineFloor",  name:"ShineFloor Concentrate 1L",   rag:"amber", rc:15, weight:94,  surcharge:10,  labelColor:"#4A3728", label:"SF"  },
+  { rank:17, brand:"PrimeClean",  name:"PrimeClean Heavy Duty 1L",    rag:"red",   rc:8,  weight:110, surcharge:20,  labelColor:"#1F2937", label:"PR"  },
+  { rank:18, brand:"TechShield",  name:"TechShield Pro 1L",           rag:"red",   rc:5,  weight:118, surcharge:20,  labelColor:"#374151", label:"TS"  },
+  { rank:19, brand:"CleanShield", name:"CleanShield Pro 1L",          rag:"red",   rc:4,  weight:128, surcharge:20,  labelColor:"#2D3748", label:"CS"  },
+  { rank:20, brand:"BulkChem",    name:"BulkChem Industrial 1L",      rag:"red",   rc:0,  weight:142, surcharge:20,  labelColor:"#111827", label:"BC"  },
+];
+
+function bottleSVG() {
+  return `<svg viewBox="0 0 80 140" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Main body gradient: highlight left → body → shadow right -->
+      <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="1"/>
+        <stop offset="18%"  stop-color="#EEF2F7" stop-opacity="1"/>
+        <stop offset="60%"  stop-color="#DDE3EC" stop-opacity="1"/>
+        <stop offset="85%"  stop-color="#C8D0DC" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#B8C2CF" stop-opacity="1"/>
+      </linearGradient>
+      <!-- Cap gradient -->
+      <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#E2E8F0"/>
+        <stop offset="100%" stop-color="#94A3B8"/>
+      </linearGradient>
+      <!-- Shoulder gradient -->
+      <linearGradient id="shoulderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#F0F4F8"/>
+        <stop offset="100%" stop-color="#BCC5D1"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Cap -->
+    <rect x="28" y="5" width="24" height="16" rx="4" fill="url(#capGrad)"/>
+    <!-- Cap rim -->
+    <rect x="25" y="19" width="30" height="5" rx="2" fill="#94A3B8"/>
+
+    <!-- Shoulder (tapered neck area) -->
+    <path d="M22,24 Q22,32 15,38 L15,46 Q22,40 22,38 L58,38 Q58,40 65,46 L65,38 Q58,32 58,24 Z" fill="url(#shoulderGrad)"/>
+
+    <!-- Main body -->
+    <rect x="15" y="38" width="50" height="82" rx="6" fill="url(#bodyGrad)"/>
+
+    <!-- Specular highlight — thin bright line on left -->
+    <rect x="19" y="40" width="5" height="76" rx="2.5" fill="#FFFFFF" opacity="0.55"/>
+
+    <!-- Secondary soft highlight -->
+    <rect x="25" y="42" width="2" height="70" rx="1" fill="#FFFFFF" opacity="0.25"/>
+
+    <!-- Bottom edge shadow -->
+    <ellipse cx="40" cy="120" rx="24" ry="3" fill="#94A3B8" opacity="0.3"/>
+
+    <!-- Base -->
+    <rect x="17" y="116" width="46" height="4" rx="2" fill="#B8C2CF"/>
+  </svg>`;
+}
+
+function surchargeLabel(s) {
+  if (s === 0) return { cls:'none', text:'0% surcharge' };
+  if (s <= 10) return { cls:'mid', text:`+${s}%` };
+  return { cls:'high', text:`+${s}%` };
+}
+
+const grid = document.getElementById('grid');
+products.forEach(p => {
+  const sc = surchargeLabel(p.surcharge);
+  const card = document.createElement('div');
+  card.className = 'product-card' + (p.yours ? ' yours' : '');
+  card.innerHTML = `
+    <div class="rank-badge">#${p.rank}</div>
+    ${p.yours ? '<div class="yours-ribbon">Your product</div>' : ''}
+    <div class="card-image" style="background:#F8FAFC">
+      ${bottleSVG()}
+    </div>
+    <div class="rag-corner ${p.rag}"></div>
+    <div class="card-body">
+      <div class="card-brand">${p.brand}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-stats">
+        <div class="card-stat-row">
+          <span class="card-stat-label">RAG status</span>
+          <span class="rag-pill ${p.rag}"><span class="rag-dot-sm ${p.rag}"></span>${p.rag.charAt(0).toUpperCase()+p.rag.slice(1)}</span>
+        </div>
+        <div>
+          <div class="card-stat-row">
+            <span class="card-stat-label">Recycled content</span>
+            <span class="card-stat-value">${p.rc}%</span>
+          </div>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:${p.rc}%"></div></div>
+        </div>
+        <div class="card-stat-row">
+          <span class="card-stat-label">Weight</span>
+          <span class="card-stat-value">${p.weight}g</span>
+        </div>
+      </div>
+      <div class="card-action">
+        <a class="card-action-link" href="screen-2-brand-benchmarking.html">View benchmark →</a>
+        <span class="surcharge-badge ${sc.cls}">${sc.text}</span>
+      </div>
+    </div>`;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>

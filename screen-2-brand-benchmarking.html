@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HygienePro 1L Trigger Spray — PackBenchmark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F9FA;
+      color: #111827;
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-width: 1100px;
+    }
+
+    /* ── Topbar ─────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 52px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E5E7EB;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+    }
+
+    .topbar-brand {
+      font-size: 15px;
+      font-weight: 800;
+      color: #111827;
+      text-decoration: none;
+      margin-right: 40px;
+      letter-spacing: -0.4px;
+      flex-shrink: 0;
+    }
+    .topbar-brand .accent { color: #1D4ED8; }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 0 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6B7280;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.13s, color 0.13s;
+    }
+    .nav-link:hover { background: #F3F4F6; color: #111827; }
+    .nav-link.active { background: #EFF6FF; color: #1D4ED8; font-weight: 600; }
+
+    .topbar-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      background: #1E3A8A;
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .user-name { font-size: 13px; font-weight: 500; color: #374151; }
+
+    .badge-brand {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: #FFF7ED;
+      color: #C2410C;
+      border: 1px solid #FED7AA;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    /* ── Page layout ────────────────────────────────── */
+    .page-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 28px 32px 72px;
+    }
+
+    /* ── Breadcrumb ─────────────────────────────────── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+    .breadcrumb a { color: #6B7280; text-decoration: none; font-weight: 500; }
+    .breadcrumb a:hover { color: #1D4ED8; }
+    .breadcrumb-sep { color: #D1D5DB; }
+    .breadcrumb-current { color: #374151; font-weight: 600; }
+
+    /* ── Page header ────────────────────────────────── */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .page-header-left {}
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .meta-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: #4B5563;
+      background: #F3F4F6;
+      border: 1px solid #E5E7EB;
+      border-radius: 20px;
+      padding: 3px 11px;
+    }
+
+    .page-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 7px;
+      padding: 7px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover { background: #F9FAFB; border-color: #D1D5DB; }
+
+    /* ── Tabs ───────────────────────────────────────── */
+    .tabs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      border-bottom: 2px solid #E5E7EB;
+      margin-bottom: 0;
+    }
+
+    .tab {
+      display: flex;
+      align-items: center;
+      height: 38px;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6B7280;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: color 0.12s;
+    }
+    .tab:hover { color: #374151; }
+    .tab.active {
+      color: #1D4ED8;
+      border-bottom-color: #1D4ED8;
+      font-weight: 600;
+    }
+
+    /* ── Two-column layout ──────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ── Left column ────────────────────────────────── */
+    .left-col { min-width: 0; }
+
+    /* ── Section card ───────────────────────────────── */
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* ── RAG Status card ────────────────────────────── */
+    .rag-status-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .rag-status-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .rag-status-col {
+      padding: 22px 24px;
+    }
+    .rag-status-col + .rag-status-col { border-left: 1px solid #E5E7EB; }
+
+    .rag-col-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #9CA3AF;
+      margin-bottom: 10px;
+    }
+
+    .rag-big-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      border-radius: 8px;
+      padding: 6px 16px;
+      margin-bottom: 8px;
+    }
+    .rag-big-amber { background: #FFFBEB; color: #B45309; border: 2px solid #FDE68A; }
+
+    .rag-description {
+      font-size: 13px;
+      color: #6B7280;
+      font-weight: 400;
+    }
+
+    .fee-big {
+      font-size: 28px;
+      font-weight: 800;
+      color: #B45309;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .fee-note {
+      font-size: 11px;
+      color: #9CA3AF;
+      line-height: 1.5;
+    }
+
+    .rank-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .rank-bar-outer {
+      height: 8px;
+      background: #F3F4F6;
+      border-radius: 4px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .rank-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: linear-gradient(to right, #16A34A, #D97706 55%, #C0392B);
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    .rank-bar-dot {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #1D4ED8;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+
+    .rank-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #9CA3AF;
+      font-weight: 500;
+    }
+
+    /* ── Triggered criteria ─────────────────────────── */
+    .criteria-row {
+      border-top: 1px solid #E5E7EB;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .criteria-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+
+    .crit-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .crit-amber { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+
+    /* ── Benchmark section ──────────────────────────── */
+    .section-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .section-sub {
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-bottom: 20px;
+    }
+
+    .bm-section { margin-top: 24px; }
+
+    /* Each benchmark attribute row */
+    .bm-attr {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      padding: 20px 24px 18px;
+      margin-bottom: 12px;
+    }
+
+    .bm-attr-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .bm-attr-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .bm-hint {
+      font-size: 11px;
+      color: #9CA3AF;
+      font-weight: 400;
+    }
+
+    .bm-your-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .bm-your-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .vs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 3px 8px;
+    }
+    .vs-green { background: #F0FDF4; color: #166534; }
+    .vs-amber { background: #FFFBEB; color: #B45309; }
+
+    /* Bar visualization */
+    .bm-viz { position: relative; }
+
+    /* Space above bar for your-product arrow */
+    .bm-arrow-layer {
+      position: relative;
+      height: 18px;
+      margin-bottom: 2px;
+    }
+
+    .bm-your-arrow {
+      position: absolute;
+      font-size: 16px;
+      color: #1D4ED8;
+      font-weight: 900;
+      transform: translateX(-50%);
+      line-height: 1;
+    }
+
+    /* The track */
+    .bm-track {
+      position: relative;
+      height: 10px;
+      background: linear-gradient(to right, #FEF2F2 0%, #FFFBEB 48%, #F0FDF4 100%);
+      border-radius: 5px;
+      overflow: visible;
+    }
+
+    /* Marker dots on track */
+    .bm-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    .bm-dot-worst  { background: #C0392B; }
+    .bm-dot-median { background: #B8860B; }
+    .bm-dot-best   { background: #2D7D46; }
+
+    /* Labels below track */
+    .bm-labels-layer {
+      position: relative;
+      height: 22px;
+      margin-top: 8px;
+    }
+
+    .bm-lbl {
+      position: absolute;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .bm-lbl-worst  { color: #C0392B; left: 0; transform: translateX(0); }
+    .bm-lbl-median { color: #92400E; transform: translateX(-50%); }
+    .bm-lbl-best   { color: #2D7D46; right: 0; transform: translateX(0); left: auto !important; text-align: right; }
+
+    /* Kerbside categorical comparison */
+    .kb-comparison {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 0;
+    }
+
+    .kb-compare-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .kb-compare-label {
+      font-size: 11px;
+      color: #9CA3AF;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .kb-compare-val {
+      display: inline-flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+    .kb-amber { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+    .kb-green { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+
+    .kb-arrow {
+      color: #9CA3AF;
+      font-size: 18px;
+      margin-top: 18px;
+    }
+
+    /* ── Right panel ────────────────────────────────── */
+    .right-panel {
+      position: sticky;
+      top: 72px;
+    }
+
+    .panel-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid #F3F4F6;
+      background: #F9FAFB;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.2px;
+      margin-bottom: 3px;
+    }
+
+    .panel-sub {
+      font-size: 12px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    .panel-body { padding: 16px 20px; }
+
+    /* Action cards */
+    .action-card {
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .action-card:last-of-type { margin-bottom: 0; }
+
+    .action-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .action-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.1px;
+    }
+
+    .diff-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border-radius: 4px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .diff-low    { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+    .diff-market { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+
+    .action-cur-target {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .act-cur {
+      font-weight: 600;
+      color: #B45309;
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .act-arrow { color: #9CA3AF; font-size: 14px; }
+
+    .act-target {
+      font-weight: 600;
+      color: #166534;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .action-impact {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .impact-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .action-desc {
+      font-size: 12px;
+      color: #6B7280;
+      line-height: 1.55;
+    }
+
+    /* Fee impact box */
+    .fee-impact-box {
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 16px;
+    }
+
+    .fee-impact-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #374151;
+      margin-bottom: 10px;
+    }
+
+    .fee-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: 13px;
+    }
+    .fee-row + .fee-row { border-top: 1px solid #E5E7EB; }
+
+    .fee-row-label { color: #6B7280; font-weight: 500; }
+
+    .fee-row-val {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .fee-val-amber { color: #B45309; }
+    .fee-val-green { color: #16A34A; }
+
+    .fee-saving-note {
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-top: 10px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* Panel footnote */
+    .panel-footnote {
+      border-top: 1px solid #F3F4F6;
+      padding: 12px 20px;
+      font-size: 11px;
+      color: #9CA3AF;
+      line-height: 1.55;
+    }
+    .panel-footnote strong { color: #6B7280; }
+
+    /* ── Section header row ─────────────────────────── */
+    .section-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    /* ── Utility ────────────────────────────────────── */
+    .rag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: 5px;
+      padding: 3px 9px;
+    }
+    .rag-green  { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+    .rag-amber  { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+    .rag-red    { background: #FEF2F2; color: #C0392B; border: 1px solid #FECACA; }
+  </style>
+</head>
+<body>
+
+<!-- ─── Topbar ──────────────────────────────────────── -->
+<header class="topbar">
+  <a href="#" class="topbar-brand">Pack<span class="accent">Benchmark</span></a>
+  <nav class="topbar-nav">
+    <a href="#" class="nav-link active">Browse</a>
+    <a href="#" class="nav-link">My Products</a>
+    <a href="#" class="nav-link">Benchmarks</a>
+    <a href="#" class="nav-link">Subscription</a>
+  </nav>
+  <div class="topbar-user">
+    <div class="avatar">HY</div>
+    <span class="user-name">Sarah Mitchell</span>
+    <span class="badge-brand">Brand</span>
+  </div>
+</header>
+
+<!-- ─── Main content ────────────────────────────────── -->
+<main class="page-main">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="#">Browse</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="#">Plastics Rigids</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="screen-1-brand-browser.html">1L Floor Cleaner Bottle</a>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">HygienePro 1L Trigger Spray</span>
+  </nav>
+
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="page-header-left">
+      <h1 class="page-title">HygienePro 1L Trigger Spray</h1>
+      <div class="meta-chips">
+        <span class="chip" style="font-weight:600;color:#374151">HygienePro Ltd</span>
+        <span class="chip">Plastics Rigids — HDPE</span>
+        <span class="chip">Rank 14th of 20</span>
+        <span class="chip">Last updated Feb 2026</span>
+      </div>
+    </div>
+    <div class="page-header-actions">
+      <a href="#" class="btn-secondary">↓ Download report</a>
+      <a href="#" class="btn-secondary">⟳ Request re-assessment</a>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <a href="#" class="tab active">Recyclability (RAG)</a>
+    <a href="#" class="tab">Physical Attributes</a>
+    <a href="#" class="tab">Recycled Content</a>
+  </div>
+
+  <!-- ─── Two-column layout ───────────────────────── -->
+  <div class="two-col">
+
+    <!-- ─── LEFT COLUMN ──────────────────────────── -->
+    <div class="left-col">
+
+      <!-- RAG Status Card -->
+      <div class="rag-status-card">
+        <div class="rag-status-cols">
+
+          <!-- Col 1: RAG badge -->
+          <div class="rag-status-col">
+            <div class="rag-col-label">Recyclability Status</div>
+            <div class="rag-big-badge rag-big-amber">AMBER</div>
+            <div class="rag-description">Recyclable with caveats — fails 2 of 8 assessed criteria</div>
+          </div>
+
+          <!-- Col 2: Fee surcharge -->
+          <div class="rag-status-col">
+            <div class="rag-col-label">Est. Annual Fee Surcharge</div>
+            <div class="fee-big">+10%</div>
+            <div class="fee-note">Based on current CAA fee schedule<br />Subject to change</div>
+          </div>
+
+          <!-- Col 3: Rank bar -->
+          <div class="rag-status-col">
+            <div class="rag-col-label">Category Rank</div>
+            <div class="rank-value">14<span style="font-size:15px;font-weight:600;color:#6B7280"> of 20</span></div>
+            <div class="rank-bar-outer">
+              <div class="rank-bar-fill"></div>
+              <!-- Rank 14 of 20: (14-1)/(20-1) ≈ 68.4% from left -->
+              <div class="rank-bar-dot" style="left:68.4%"></div>
+            </div>
+            <div class="rank-bar-labels">
+              <span style="color:#2D7D46">Best (1st)</span>
+              <span style="color:#C0392B">Worst (20th)</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Triggered criteria row -->
+        <div class="criteria-row">
+          <span class="criteria-label">Triggered criteria</span>
+          <span class="crit-tag crit-amber">⚠ Paper/card label: 13% (threshold: &lt;10%)</span>
+          <span class="crit-tag crit-amber">⚠ Kerbside coverage: 50–74% of LAs</span>
+        </div>
+      </div>
+
+      <!-- Benchmark comparison section -->
+      <div class="bm-section">
+        <div class="section-row">
+          <h2 class="section-heading">How your product compares</h2>
+          <span style="font-size:12px;color:#9CA3AF">Category: 1L Floor Cleaner Bottle (20 products)</span>
+        </div>
+
+        <!-- ── Attribute 1: Recycled Content ─────── -->
+        <!-- Positions: Worst(0%)=0%, Median(28%)=62.2%, Best(45%)=100%, Yours(30%)=66.7% -->
+        <div class="bm-attr">
+          <div class="bm-attr-header">
+            <span class="bm-attr-name">Recycled Content %</span>
+          </div>
+          <div class="bm-your-row">
+            <span class="bm-your-val">30%</span>
+            <span class="vs-badge vs-green">▲ Above median</span>
+          </div>
+          <div class="bm-viz">
+            <!-- Your product arrow -->
+            <div class="bm-arrow-layer">
+              <span class="bm-your-arrow" style="left:66.7%">▼</span>
+            </div>
+            <!-- Track with dots -->
+            <div class="bm-track">
+              <div class="bm-dot bm-dot-worst"  style="left:0%"></div>
+              <div class="bm-dot bm-dot-median" style="left:62.2%"></div>
+              <div class="bm-dot bm-dot-best"   style="left:100%"></div>
+            </div>
+            <!-- Labels -->
+            <div class="bm-labels-layer">
+              <span class="bm-lbl bm-lbl-worst"  style="left:0%">0% — Worst</span>
+              <span class="bm-lbl bm-lbl-median" style="left:62.2%">28% — Median</span>
+              <span class="bm-lbl bm-lbl-best">45% — Best</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Attribute 2: Gross Weight ─────────── -->
+        <!-- Lower is better. Scale: worst=142g (left), best=68g (right)                  -->
+        <!-- Worst(142g)=0%, Median(95g)=63.5%, Best(68g)=100%, Yours(87g)=74.3%          -->
+        <div class="bm-attr">
+          <div class="bm-attr-header">
+            <span class="bm-attr-name">Gross Weight (g)</span>
+            <span class="bm-hint">lower is better</span>
+          </div>
+          <div class="bm-your-row">
+            <span class="bm-your-val">87g</span>
+            <span class="vs-badge vs-green">▲ Better than median</span>
+          </div>
+          <div class="bm-viz">
+            <div class="bm-arrow-layer">
+              <span class="bm-your-arrow" style="left:74.3%">▼</span>
+            </div>
+            <div class="bm-track">
+              <div class="bm-dot bm-dot-worst"  style="left:0%"></div>
+              <div class="bm-dot bm-dot-median" style="left:63.5%"></div>
+              <div class="bm-dot bm-dot-best"   style="left:100%"></div>
+            </div>
+            <div class="bm-labels-layer">
+              <span class="bm-lbl bm-lbl-worst"  style="left:0%">142g — Worst</span>
+              <span class="bm-lbl bm-lbl-median" style="left:63.5%">95g — Median</span>
+              <span class="bm-lbl bm-lbl-best">68g — Best</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Attribute 3: Kerbside Coverage (categorical) ── -->
+        <div class="bm-attr">
+          <div class="bm-attr-header">
+            <span class="bm-attr-name">Kerbside Collection Coverage</span>
+            <span class="bm-hint">threshold for GREEN: ≥75% LAs</span>
+          </div>
+          <div class="bm-your-row" style="margin-bottom:12px">
+            <span class="vs-badge vs-amber" style="font-size:12px;padding:4px 10px">▼ Below threshold</span>
+          </div>
+          <div class="kb-comparison">
+            <div class="kb-compare-item">
+              <span class="kb-compare-label">Your product</span>
+              <span class="kb-compare-val kb-amber">50–74% of LAs</span>
+            </div>
+            <div class="kb-arrow">→</div>
+            <div class="kb-compare-item">
+              <span class="kb-compare-label">GREEN threshold</span>
+              <span class="kb-compare-val kb-green">≥75% of LAs</span>
+            </div>
+            <div class="kb-arrow" style="margin-left:16px"></div>
+            <div class="kb-compare-item" style="margin-left:4px">
+              <span class="kb-compare-label">Best in class</span>
+              <span class="kb-compare-val kb-green">≥75% of LAs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Attribute 4: Label Surface Area ───── -->
+        <!-- Lower is better. Scale: worst=22% (left), best=3% (right)                   -->
+        <!-- Worst(22%)=0%, Median(9%)=68.4%, Best(3%)=100%, Yours(13%)=47.4%            -->
+        <div class="bm-attr" style="border:2px solid #FDE68A;background:#FFFEF5">
+          <div class="bm-attr-header">
+            <span class="bm-attr-name">Label Surface Area %</span>
+            <span class="bm-hint">lower is better · triggers AMBER above 10%</span>
+          </div>
+          <div class="bm-your-row">
+            <span class="bm-your-val" style="color:#B45309">13%</span>
+            <span class="vs-badge vs-amber">▼ Below median</span>
+            <span class="crit-tag crit-amber" style="font-size:11px;padding:3px 8px;margin-left:4px">⚠ Triggers criterion</span>
+          </div>
+          <div class="bm-viz">
+            <div class="bm-arrow-layer">
+              <span class="bm-your-arrow" style="left:47.4%;color:#B45309">▼</span>
+            </div>
+            <div class="bm-track">
+              <div class="bm-dot bm-dot-worst"  style="left:0%"></div>
+              <div class="bm-dot bm-dot-median" style="left:68.4%"></div>
+              <div class="bm-dot bm-dot-best"   style="left:100%"></div>
+            </div>
+            <div class="bm-labels-layer">
+              <span class="bm-lbl bm-lbl-worst"  style="left:0%">22% — Worst</span>
+              <span class="bm-lbl bm-lbl-median" style="left:68.4%">9% — Median</span>
+              <span class="bm-lbl bm-lbl-best">3% — Best</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /bm-section -->
+
+    </div><!-- /left-col -->
+
+    <!-- ─── RIGHT PANEL ──────────────────────────── -->
+    <aside class="right-panel">
+      <div class="panel-card">
+
+        <!-- Panel header -->
+        <div class="panel-header">
+          <div class="panel-title">How to reach GREEN</div>
+          <div class="panel-sub">Making these changes would move this product from <strong style="color:#B45309">AMBER</strong> to <strong style="color:#166534">GREEN</strong> and eliminate the fee surcharge.</div>
+        </div>
+
+        <!-- Panel body -->
+        <div class="panel-body">
+
+          <!-- Action 1 -->
+          <div class="action-card">
+            <div class="action-card-header">
+              <span class="action-name">1. Reduce label surface area</span>
+              <span class="diff-badge diff-low">Low effort</span>
+            </div>
+            <div class="action-cur-target">
+              <span class="act-cur">Current: 13%</span>
+              <span class="act-arrow">→</span>
+              <span class="act-target">Target: &lt;10%</span>
+            </div>
+            <div class="action-impact">
+              <span class="impact-tag">✓ Removes AMBER criterion</span>
+              <span class="impact-tag">✓ Reduces fee surcharge</span>
+            </div>
+            <p class="action-desc">Switch to a wrap-around label covering &lt;10% of bottle surface, or use a direct-print method. This is a formulation-independent change and can typically be achieved within a single packaging refresh cycle.</p>
+          </div>
+
+          <!-- Action 2 -->
+          <div class="action-card">
+            <div class="action-card-header">
+              <span class="action-name">2. Expand kerbside coverage</span>
+              <span class="diff-badge diff-market">Market-dependent</span>
+            </div>
+            <div class="action-cur-target">
+              <span class="act-cur">Current: 50–74% LAs</span>
+              <span class="act-arrow">→</span>
+              <span class="act-target">Target: ≥75% LAs</span>
+            </div>
+            <div class="action-impact">
+              <span class="impact-tag">✓ Removes AMBER criterion</span>
+            </div>
+            <p class="action-desc">This criterion is driven by local authority collection data, not packaging design. Coverage is expected to reach ≥75% by 2027 under WRAP projections. No immediate design action required — monitor annually.</p>
+          </div>
+
+          <!-- Fee impact summary -->
+          <div class="fee-impact-box">
+            <div class="fee-impact-title">Fee impact summary</div>
+            <div class="fee-row">
+              <span class="fee-row-label">Current status (AMBER)</span>
+              <span class="fee-row-val fee-val-amber">+10% surcharge</span>
+            </div>
+            <div class="fee-row">
+              <span class="fee-row-label">If GREEN achieved</span>
+              <span class="fee-row-val fee-val-green">0% (baseline)</span>
+            </div>
+            <p class="fee-saving-note">Estimated annual saving (illustrative): contact CAA for full fee schedule and product-specific calculation.</p>
+          </div>
+
+        </div><!-- /panel-body -->
+
+        <!-- Panel footnote -->
+        <div class="panel-footnote">
+          RAG criteria are defined by the <strong>PackUK Recyclability Framework</strong>. Eunomia cannot modify individual criteria thresholds. Last assessment: Feb 2026.
+        </div>
+
+      </div><!-- /panel-card -->
+    </aside>
+
+  </div><!-- /two-col -->
+
+</main>
+</body>
+</html>
