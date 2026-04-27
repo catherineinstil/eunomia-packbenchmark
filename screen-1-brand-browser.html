@@ -148,7 +148,32 @@
     .rag-band.green { background:#DCFCE7; color:#166534; }
     .rag-band.amber { background:#FEF3C7; color:#92400E; }
     .rag-band.red   { background:#FEE2E2; color:#991B1B; }
-    .rag-band-dot { width:7px; height:7px; border-radius:50%; }
+    /* ── Your products section ── */
+    .your-products-section { margin-bottom:36px; }
+    .your-cards-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .your-card {
+      background:#FFFFFF;
+      border:1px solid #BFDBFE;
+      border-left:4px solid #1D4ED8;
+      border-radius:12px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:box-shadow 0.2s;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+    }
+    .your-card:hover { box-shadow:0 4px 20px rgba(29,78,216,0.12); }
+    .your-card-rank { position:absolute; top:10px; left:14px; font-size:10px; font-weight:700; color:#1D4ED8; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:99px; z-index:2; }
+    .your-card-img { height:140px; background:#F8FAFF; display:flex; align-items:center; justify-content:center; padding:10px; }
+    .your-card-img img { height:112px; width:auto; object-fit:contain; }
+    .your-card-body { padding:12px 14px 0; flex:1; }
+    .your-card-name { font-size:14px; font-weight:700; color:#0F172A; margin-bottom:0; line-height:1.3; }
+    .your-card-link { font-size:12px; color:#1D4ED8; font-weight:600; text-decoration:none; display:block; padding:10px 14px; border-top:1px solid #EFF6FF; margin-top:12px; }
+    .your-card-link:hover { background:#F8FAFF; }
+    .breakdown-pill { font-size:12px; font-weight:700; padding:4px 12px; border-radius:99px; }
+    .green-pill { background:rgba(220,252,231,0.25); color:#86EFAC; border:1px solid rgba(134,239,172,0.35); }
+    .amber-pill { background:rgba(254,243,199,0.25); color:#FCD34D; border:1px solid rgba(252,211,77,0.35); }
   </style>
 </head>
 <body>
@@ -189,26 +214,29 @@
 
   <div class="position-banner">
     <div>
-      <div class="banner-label">Your product</div>
-      <div class="banner-product">HygienePro 1L Trigger Spray</div>
+      <div class="banner-label">Your brand</div>
+      <div class="banner-product">HygienePro Ltd</div>
     </div>
     <div class="banner-divider"></div>
     <div>
-      <div class="banner-stat-label">Fee surcharge</div>
-      <div class="banner-stat-value amber-txt">+10%</div>
+      <div class="banner-stat-label">Products in category</div>
+      <div class="banner-stat-value white-txt">3</div>
     </div>
     <div class="banner-divider"></div>
     <div>
-      <div class="banner-stat-label">Category rank</div>
-      <div class="banner-stat-value white-txt">14 <span style="font-size:14px;font-weight:500;opacity:0.6">of 20</span></div>
-    </div>
-    <div class="banner-divider"></div>
-    <div>
-      <div class="banner-stat-label">Est. fee surcharge</div>
-      <div class="banner-stat-value amber-txt">+10%</div>
+      <div class="banner-stat-label">Surcharge breakdown</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:5px;">
+        <span class="breakdown-pill green-pill">1 × no surcharge</span>
+        <span class="breakdown-pill amber-pill">2 × +10%</span>
+      </div>
     </div>
     <div class="banner-spacer"></div>
-    <a href="screen-2-brand-benchmarking.html" class="btn-banner">View full benchmark →</a>
+    <a href="#your-products" class="btn-banner">View your products ↓</a>
+  </div>
+
+  <div class="your-products-section" id="your-products">
+    <div class="section-label">◉ Your products (3)</div>
+    <div class="your-cards-row" id="your-cards"></div>
   </div>
 
   <div class="spotlight">
@@ -235,26 +263,26 @@
 
 <script>
 const products = [
-  { rank:1,  brand:"EcoFloor",    name:"EcoFloor Natural 1L",         rag:"green" },
-  { rank:2,  brand:"PureClean",   name:"PureClean HDPE Clear 1L",     rag:"green" },
-  { rank:3,  brand:"GreenWave",   name:"GreenWave Bio 1L",            rag:"green" },
-  { rank:4,  brand:"FreshStep",   name:"FreshStep Ultra 1L",          rag:"green" },
-  { rank:5,  brand:"ClearChoice", name:"ClearChoice Pro 1L",          rag:"green" },
-  { rank:6,  brand:"AlphaClean",  name:"AlphaClean Eco 1L",           rag:"green" },
-  { rank:7,  brand:"BrightFloor", name:"BrightFloor Concentrate 1L",  rag:"amber" },
-  { rank:8,  brand:"SterilClean", name:"SterilClean HDPE 1L",         rag:"amber" },
-  { rank:9,  brand:"FloorGuard",  name:"FloorGuard Original 1L",      rag:"amber" },
-  { rank:10, brand:"ProShield",   name:"ProShield Clean 1L",          rag:"amber" },
-  { rank:11, brand:"BioGuard",    name:"BioGuard Floor 1L",           rag:"amber" },
-  { rank:12, brand:"CrystalLine", name:"CrystalLine Pro 1L",          rag:"amber" },
-  { rank:13, brand:"SwiftClean",  name:"SwiftClean Daily 1L",         rag:"amber" },
-  { rank:14, brand:"HygienePro",  name:"HygienePro 1L Trigger Spray", rag:"amber", yours:true },
-  { rank:15, brand:"MaxClean",    name:"MaxClean Industrial 1L",      rag:"amber" },
-  { rank:16, brand:"ShineFloor",  name:"ShineFloor Concentrate 1L",   rag:"amber" },
-  { rank:17, brand:"PrimeClean",  name:"PrimeClean Heavy Duty 1L",    rag:"red"   },
-  { rank:18, brand:"TechShield",  name:"TechShield Pro 1L",           rag:"red"   },
-  { rank:19, brand:"CleanShield", name:"CleanShield Pro 1L",          rag:"red"   },
-  { rank:20, brand:"BulkChem",    name:"BulkChem Industrial 1L",      rag:"red"   },
+  { rank:1,  brand:"EcoFloor",    name:"EcoFloor Natural 1L",           rag:"green" },
+  { rank:2,  brand:"PureClean",   name:"PureClean HDPE Clear 1L",       rag:"green" },
+  { rank:3,  brand:"GreenWave",   name:"GreenWave Bio 1L",              rag:"green" },
+  { rank:4,  brand:"HygienePro",  name:"HygienePro EcoPure 1L",         rag:"green", yours:true },
+  { rank:5,  brand:"ClearChoice", name:"ClearChoice Pro 1L",            rag:"green" },
+  { rank:6,  brand:"AlphaClean",  name:"AlphaClean Eco 1L",             rag:"green" },
+  { rank:7,  brand:"BrightFloor", name:"BrightFloor Concentrate 1L",    rag:"amber" },
+  { rank:8,  brand:"SterilClean", name:"SterilClean HDPE 1L",           rag:"amber" },
+  { rank:9,  brand:"HygienePro",  name:"HygienePro MultiSurface 1L",    rag:"amber", yours:true },
+  { rank:10, brand:"ProShield",   name:"ProShield Clean 1L",            rag:"amber" },
+  { rank:11, brand:"BioGuard",    name:"BioGuard Floor 1L",             rag:"amber" },
+  { rank:12, brand:"CrystalLine", name:"CrystalLine Pro 1L",            rag:"amber" },
+  { rank:13, brand:"SwiftClean",  name:"SwiftClean Daily 1L",           rag:"amber" },
+  { rank:14, brand:"HygienePro",  name:"HygienePro Trigger Spray 1L",   rag:"amber", yours:true },
+  { rank:15, brand:"MaxClean",    name:"MaxClean Industrial 1L",        rag:"amber" },
+  { rank:16, brand:"ShineFloor",  name:"ShineFloor Concentrate 1L",     rag:"amber" },
+  { rank:17, brand:"PrimeClean",  name:"PrimeClean Heavy Duty 1L",      rag:"red"   },
+  { rank:18, brand:"TechShield",  name:"TechShield Pro 1L",             rag:"red"   },
+  { rank:19, brand:"CleanShield", name:"CleanShield Pro 1L",            rag:"red"   },
+  { rank:20, brand:"BulkChem",    name:"BulkChem Industrial 1L",        rag:"red"   },
 ];
 
 const imgs = [
@@ -272,6 +300,24 @@ const imgs = [
 
 const ragDot = { green:'green-dot', amber:'amber-dot', red:'red-dot' };
 const surchargeLabel = { green:'No surcharge', amber:'+10% surcharge', red:'+20% surcharge' };
+
+// Your Products section
+const yourProducts = products.filter(p => p.yours);
+const yourCardsEl = document.getElementById('your-cards');
+yourProducts.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'your-card';
+  card.innerHTML = `
+    <div class="your-card-rank">#${p.rank} of 20</div>
+    <div class="your-card-img"><img src="${imgs[p.rank % imgs.length]}" alt="${p.name}"></div>
+    <div class="your-card-body">
+      <div class="your-card-name">${p.name}</div>
+    </div>
+    <div class="rag-band ${p.rag}" style="margin-top:12px">${surchargeLabel[p.rag]}</div>
+    <a class="your-card-link" href="screen-2-brand-benchmarking.html">View benchmark →</a>
+  `;
+  yourCardsEl.appendChild(card);
+});
 
 // Podium: display as [#2, #1, #3]
 const podiumData = [
