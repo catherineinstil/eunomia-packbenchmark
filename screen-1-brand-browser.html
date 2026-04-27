@@ -89,8 +89,8 @@
     .rag-corner.red { background:#C0392B; }
 
     /* Image area */
-    .card-image { height:140px; background:#F8FAFC; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-    .card-image svg { height:110px; width:auto; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.10)); }
+    .card-image { height:140px; background:#FFFFFF; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+    .card-image img { height:110px; width:auto; object-fit:contain; }
 
     /* Card body */
     .card-body { padding:12px 14px 16px; }
@@ -242,53 +242,18 @@ const products = [
   { rank:20, brand:"BulkChem",    name:"BulkChem Industrial 1L",      rag:"red",   rc:0,  weight:142, surcharge:20,  labelColor:"#111827", label:"BC"  },
 ];
 
-function bottleSVG() {
-  return `<svg viewBox="0 0 80 140" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <!-- Main body gradient: highlight left → body → shadow right -->
-      <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="1"/>
-        <stop offset="18%"  stop-color="#EEF2F7" stop-opacity="1"/>
-        <stop offset="60%"  stop-color="#DDE3EC" stop-opacity="1"/>
-        <stop offset="85%"  stop-color="#C8D0DC" stop-opacity="1"/>
-        <stop offset="100%" stop-color="#B8C2CF" stop-opacity="1"/>
-      </linearGradient>
-      <!-- Cap gradient -->
-      <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#E2E8F0"/>
-        <stop offset="100%" stop-color="#94A3B8"/>
-      </linearGradient>
-      <!-- Shoulder gradient -->
-      <linearGradient id="shoulderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#F0F4F8"/>
-        <stop offset="100%" stop-color="#BCC5D1"/>
-      </linearGradient>
-    </defs>
-
-    <!-- Cap -->
-    <rect x="28" y="5" width="24" height="16" rx="4" fill="url(#capGrad)"/>
-    <!-- Cap rim -->
-    <rect x="25" y="19" width="30" height="5" rx="2" fill="#94A3B8"/>
-
-    <!-- Shoulder (tapered neck area) -->
-    <path d="M22,24 Q22,32 15,38 L15,46 Q22,40 22,38 L58,38 Q58,40 65,46 L65,38 Q58,32 58,24 Z" fill="url(#shoulderGrad)"/>
-
-    <!-- Main body -->
-    <rect x="15" y="38" width="50" height="82" rx="6" fill="url(#bodyGrad)"/>
-
-    <!-- Specular highlight — thin bright line on left -->
-    <rect x="19" y="40" width="5" height="76" rx="2.5" fill="#FFFFFF" opacity="0.55"/>
-
-    <!-- Secondary soft highlight -->
-    <rect x="25" y="42" width="2" height="70" rx="1" fill="#FFFFFF" opacity="0.25"/>
-
-    <!-- Bottom edge shadow -->
-    <ellipse cx="40" cy="120" rx="24" ry="3" fill="#94A3B8" opacity="0.3"/>
-
-    <!-- Base -->
-    <rect x="17" y="116" width="46" height="4" rx="2" fill="#B8C2CF"/>
-  </svg>`;
-}
+const productImages = [
+  "product-images/Screenshot 2026-04-27 at 09.54.56.png",
+  "product-images/Screenshot 2026-04-27 at 09.55.12.png",
+  "product-images/Screenshot 2026-04-27 at 09.55.30.png",
+  "product-images/Screenshot 2026-04-27 at 09.56.07.png",
+  "product-images/Screenshot 2026-04-27 at 09.56.28.png",
+  "product-images/Screenshot 2026-04-27 at 09.56.42.png",
+  "product-images/Screenshot 2026-04-27 at 09.57.10.png",
+  "product-images/Screenshot 2026-04-27 at 09.57.25.png",
+  "product-images/Screenshot 2026-04-27 at 09.57.41.png",
+  "product-images/Screenshot 2026-04-27 at 09.57.59.png"
+];
 
 function surchargeLabel(s) {
   if (s === 0) return { cls:'none', text:'0% surcharge' };
@@ -304,8 +269,8 @@ products.forEach(p => {
   card.innerHTML = `
     <div class="rank-badge">#${p.rank}</div>
     ${p.yours ? '<div class="yours-ribbon">Your product</div>' : ''}
-    <div class="card-image" style="background:#F8FAFC">
-      ${bottleSVG()}
+    <div class="card-image" style="background:#FFFFFF">
+      <img src="${productImages[p.rank % productImages.length]}" alt="${p.brand}" style="height:110px;width:auto;object-fit:contain;">
     </div>
     <div class="rag-corner ${p.rag}"></div>
     <div class="card-body">

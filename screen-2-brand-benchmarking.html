@@ -133,7 +133,7 @@
     }
 
     .hero-image-panel {
-      background: linear-gradient(160deg, #F1F5F9 0%, #E2E8F0 100%);
+      background: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -141,10 +141,10 @@
       border-right: 1px solid #E5E7EB;
       position: relative;
     }
-    .hero-image-panel svg {
+    .hero-image-panel img {
       height: 160px;
       width: auto;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.13));
+      object-fit: contain;
     }
     .hero-yours-tag {
       position: absolute;
@@ -891,33 +891,7 @@
 
     <!-- Bottle image -->
     <div class="hero-image-panel">
-      <svg viewBox="0 0 80 140" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#FFFFFF"/>
-            <stop offset="18%"  stop-color="#EEF2F7"/>
-            <stop offset="60%"  stop-color="#DDE3EC"/>
-            <stop offset="85%"  stop-color="#C8D0DC"/>
-            <stop offset="100%" stop-color="#B8C2CF"/>
-          </linearGradient>
-          <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#E2E8F0"/>
-            <stop offset="100%" stop-color="#94A3B8"/>
-          </linearGradient>
-          <linearGradient id="shoulderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#F0F4F8"/>
-            <stop offset="100%" stop-color="#BCC5D1"/>
-          </linearGradient>
-        </defs>
-        <rect x="28" y="5" width="24" height="16" rx="4" fill="url(#capGrad)"/>
-        <rect x="25" y="19" width="30" height="5" rx="2" fill="#94A3B8"/>
-        <path d="M22,24 Q22,32 15,38 L15,46 Q22,40 22,38 L58,38 Q58,40 65,46 L65,38 Q58,32 58,24 Z" fill="url(#shoulderGrad)"/>
-        <rect x="15" y="38" width="50" height="82" rx="6" fill="url(#bodyGrad)"/>
-        <rect x="19" y="40" width="5" height="76" rx="2.5" fill="#FFFFFF" opacity="0.55"/>
-        <rect x="25" y="42" width="2" height="70" rx="1" fill="#FFFFFF" opacity="0.25"/>
-        <ellipse cx="40" cy="120" rx="24" ry="3" fill="#94A3B8" opacity="0.3"/>
-        <rect x="17" y="116" width="46" height="4" rx="2" fill="#B8C2CF"/>
-      </svg>
+      <img src="product-images/Screenshot 2026-04-27 at 09.54.56.png" alt="HygienePro EcoPure 1L" style="height:160px;width:auto;object-fit:contain;">
       <div class="hero-yours-tag">Your product</div>
     </div>
 
