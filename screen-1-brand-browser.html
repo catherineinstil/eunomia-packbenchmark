@@ -194,8 +194,8 @@
     </div>
     <div class="banner-divider"></div>
     <div>
-      <div class="banner-stat-label">Status</div>
-      <div class="banner-stat-value amber-txt">AMBER</div>
+      <div class="banner-stat-label">Fee surcharge</div>
+      <div class="banner-stat-value amber-txt">+10%</div>
     </div>
     <div class="banner-divider"></div>
     <div>
@@ -221,9 +221,9 @@
     <div style="display:flex;align-items:center;gap:10px">
       <div class="filter-chips">
         <div class="chip active">All (20)</div>
-        <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#16A34A;margin-right:3px"></span>Green (6)</div>
-        <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#D97706;margin-right:3px"></span>Amber (10)</div>
-        <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#C0392B;margin-right:3px"></span>Red (4)</div>
+        <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#16A34A;margin-right:3px"></span>No surcharge (6)</div>
+        <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#D97706;margin-right:3px"></span>+10% surcharge (10)</div>
+        <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#C0392B;margin-right:3px"></span>+20% surcharge (4)</div>
       </div>
       <div class="sort-wrap">Sort by <select><option>Rank</option><option>RAG Rating</option><option>Weight</option></select></div>
     </div>
@@ -271,7 +271,7 @@ const imgs = [
 ];
 
 const ragDot = { green:'green-dot', amber:'amber-dot', red:'red-dot' };
-const ragLabel = { green:'Green', amber:'Amber', red:'Red' };
+const surchargeLabel = { green:'No surcharge', amber:'+10% surcharge', red:'+20% surcharge' };
 
 // Podium: display as [#2, #1, #3]
 const podiumData = [
@@ -285,11 +285,10 @@ podiumData.forEach(({ p, medal }) => {
   card.className = 'podium-card' + (p.rank === 1 ? ' rank-1' : '');
   card.innerHTML = `
     <div class="medal">${medal}</div>
-    <div class="surcharge-pill">0% surcharge</div>
     <div class="podium-img"><img src="${imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="podium-brand">${p.brand}</div>
     <div class="podium-name">${p.name}</div>
-    <div class="rag-big rag-big-${p.rag}"><span class="rag-dot ${ragDot[p.rag]}"></span>${ragLabel[p.rag]}</div>
+    <div class="rag-big rag-big-${p.rag}">${surchargeLabel[p.rag]}</div>
   `;
   podiumEl.appendChild(card);
 });
@@ -307,7 +306,7 @@ products.forEach(p => {
       <div class="card-brand">${p.brand}</div>
       <div class="card-name">${p.name}</div>
     </div>
-    <div class="rag-band ${p.rag}"><span class="rag-band-dot" style="background:${p.rag==='green'?'#16A34A':p.rag==='amber'?'#D97706':'#C0392B'}"></span>${ragLabel[p.rag]}</div>
+    <div class="rag-band ${p.rag}">${surchargeLabel[p.rag]}</div>
   `;
   grid.appendChild(card);
 });
