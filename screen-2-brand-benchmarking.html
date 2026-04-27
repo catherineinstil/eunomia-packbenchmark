@@ -109,7 +109,89 @@
     .panel-rank { font-size:13px; font-weight:600; color:#6B7280; }
     .rank-highlight { color:#111827; font-weight:800; }
 
-    /* ── Fee gap callout ── */
+    /* ── Product hero ── */
+    .product-hero {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .hero-img-panel {
+      background: #FFFFFF;
+      border-right: 1px solid #E5E7EB;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 28px;
+      position: relative;
+    }
+    .hero-yours-flag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #1D4ED8;
+    }
+    .hero-img-panel img { height: 200px; width: auto; object-fit: contain; }
+    .hero-info {
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .hero-brand { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #94A3B8; }
+    .hero-name { font-size: 26px; font-weight: 800; color: #111827; letter-spacing: -0.5px; line-height: 1.2; }
+    .hero-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-chip { font-size: 12px; font-weight: 500; color: #6B7280; background: #F3F4F6; border: 1px solid #E5E7EB; border-radius: 99px; padding: 3px 10px; }
+    .hero-stats { display: flex; align-items: stretch; gap: 0; border: 1px solid #E5E7EB; border-radius: 10px; overflow: hidden; }
+    .hero-stat { padding: 14px 24px; flex: 1; }
+    .hero-stat + .hero-stat { border-left: 1px solid #E5E7EB; }
+    .hero-stat-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: #9CA3AF; margin-bottom: 6px; }
+    .hero-stat-val { font-size: 24px; font-weight: 800; letter-spacing: -0.4px; line-height: 1; }
+    .hero-stat-val.amber { color: #B45309; }
+    .hero-stat-val.neutral { color: #111827; }
+    .of-n { font-size: 14px; font-weight: 500; color: #9CA3AF; }
+    .hero-best-ref {
+      font-size: 13px;
+      color: #6B7280;
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+    .hero-best-ref strong { color: #111827; }
+
+    /* ── Suggested swaps ── */
+    .swaps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .swap-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 20px 0;
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .swap-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.09); }
+    .swap-rank { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 700; color: #6B7280; background: #F3F4F6; border: 1px solid #E5E7EB; padding: 2px 7px; border-radius: 99px; }
+    .swap-img { height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .swap-img img { height: 115px; width: auto; object-fit: contain; }
+    .swap-brand { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px; color: #94A3B8; margin-bottom: 4px; }
+    .swap-name { font-size: 13px; font-weight: 700; color: #111827; text-align: center; margin-bottom: 14px; line-height: 1.3; }
+    .swap-badge { width: 100%; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: #DCFCE7; color: #166534; padding: 9px; margin-top: auto; }
     .fee-gap {
       background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 100%);
       border-radius: 12px;
@@ -218,42 +300,35 @@
     <span class="breadcrumb-current">HygienePro 1L Trigger Spray</span>
   </nav>
 
-  <!-- Head-to-head comparison hero -->
-  <div class="comparison-hero">
-
-    <!-- Your product panel -->
-    <div class="panel-yours">
-      <div class="panel-flag flag-yours">● Your product</div>
-      <div class="panel-img">
-        <img src="product-images/Screenshot 2026-04-27 at 09.56.28.png" alt="HygienePro">
+  <!-- Product hero -->
+  <div class="product-hero">
+    <div class="hero-img-panel">
+      <div class="hero-yours-flag">● Your product</div>
+      <img src="product-images/Screenshot 2026-04-27 at 09.56.28.png" alt="HygienePro">
+    </div>
+    <div class="hero-info">
+      <div class="hero-brand">HygienePro Ltd</div>
+      <div class="hero-name">HygienePro Trigger Spray 1L</div>
+      <div class="hero-meta">
+        <span class="hero-chip">Plastics Rigids — HDPE</span>
+        <span class="hero-chip">Last updated Feb 2026</span>
       </div>
-      <div class="panel-brand">HygienePro Ltd</div>
-      <div class="panel-name">HygienePro 1L Trigger Spray</div>
-      <div class="rag-hero-badge rag-hero-amber">+10% surcharge</div>
-      <div class="panel-surcharge surcharge-amber">+10%</div>
-      <div class="panel-surcharge-label">estimated fee surcharge</div>
-      <div class="panel-rank">Category rank: <span class="rank-highlight">#14</span> of 20</div>
-    </div>
-
-    <!-- Divider -->
-    <div class="panel-divider">
-      <div class="vs-text">VS</div>
-    </div>
-
-    <!-- Best in class panel -->
-    <div class="panel-best">
-      <div class="panel-flag flag-best">★ Best in class</div>
-      <div class="panel-img">
-        <img src="product-images/Screenshot 2026-04-27 at 09.55.12.png" alt="EcoFloor">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-label">Fee surcharge</div>
+          <div class="hero-stat-val amber">+10%</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Category rank</div>
+          <div class="hero-stat-val neutral">#14 <span class="of-n">of 20</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Issues found</div>
+          <div class="hero-stat-val amber">2 criteria</div>
+        </div>
       </div>
-      <div class="panel-brand">EcoFloor</div>
-      <div class="panel-name">EcoFloor Natural 1L</div>
-      <div class="rag-hero-badge rag-hero-green">No surcharge</div>
-      <div class="panel-surcharge surcharge-green">0%</div>
-      <div class="panel-surcharge-label">fee surcharge</div>
-      <div class="panel-rank">Category rank: <span class="rank-highlight">#1</span> of 20</div>
+      <div class="hero-best-ref">Best in class: <strong>EcoFloor Natural 1L</strong> · No surcharge · Rank #1 of 20</div>
     </div>
-
   </div>
 
   <!-- Fee gap callout -->
@@ -317,6 +392,33 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Suggested product swaps -->
+  <div class="section-header">Products already at no surcharge</div>
+  <div class="section-sub">Products in the same category already meeting the standard — use as packaging benchmarks</div>
+  <div class="swaps-grid">
+    <div class="swap-card">
+      <div class="swap-rank">#1</div>
+      <div class="swap-img"><img src="product-images/Screenshot 2026-04-27 at 09.55.12.png" alt="EcoFloor"></div>
+      <div class="swap-brand">EcoFloor</div>
+      <div class="swap-name">EcoFloor Natural 1L</div>
+      <div class="swap-badge">No surcharge</div>
+    </div>
+    <div class="swap-card">
+      <div class="swap-rank">#2</div>
+      <div class="swap-img"><img src="product-images/Screenshot 2026-04-27 at 09.55.30.png" alt="PureClean"></div>
+      <div class="swap-brand">PureClean</div>
+      <div class="swap-name">PureClean HDPE Clear 1L</div>
+      <div class="swap-badge">No surcharge</div>
+    </div>
+    <div class="swap-card">
+      <div class="swap-rank">#3</div>
+      <div class="swap-img"><img src="product-images/Screenshot 2026-04-27 at 09.56.07.png" alt="GreenWave"></div>
+      <div class="swap-brand">GreenWave</div>
+      <div class="swap-name">GreenWave Bio 1L</div>
+      <div class="swap-badge">No surcharge</div>
+    </div>
   </div>
 
   <!-- Attribute detail comparison -->
