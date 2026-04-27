@@ -234,11 +234,6 @@
     <a href="#your-products" class="btn-banner">View your products ↓</a>
   </div>
 
-  <div class="your-products-section" id="your-products">
-    <div class="section-label">◉ Your products (3)</div>
-    <div class="your-cards-row" id="your-cards"></div>
-  </div>
-
   <div class="spotlight">
     <div class="section-label">🏆 Best in class</div>
     <div class="podium-row" id="podium"></div>
@@ -300,24 +295,6 @@ const imgs = [
 
 const ragDot = { green:'green-dot', amber:'amber-dot', red:'red-dot' };
 const surchargeLabel = { green:'No surcharge', amber:'+10% surcharge', red:'+20% surcharge' };
-
-// Your Products section
-const yourProducts = products.filter(p => p.yours);
-const yourCardsEl = document.getElementById('your-cards');
-yourProducts.forEach(p => {
-  const card = document.createElement('div');
-  card.className = 'your-card';
-  card.innerHTML = `
-    <div class="your-card-rank">#${p.rank} of 20</div>
-    <div class="your-card-img"><img src="${imgs[p.rank % imgs.length]}" alt="${p.name}"></div>
-    <div class="your-card-body">
-      <div class="your-card-name">${p.name}</div>
-    </div>
-    <div class="rag-band ${p.rag}" style="margin-top:12px">${surchargeLabel[p.rag]}</div>
-    <a class="your-card-link" href="screen-2-brand-benchmarking.html">View benchmark →</a>
-  `;
-  yourCardsEl.appendChild(card);
-});
 
 // Podium: display as [#2, #1, #3]
 const podiumData = [
