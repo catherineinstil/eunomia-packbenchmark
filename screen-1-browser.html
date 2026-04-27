@@ -298,73 +298,53 @@
     /* ── Grid cards ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
 
     .category-card {
       background: #fff;
       border: 1px solid #E5E7EB;
-      border-radius: 8px;
-      padding: 18px;
+      border-radius: 10px;
+      overflow: hidden;
       cursor: pointer;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: box-shadow 0.18s;
       text-decoration: none;
       display: block;
       color: inherit;
     }
-    .category-card:hover {
-      border-color: #93C5FD;
-      box-shadow: 0 2px 8px rgba(29,78,216,0.07);
-    }
+    .category-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.09); }
 
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .card-icon {
-      width: 40px; height: 40px;
-      border-radius: 8px;
-      background: #F3F4F6;
+    .card-emoji-panel {
+      height: 130px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #F3F4F6;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+      font-size: 52px;
     }
-    .card-rating {
+
+    .card-body {
+      padding: 12px 14px 0;
+    }
+    .card-name {
       font-size: 13px;
       font-weight: 700;
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .rating-a { background: #F0FDF4; color: #166534; }
-    .rating-b { background: #F0FDF4; color: #166534; }
-    .rating-c { background: #FFFBEB; color: #92400E; }
-    .rating-d { background: #FEF2F2; color: #991B1B; }
-
-    .card-name {
-      font-size: 14px;
-      font-weight: 600;
       color: #0F172A;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       line-height: 1.3;
     }
     .card-sector {
       font-size: 11px;
       color: #9CA3AF;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .card-stats {
       display: flex;
-      gap: 16px;
-      padding-top: 12px;
+      gap: 14px;
+      padding: 10px 0;
       border-top: 1px solid #F3F4F6;
     }
     .stat {
@@ -373,7 +353,7 @@
       gap: 1px;
     }
     .stat-val {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: #0F172A;
     }
@@ -384,40 +364,18 @@
       letter-spacing: 0.4px;
     }
 
-    .card-footer {
+    .threshold-band {
+      height: 32px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-top: 12px;
-    }
-    .card-updated {
-      font-size: 11px;
-      color: #9CA3AF;
-    }
-    .card-arrow {
-      font-size: 14px;
-      color: #D1D5DB;
-    }
-    .category-card:hover .card-arrow { color: #1D4ED8; }
-
-    /* Coverage bar */
-    .coverage-bar {
-      height: 4px;
-      background: #F3F4F6;
-      border-radius: 99px;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-    .coverage-fill {
-      height: 100%;
-      border-radius: 99px;
-      background: #2D7D46;
-    }
-    .coverage-label {
+      justify-content: center;
       font-size: 10px;
-      color: #9CA3AF;
-      margin-top: 4px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
+    .threshold-band.set   { background: #DCFCE7; color: #166534; }
+    .threshold-band.pending { background: #FEF3C7; color: #92400E; }
 
     /* ── Annotation bar ── */
     .annotation-bar {
@@ -547,272 +505,137 @@
 
       <!-- Card 1 -->
       <a href="screen-2-benchmarking.html" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🧴</div>
-
-        </div>
-        <div class="card-name">1L Floor Cleaner Bottle</div>
-        <div class="card-sector">Household Cleaning</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">234</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">28g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">85%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🧴</div>
+        <div class="card-body">
+          <div class="card-name">1L Floor Cleaner Bottle</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">234</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">28g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">85%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:88%;"></div></div>
-        <div class="coverage-label">88% coverage · Threshold set</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 18 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band set">✓ Threshold set</div>
       </a>
 
       <!-- Card 2 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🫧</div>
-
-        </div>
-        <div class="card-name">750ml Bleach Bottle</div>
-        <div class="card-sector">Household Cleaning</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">187</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">34g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">62%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🫧</div>
+        <div class="card-body">
+          <div class="card-name">750ml Bleach Bottle</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">187</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">34g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">62%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:74%;"></div></div>
-        <div class="coverage-label">74% coverage · Threshold set</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 15 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band set">✓ Threshold set</div>
       </a>
 
       <!-- Card 3 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🫙</div>
-
-        </div>
-        <div class="card-name">500g Tomato Paste Jar</div>
-        <div class="card-sector">Food &amp; Beverage</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">312</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">145g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">100%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🫙</div>
+        <div class="card-body">
+          <div class="card-name">500g Tomato Paste Jar</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">312</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">145g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">100%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:95%;"></div></div>
-        <div class="coverage-label">95% coverage · Threshold set</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 20 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band set">✓ Threshold set</div>
       </a>
 
       <!-- Card 4 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🧼</div>
-
-        </div>
-        <div class="card-name">500ml Washing-Up Liquid</div>
-        <div class="card-sector">Household Cleaning</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">156</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">22g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">70%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🧼</div>
+        <div class="card-body">
+          <div class="card-name">500ml Washing-Up Liquid</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">156</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">22g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">70%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:68%;"></div></div>
-        <div class="coverage-label">68% coverage · Threshold pending</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 11 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band pending">⏳ Threshold pending</div>
       </a>
 
       <!-- Card 5 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🥛</div>
-
-        </div>
-        <div class="card-name">2L Milk Bottle (HDPE)</div>
-        <div class="card-sector">Food &amp; Beverage</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">421</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">38g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">90%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🥛</div>
+        <div class="card-body">
+          <div class="card-name">2L Milk Bottle (HDPE)</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">421</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">38g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">90%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:92%;"></div></div>
-        <div class="coverage-label">92% coverage · Threshold set</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 19 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band set">✓ Threshold set</div>
       </a>
 
       <!-- Card 6 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🧴</div>
-
-        </div>
-        <div class="card-name">250ml Shampoo Bottle</div>
-        <div class="card-sector">Personal Care</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">98</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">18g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">45%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🧴</div>
+        <div class="card-body">
+          <div class="card-name">250ml Shampoo Bottle</div>
+          <div class="card-sector">Personal Care</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">98</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">18g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">45%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:51%; background:#B8860B;"></div></div>
-        <div class="coverage-label">51% coverage · Threshold pending</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 2 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band pending">⏳ Threshold pending</div>
       </a>
 
       <!-- Card 7 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🫗</div>
-
-        </div>
-        <div class="card-name">1L Cooking Oil Bottle</div>
-        <div class="card-sector">Food &amp; Beverage</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">203</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">31g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">78%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🫗</div>
+        <div class="card-body">
+          <div class="card-name">1L Cooking Oil Bottle</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">203</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">31g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">78%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:81%;"></div></div>
-        <div class="coverage-label">81% coverage · Threshold set</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 17 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band set">✓ Threshold set</div>
       </a>
 
       <!-- Card 8 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🧹</div>
-
-        </div>
-        <div class="card-name">500ml Spray Cleaner</div>
-        <div class="card-sector">Household Cleaning</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">144</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">26g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">55%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🧹</div>
+        <div class="card-body">
+          <div class="card-name">500ml Spray Cleaner</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">144</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">26g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">55%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:63%;"></div></div>
-        <div class="coverage-label">63% coverage · Threshold pending</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 10 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band pending">⏳ Threshold pending</div>
       </a>
 
       <!-- Card 9 -->
       <a href="#" class="category-card">
-        <div class="card-top">
-          <div class="card-icon">🥤</div>
-
-        </div>
-        <div class="card-name">500ml Water Bottle (PET)</div>
-        <div class="card-sector">Food &amp; Beverage</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-val">567</span>
-            <span class="stat-lbl">Products</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">12g</span>
-            <span class="stat-lbl">Best weight</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">100%</span>
-            <span class="stat-lbl">Best recycled</span>
+        <div class="card-emoji-panel">🥤</div>
+        <div class="card-body">
+          <div class="card-name">500ml Water Bottle (PET)</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat"><span class="stat-val">567</span><span class="stat-lbl">Products</span></div>
+            <div class="stat"><span class="stat-val">12g</span><span class="stat-lbl">Best weight</span></div>
+            <div class="stat"><span class="stat-val">100%</span><span class="stat-lbl">Best recycled</span></div>
           </div>
         </div>
-        <div class="coverage-bar"><div class="coverage-fill" style="width:97%;"></div></div>
-        <div class="coverage-label">97% coverage · Threshold set</div>
-        <div class="card-footer">
-          <span class="card-updated">Updated 21 Apr 2026</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="threshold-band set">✓ Threshold set</div>
       </a>
 
     </div>
@@ -821,3 +644,4 @@
 
 </body>
 </html>
+
