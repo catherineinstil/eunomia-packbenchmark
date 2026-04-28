@@ -127,6 +127,19 @@
       background: #DBEAFE;
       color: #1D4ED8;
     }
+    .sidebar-sub-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 10px 5px 22px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #6B7280;
+      cursor: pointer;
+      margin-bottom: 1px;
+      transition: background 0.1s;
+    }
+    .sidebar-sub-item:hover { background: #F3F4F6; color: #374151; }
 
     /* ── Main content ── */
     .main { flex: 1; min-width: 0; }
@@ -496,6 +509,12 @@
       <div class="sidebar-section-label">Sector</div>
       <div class="sidebar-item">All Categories <span class="count">42</span></div>
       <div class="sidebar-item active">Household Cleaning <span class="count">14</span></div>
+      <div class="sidebar-sub-item">Floor Cleaners</div>
+      <div class="sidebar-sub-item">Bathroom Cleaners</div>
+      <div class="sidebar-sub-item">Bleach</div>
+      <div class="sidebar-sub-item">Kitchen Cleaners</div>
+      <div class="sidebar-sub-item">Specialist Cleaners</div>
+      <div class="sidebar-sub-item">Sink &amp; Drain Unblockers</div>
       <div class="sidebar-item">Food &amp; Beverage <span class="count">16</span></div>
       <div class="sidebar-item">Personal Care <span class="count">8</span></div>
       <div class="sidebar-item">Garden &amp; Outdoor <span class="count">4</span></div>
@@ -546,63 +565,54 @@
       <a href="screen-2-benchmarking.html" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">234 SAMPLES</div><img src="category-images/floor-cleaner.png" alt="Floor Cleaner"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">1L Floor Cleaner Bottle</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 2 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">187 SAMPLES</div><img src="category-images/bleach.png" alt="Bleach"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">750ml Bleach Bottle</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 3 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">89 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="All-Purpose Cleaner"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">750ml All-Purpose Cleaner</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 4 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">156 SAMPLES</div><img src="category-images/washing-up-liquid.png" alt="Washing-Up Liquid"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">500ml Washing-Up Liquid</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 5 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">143 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Bathroom Cleaner"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">500ml Bathroom Cleaner</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 6 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">112 SAMPLES</div><img src="category-images/bleach.png" alt="Toilet Cleaner"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">750ml Toilet Cleaner</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 7 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">98 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Kitchen Degreaser"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">500ml Kitchen Degreaser</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 8 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">144 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Spray Cleaner"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">500ml Spray Cleaner</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
       <!-- Card 9 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">76 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Window Cleaner"></div>
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">500ml Window &amp; Glass Cleaner</div></div>
-        <div class="card-samples-band">View Benchmarks →</div>
       </a>
 
     </div>
