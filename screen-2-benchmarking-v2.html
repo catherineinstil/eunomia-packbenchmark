@@ -23,7 +23,7 @@
     /* ── Layout ── */
     .page-wrap { display:flex; align-items:flex-start; }
     .main-col { flex:1 1 0; min-width:0; padding:28px 32px 64px; }
-    .fee-panel { width:320px; flex-shrink:0; position:sticky; top:52px; height:calc(100vh - 52px); overflow-y:auto; background:#fff; border-left:1px solid #E5E7EB; padding:24px 22px; }
+    .fee-panel { width:320px; flex-shrink:0; position:sticky; top:52px; height:calc(100vh - 52px); overflow-y:auto; background:#F8FAFC; border-left:1px solid #E2E8F0; box-shadow:-4px 0 16px rgba(0,0,0,0.06); padding:0; }
 
     /* ── Breadcrumb ── */
     .breadcrumb { font-size:12px; color:#9CA3AF; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
@@ -116,8 +116,8 @@
     .info-callout-text strong { font-weight:600; }
 
     /* ── Fee Panel (right rail) ── */
-    .fee-panel-title { font-size:14px; font-weight:700; color:#0F172A; margin-bottom:4px; }
-    .fee-panel-sub { font-size:12px; color:#6B7280; margin-bottom:20px; line-height:1.5; }
+    .fee-panel-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:4px; }
+    .fee-panel-sub { font-size:12px; color:#BFDBFE; margin-bottom:0; line-height:1.5; }
     .fee-band-row { margin-bottom:16px; padding:14px 14px 12px; border:1px solid #E5E7EB; border-radius:8px; transition:border-color 0.2s; }
     .fee-band-row.red { border-color:#FECACA; background:#FEF2F2; }
     .fee-band-row.amber { border-color:#FDE68A; background:#FFFBEB; }
@@ -804,12 +804,16 @@
   <!-- ── Right: Eco-Modulation Thresholds Panel ── -->
   <div class="fee-panel">
 
-    <div class="fee-panel-title">
-      Eco-Modulation Thresholds
-      <span class="unsaved-dot" id="unsaved-dot" title="Unsaved changes"></span>
+    <div style="background:linear-gradient(135deg,#1E3A8A,#2563EB);padding:20px 22px 18px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:#93C5FD;margin-bottom:6px">CAA Admin Action</div>
+      <div class="fee-panel-title">
+        Eco-Modulation Thresholds
+        <span class="unsaved-dot" id="unsaved-dot" title="Unsaved changes"></span>
+      </div>
+      <div class="fee-panel-sub">Set lightweighting performance thresholds for this category. Surcharges apply to products that exceed the limit.</div>
     </div>
-    <div class="fee-panel-sub">Set lightweighting performance thresholds for this category. Surcharges apply to products that exceed the limit.</div>
 
+    <div style="padding:20px 22px">
     <div class="fee-panel-section-label">Primary metric</div>
     <select class="metric-select">
       <option selected>Material per fill (g / 100ml)</option>
@@ -916,6 +920,7 @@
       Thresholds are set by CAA and reviewed annually.
     </div>
 
+    </div><!-- /inner padding -->
   </div><!-- /fee-panel -->
 
 </div><!-- /page-wrap -->
