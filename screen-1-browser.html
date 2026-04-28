@@ -371,18 +371,51 @@
       line-height: 1.3;
     }
 
-    .card-samples-band {
-      margin-top: 12px;
-      height: 34px;
+    .card-footer {
+      padding: 10px 14px 14px;
+      border-top: 1px solid #F3F4F6;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tier-row {
+      display: flex;
+      gap: 10px;
+    }
+    .tier-chip {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 4px;
       font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+    }
+    .tier-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tier-dot.green { background: #16A34A; }
+    .tier-dot.amber { background: #D97706; }
+    .tier-dot.red   { background: #DC2626; }
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .threshold-pill {
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      background: #F9FAFB;
-      color: #6B7280;
+      padding: 2px 8px;
+      border-radius: 99px;
+      letter-spacing: 0.3px;
+    }
+    .threshold-pill.set     { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+    .threshold-pill.pending { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+    .updated-date {
+      font-size: 10px;
+      color: #9CA3AF;
     }
 
     .card-stats {
@@ -565,54 +598,154 @@
       <a href="screen-2-benchmarking.html" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">234 SAMPLES</div><img src="category-images/floor-cleaner.png" alt="Floor Cleaner"></div>
         <div class="card-label"><div class="card-sector">Floor Cleaners</div><div class="card-name">1L Floor Cleaner Bottle</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>6 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>10 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>4 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill set">✓ Thresholds Set</span>
+            <span class="updated-date">Updated Apr 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 2 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">187 SAMPLES</div><img src="category-images/bleach.png" alt="Bleach"></div>
         <div class="card-label"><div class="card-sector">Bleach</div><div class="card-name">750ml Bleach Bottle</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>12 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>5 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>3 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill set">✓ Thresholds Set</span>
+            <span class="updated-date">Updated Apr 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 3 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">89 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="All-Purpose Cleaner"></div>
         <div class="card-label"><div class="card-sector">Kitchen Cleaners</div><div class="card-name">750ml All-Purpose Cleaner</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>4 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>8 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>8 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill set">✓ Thresholds Set</span>
+            <span class="updated-date">Updated Mar 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 4 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">156 SAMPLES</div><img src="category-images/washing-up-liquid.png" alt="Washing-Up Liquid"></div>
         <div class="card-label"><div class="card-sector">Kitchen Cleaners</div><div class="card-name">500ml Washing-Up Liquid</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>9 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>7 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>4 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill set">✓ Thresholds Set</span>
+            <span class="updated-date">Updated Apr 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 5 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">143 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Bathroom Cleaner"></div>
         <div class="card-label"><div class="card-sector">Bathroom Cleaners</div><div class="card-name">500ml Bathroom Cleaner</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>3 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>9 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>8 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill pending">⚠ Pending Review</span>
+            <span class="updated-date">Updated Feb 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 6 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">112 SAMPLES</div><img src="category-images/bleach.png" alt="Toilet Cleaner"></div>
         <div class="card-label"><div class="card-sector">Bathroom Cleaners</div><div class="card-name">750ml Toilet Cleaner</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>6 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>8 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>6 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill pending">⚠ Pending Review</span>
+            <span class="updated-date">Updated Mar 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 7 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">98 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Kitchen Degreaser"></div>
         <div class="card-label"><div class="card-sector">Kitchen Cleaners</div><div class="card-name">500ml Kitchen Degreaser</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>2 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>6 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>10 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill pending">⚠ Pending Review</span>
+            <span class="updated-date">Updated Jan 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 8 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">144 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Spray Cleaner"></div>
         <div class="card-label"><div class="card-sector">Specialist Cleaners</div><div class="card-name">500ml Spray Cleaner</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>5 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>8 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>7 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill pending">⚠ Pending Review</span>
+            <span class="updated-date">Updated Feb 2026</span>
+          </div>
+        </div>
       </a>
 
       <!-- Card 9 -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">76 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Window Cleaner"></div>
         <div class="card-label"><div class="card-sector">Specialist Cleaners</div><div class="card-name">500ml Window &amp; Glass Cleaner</div></div>
+        <div class="card-footer">
+          <div class="tier-row">
+            <div class="tier-chip"><div class="tier-dot green"></div>8 no surcharge</div>
+            <div class="tier-chip"><div class="tier-dot amber"></div>4 +8%</div>
+            <div class="tier-chip"><div class="tier-dot red"></div>4 +15%</div>
+          </div>
+          <div class="card-meta-row">
+            <span class="threshold-pill set">✓ Thresholds Set</span>
+            <span class="updated-date">Updated Apr 2026</span>
+          </div>
+        </div>
+      </a>
       </a>
 
     </div>
