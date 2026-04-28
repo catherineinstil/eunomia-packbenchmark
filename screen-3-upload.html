@@ -195,7 +195,7 @@
   <div class="page-header">
     <div>
       <h1>Add new product record</h1>
-      <div class="sub">Submit a packaging record to the benchmark dataset. All submissions are reviewed before publication.</div>
+      <div class="sub">Add a verified field audit record to the Touch reference dataset. Records are published directly to the benchmark on save.</div>
     </div>
   </div>
 
@@ -292,7 +292,7 @@
           <div class="field">
             <label>Primary material framework</label>
             <div id="material-framework-badge" style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;font-size:12px;color:#1E40AF;font-weight:500;">
-              ⬡ Plastics Rigids — HDPE/PP · PackUK framework applied
+              ⬡ Plastics Rigids — HDPE/PP · CAA benchmarking framework applied
             </div>
             <div class="field-hint">The RAG recyclability rating will be auto-calculated from the composition you enter.</div>
           </div>
@@ -327,19 +327,54 @@
               <input type="text" value="5011546123894" placeholder="EAN-13 or internal SKU" />
             </div>
             <div class="field">
-              <label>Country of manufacture</label>
+              <label>Country audited <span class="required">*</span></label>
               <select>
-                <option>United Kingdom</option>
+                <option>Australia</option>
+                <option>Austria</option>
                 <option>Germany</option>
-                <option>China</option>
-                <option>United States</option>
+                <option>Hungary</option>
                 <option>Ireland</option>
+                <option>Italy</option>
+                <option>Slovenia</option>
+                <option>Switzerland</option>
+                <option selected>United Kingdom</option>
+                <option>United States</option>
               </select>
             </div>
           </div>
           <div class="field">
             <label>Notes / context</label>
             <textarea placeholder="Any additional context — e.g. seasonal variant, reformulation, regional market…">Trigger spray variant. Label covers approximately 12% of surface area.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1b: Audit details -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Audit details</div>
+          <div class="card-sub">Where and when this sample was physically collected</div>
+        </div>
+        <div class="card-body">
+          <div class="field-row">
+            <div class="field">
+              <label>Retailer <span class="required">*</span></label>
+              <input type="text" value="Tesco" placeholder="e.g. Tesco, Lidl, Walmart" />
+            </div>
+            <div class="field">
+              <label>Retail location / city <span class="required">*</span></label>
+              <input type="text" value="Manchester, UK" placeholder="e.g. Dublin, IE" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Audit date <span class="required">*</span></label>
+              <input type="text" value="14 Apr 2026" placeholder="DD MMM YYYY" />
+            </div>
+            <div class="field">
+              <label>Auditor</label>
+              <input type="text" value="James O'Brien" placeholder="Touch staff member" />
+            </div>
           </div>
         </div>
       </div>
@@ -407,6 +442,24 @@
           </div>
           <div class="field-row">
             <div class="field">
+              <label>Headspace %</label>
+              <div class="input-unit">
+                <input type="number" value="8.4" placeholder="0" />
+                <span class="unit-label">%</span>
+              </div>
+              <div class="field-hint">Empty space as % of total pack volume</div>
+            </div>
+            <div class="field">
+              <label>Top load strength</label>
+              <div class="input-unit">
+                <input type="number" value="320" placeholder="0" />
+                <span class="unit-label">N</span>
+              </div>
+              <div class="field-hint">Axial compression strength (Newtons)</div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
               <label>Recycled content %</label>
               <div class="input-unit">
                 <input type="number" value="30" min="0" max="100" placeholder="0" />
@@ -415,14 +468,14 @@
               <div class="field-hint">% of total weight that is post-consumer recyclate (PCR)</div>
             </div>
             <div class="field">
-              <label>Kerbside collection coverage</label>
+              <label>Curbside collection coverage</label>
               <select id="kerbside-select" onchange="updateRagPreview()">
-                <option value="75plus">≥75% of local authorities</option>
-                <option value="50to74" selected>50–74% of local authorities</option>
+                <option value="75plus">≥75% of jurisdictions</option>
+                <option value="50to74" selected>50–74% of jurisdictions</option>
                 <option value="below50">Below 50%</option>
                 <option value="unknown">Unknown</option>
               </select>
-              <div class="field-hint">Source: WRAP / local authority data</div>
+              <div class="field-hint">Source: CalRecycle / MRF operator data</div>
             </div>
           </div>
         </div>
@@ -439,7 +492,7 @@
           <div class="info-callout" style="margin-bottom:16px">
             <div style="font-size:15px;margin-top:1px">⬡</div>
             <div class="info-callout-text">
-              <strong>This drives the RAG rating.</strong> The system calculates recyclability based on composition, polymer purity, and any disqualifying materials. Enter values as accurately as possible — estimates should be noted below.
+              <strong>This drives the RAG rating.</strong> The system calculates recyclability based on composition, polymer purity, and any disqualifying materials. Enter values as accurately as possible — estimates should be noted in the product information section.
             </div>
           </div>
 
@@ -620,8 +673,8 @@
     const amberReasons = [];
     if (paper > 10) amberReasons.push(`Paper/card label at ${paper}% exceeds 10% surface area threshold`);
     if (oxo) amberReasons.push('Oxo-degradable additives present');
-    if (kerbside === '50to74') amberReasons.push('Kerbside collection at 50–74% of local authorities only');
-    if (kerbside === 'below50') amberReasons.push('Kerbside collection below 50% of local authorities');
+    if (kerbside === '50to74') amberReasons.push('Curbside collection at 50–74% of jurisdictions only');
+    if (kerbside === 'below50') amberReasons.push('Curbside collection below 50% of jurisdictions');
 
     if (amberReasons.length > 0) {
       setRag('amber', amberReasons.join('. ') + '.');
@@ -629,7 +682,7 @@
     }
 
     // GREEN
-    setRag('green', 'No RED or AMBER criteria triggered. Product is widely recyclable under the PackUK framework.');
+    setRag('green', 'No RED or AMBER criteria triggered. Product is widely recyclable under the CAA benchmarking framework.');
   }
 
   function setRag(band, reasonText) {
