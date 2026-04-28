@@ -176,6 +176,45 @@
     .trigger-tag { font-size:10px; padding:2px 7px; border-radius:99px; font-weight:500; }
     .trigger-tag.red { background:#FEF2F2; color:#991B1B; border:1px solid #FECACA; }
     .trigger-tag.amber { background:#FFFBEB; color:#92400E; border:1px solid #FDE68A; }
+
+    /* ── Benchmark Overview ── */
+    .benchmark-intro { display:flex; gap:12px; margin-bottom:24px; }
+    .benchmark-intro-stat { flex:1; background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:16px 20px; }
+    .benchmark-intro-stat-num { font-size:26px; font-weight:700; color:#0F172A; line-height:1; margin-bottom:4px; }
+    .benchmark-intro-stat-label { font-size:11px; color:#6B7280; font-weight:500; }
+    .benchmark-intro-stat.highlight { background:#F0FDF4; border-color:#BBF7D0; }
+    .benchmark-intro-stat.highlight .benchmark-intro-stat-num { color:#166534; }
+    .benchmark-row { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:20px 24px; margin-bottom:12px; }
+    .benchmark-row-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px; }
+    .benchmark-row-name { font-size:13px; font-weight:700; color:#0F172A; }
+    .benchmark-row-unit { font-size:11px; color:#9CA3AF; }
+    .benchmark-cols { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px; }
+    .bm-val { border-radius:8px; padding:12px 14px; text-align:center; }
+    .bm-val-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; }
+    .bm-val-num { font-size:22px; font-weight:700; line-height:1; margin-bottom:4px; }
+    .bm-val-brand { font-size:11px; opacity:0.7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .bm-best { background:#F0FDF4; border:1px solid #BBF7D0; }
+    .bm-best .bm-val-label { color:#166534; }
+    .bm-best .bm-val-num { color:#166534; }
+    .bm-best .bm-val-brand { color:#166534; }
+    .bm-median { background:#F8FAFC; border:1px solid #E5E7EB; }
+    .bm-median .bm-val-label { color:#64748B; }
+    .bm-median .bm-val-num { color:#374151; }
+    .bm-median .bm-val-brand { color:#64748B; }
+    .bm-worst { background:#FEF2F2; border:1px solid #FECACA; }
+    .bm-worst .bm-val-label { color:#991B1B; }
+    .bm-worst .bm-val-num { color:#C0392B; }
+    .bm-worst .bm-val-brand { color:#991B1B; }
+    .bm-track { position:relative; height:10px; border-radius:5px; overflow:visible; margin:4px 0 6px; }
+    .bm-track-bg { position:absolute; inset:0; border-radius:5px; }
+    .bm-dot { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; border:2.5px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.18); z-index:2; }
+    .bm-dot.best { background:#16A34A; }
+    .bm-dot.median { background:#D97706; }
+    .bm-dot.worst { background:#C0392B; }
+    .bm-track-legend { display:flex; justify-content:space-between; font-size:10px; color:#9CA3AF; margin-top:2px; }
+    .saving-callout { background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:flex; gap:10px; align-items:flex-start; }
+    .saving-callout-text { font-size:12px; color:#1E40AF; line-height:1.6; }
+    .saving-callout-text strong { font-weight:600; }
   </style>
 </head>
 <body>
@@ -234,20 +273,175 @@
 
     <!-- Tabs -->
     <div class="tabs">
-      <div class="tab active">Recyclability (RAG)</div>
-      <div class="tab">Physical Attributes</div>
-      <div class="tab">Recycled Content</div>
-      <div class="tab">Product Records</div>
+      <div class="tab active" onclick="switchTab('benchmark',this)">Benchmark Overview</div>
+      <div class="tab" onclick="switchTab('rag',this)">Recyclability (RAG)</div>
+      <div class="tab" onclick="switchTab('records',this)">Product Records</div>
     </div>
 
-    <!-- Info callout -->
-    <div class="info-callout">
-      <div class="info-callout-icon">ℹ</div>
-      <div class="info-callout-text">
-        <strong>RAG ratings are system-determined</strong> — assigned based on the CAA Benchmarking Framework criteria for <strong>Plastics Rigids (HDPE)</strong>. 
-        CAA sets the eco-modulation fee surcharge per band in the panel on the right. The criteria themselves are fixed.
+    <!-- ══ TAB: BENCHMARK OVERVIEW ══ -->
+    <div id="tab-benchmark">
+
+      <!-- Savings opportunity callout -->
+      <div class="saving-callout">
+        <div style="font-size:15px;margin-top:1px">↗</div>
+        <div class="saving-callout-text">
+          <strong>Potential material saving identified: 19.4 – 48%</strong> — equivalent to 54–209 tonnes/year across this category.
+          Best-in-class performance sets the benchmark threshold for eco-modulation fees.
+        </div>
       </div>
-    </div>
+
+      <!-- Summary stats -->
+      <div class="benchmark-intro">
+        <div class="benchmark-intro-stat">
+          <div class="benchmark-intro-stat-num">47</div>
+          <div class="benchmark-intro-stat-label">Products benchmarked</div>
+        </div>
+        <div class="benchmark-intro-stat">
+          <div class="benchmark-intro-stat-num">89</div>
+          <div class="benchmark-intro-stat-label">Samples audited</div>
+        </div>
+        <div class="benchmark-intro-stat">
+          <div class="benchmark-intro-stat-num">10</div>
+          <div class="benchmark-intro-stat-label">Markets covered</div>
+        </div>
+        <div class="benchmark-intro-stat highlight">
+          <div class="benchmark-intro-stat-num">48%</div>
+          <div class="benchmark-intro-stat-label">Max material reduction possible</div>
+        </div>
+      </div>
+
+      <!-- Attribute: Pack Weight -->
+      <div class="benchmark-row">
+        <div class="benchmark-row-header">
+          <span class="benchmark-row-name">Pack Weight</span>
+          <span class="benchmark-row-unit">grams (g) &nbsp;·&nbsp; lower is better ↓</span>
+        </div>
+        <div class="benchmark-cols">
+          <div class="bm-val bm-best"><div class="bm-val-label">Best in class</div><div class="bm-val-num">28g</div><div class="bm-val-brand">EcoFloor Natural</div></div>
+          <div class="bm-val bm-median"><div class="bm-val-label">Median</div><div class="bm-val-num">72g</div><div class="bm-val-brand">Category middle</div></div>
+          <div class="bm-val bm-worst"><div class="bm-val-label">Worst in class</div><div class="bm-val-num">145g</div><div class="bm-val-brand">HygienePro Max</div></div>
+        </div>
+        <div class="bm-track">
+          <div class="bm-track-bg" style="background:linear-gradient(to right,#86EFAC,#FCD34D,#FCA5A5)"></div>
+          <div class="bm-dot best" style="left:0%"></div>
+          <div class="bm-dot median" style="left:38%"></div>
+          <div class="bm-dot worst" style="left:100%"></div>
+        </div>
+        <div class="bm-track-legend"><span>28g</span><span>145g</span></div>
+      </div>
+
+      <!-- Attribute: Recycled Content -->
+      <div class="benchmark-row">
+        <div class="benchmark-row-header">
+          <span class="benchmark-row-name">Recycled Content (PCR)</span>
+          <span class="benchmark-row-unit">% by weight &nbsp;·&nbsp; higher is better ↑</span>
+        </div>
+        <div class="benchmark-cols">
+          <div class="bm-val bm-best"><div class="bm-val-label">Best in class</div><div class="bm-val-num">85%</div><div class="bm-val-brand">PureClean HDPE Clear</div></div>
+          <div class="bm-val bm-median"><div class="bm-val-label">Median</div><div class="bm-val-num">40%</div><div class="bm-val-brand">Category middle</div></div>
+          <div class="bm-val bm-worst"><div class="bm-val-label">Worst in class</div><div class="bm-val-num">0%</div><div class="bm-val-brand">CleanShield Pro</div></div>
+        </div>
+        <div class="bm-track">
+          <div class="bm-track-bg" style="background:linear-gradient(to right,#FCA5A5,#FCD34D,#86EFAC)"></div>
+          <div class="bm-dot worst" style="left:0%"></div>
+          <div class="bm-dot median" style="left:40%"></div>
+          <div class="bm-dot best" style="left:85%"></div>
+        </div>
+        <div class="bm-track-legend"><span>0%</span><span>100%</span></div>
+      </div>
+
+      <!-- Attribute: Headspace -->
+      <div class="benchmark-row">
+        <div class="benchmark-row-header">
+          <span class="benchmark-row-name">Headspace</span>
+          <span class="benchmark-row-unit">% of total volume &nbsp;·&nbsp; lower is better ↓</span>
+        </div>
+        <div class="benchmark-cols">
+          <div class="bm-val bm-best"><div class="bm-val-label">Best in class</div><div class="bm-val-num">3.2%</div><div class="bm-val-brand">FreshStep Ultra</div></div>
+          <div class="bm-val bm-median"><div class="bm-val-label">Median</div><div class="bm-val-num">8.4%</div><div class="bm-val-brand">Category middle</div></div>
+          <div class="bm-val bm-worst"><div class="bm-val-label">Worst in class</div><div class="bm-val-num">20.5%</div><div class="bm-val-brand">BrightFloor Conc.</div></div>
+        </div>
+        <div class="bm-track">
+          <div class="bm-track-bg" style="background:linear-gradient(to right,#86EFAC,#FCD34D,#FCA5A5)"></div>
+          <div class="bm-dot best" style="left:0%"></div>
+          <div class="bm-dot median" style="left:30%"></div>
+          <div class="bm-dot worst" style="left:100%"></div>
+        </div>
+        <div class="bm-track-legend"><span>3.2%</span><span>20.5%</span></div>
+      </div>
+
+      <!-- Attribute: Top Load -->
+      <div class="benchmark-row">
+        <div class="benchmark-row-header">
+          <span class="benchmark-row-name">Top Load Strength</span>
+          <span class="benchmark-row-unit">Newtons (N) &nbsp;·&nbsp; higher is better ↑</span>
+        </div>
+        <div class="benchmark-cols">
+          <div class="bm-val bm-best"><div class="bm-val-label">Best in class</div><div class="bm-val-num">576N</div><div class="bm-val-brand">SterilClean HDPE</div></div>
+          <div class="bm-val bm-median"><div class="bm-val-label">Median</div><div class="bm-val-num">285N</div><div class="bm-val-brand">Category middle</div></div>
+          <div class="bm-val bm-worst"><div class="bm-val-label">Worst in class</div><div class="bm-val-num">90N</div><div class="bm-val-brand">FloorGuard Original</div></div>
+        </div>
+        <div class="bm-track">
+          <div class="bm-track-bg" style="background:linear-gradient(to right,#FCA5A5,#FCD34D,#86EFAC)"></div>
+          <div class="bm-dot worst" style="left:0%"></div>
+          <div class="bm-dot median" style="left:40%"></div>
+          <div class="bm-dot best" style="left:100%"></div>
+        </div>
+        <div class="bm-track-legend"><span>90N</span><span>576N</span></div>
+      </div>
+
+      <!-- Attribute: Material per Fill -->
+      <div class="benchmark-row">
+        <div class="benchmark-row-header">
+          <span class="benchmark-row-name">Material Usage per 100ml Fill</span>
+          <span class="benchmark-row-unit">g per 100ml &nbsp;·&nbsp; lower is better ↓</span>
+        </div>
+        <div class="benchmark-cols">
+          <div class="bm-val bm-best"><div class="bm-val-label">Best in class</div><div class="bm-val-num">12.4g</div><div class="bm-val-brand">EcoFloor Natural</div></div>
+          <div class="bm-val bm-median"><div class="bm-val-label">Median</div><div class="bm-val-num">18.8g</div><div class="bm-val-brand">Category middle</div></div>
+          <div class="bm-val bm-worst"><div class="bm-val-label">Worst in class</div><div class="bm-val-num">28.6g</div><div class="bm-val-brand">HygienePro Max</div></div>
+        </div>
+        <div class="bm-track">
+          <div class="bm-track-bg" style="background:linear-gradient(to right,#86EFAC,#FCD34D,#FCA5A5)"></div>
+          <div class="bm-dot best" style="left:0%"></div>
+          <div class="bm-dot median" style="left:40%"></div>
+          <div class="bm-dot worst" style="left:100%"></div>
+        </div>
+        <div class="bm-track-legend"><span>12.4g</span><span>28.6g</span></div>
+      </div>
+
+      <!-- Attribute: No. of Components -->
+      <div class="benchmark-row">
+        <div class="benchmark-row-header">
+          <span class="benchmark-row-name">Number of Components</span>
+          <span class="benchmark-row-unit">count &nbsp;·&nbsp; lower is better ↓</span>
+        </div>
+        <div class="benchmark-cols">
+          <div class="bm-val bm-best"><div class="bm-val-label">Best in class</div><div class="bm-val-num">2</div><div class="bm-val-brand">FreshStep Ultra</div></div>
+          <div class="bm-val bm-median"><div class="bm-val-label">Median</div><div class="bm-val-num">3</div><div class="bm-val-brand">Category middle</div></div>
+          <div class="bm-val bm-worst"><div class="bm-val-label">Worst in class</div><div class="bm-val-num">5</div><div class="bm-val-brand">CleanShield Pro</div></div>
+        </div>
+        <div class="bm-track">
+          <div class="bm-track-bg" style="background:linear-gradient(to right,#86EFAC,#FCD34D,#FCA5A5)"></div>
+          <div class="bm-dot best" style="left:0%"></div>
+          <div class="bm-dot median" style="left:33%"></div>
+          <div class="bm-dot worst" style="left:100%"></div>
+        </div>
+        <div class="bm-track-legend"><span>2</span><span>5</span></div>
+      </div>
+
+    </div><!-- /tab-benchmark -->
+
+    <!-- ══ TAB: RECYCLABILITY RAG ══ -->
+    <div id="tab-rag" style="display:none">
+
+      <div class="info-callout">
+        <div class="info-callout-icon">ℹ</div>
+        <div class="info-callout-text">
+          <strong>RAG ratings are system-determined</strong> — assigned based on the CAA Benchmarking Framework criteria for <strong>Plastics Rigids (HDPE)</strong>.
+          CAA sets the eco-modulation fee surcharge per band in the panel on the right. The criteria themselves are fixed.
+        </div>
+      </div>
 
     <!-- RAG Summary card -->
     <div class="rag-summary-card">
@@ -415,8 +609,11 @@
       </div>
     </div>
 
-    <!-- Product sample table -->
-    <div class="section-heading" style="margin-top:24px;margin-bottom:10px">Sample product records</div>
+    </div><!-- /tab-rag -->
+
+    <!-- ══ TAB: PRODUCT RECORDS ══ -->
+    <div id="tab-records" style="display:none">
+    <div class="section-heading" style="margin-top:0;margin-bottom:10px">Sample product records</div>
     <div class="sample-card">
       <div class="sample-card-header">
         <div>
@@ -495,6 +692,8 @@
         </tbody>
       </table>
     </div>
+
+    </div><!-- /tab-records -->
 
   </div><!-- /main-col -->
 
@@ -600,6 +799,14 @@
 </div><!-- /page-wrap -->
 
 <script>
+  function switchTab(name, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    ['benchmark','rag','records'].forEach(n => {
+      document.getElementById('tab-'+n).style.display = n === name ? 'block' : 'none';
+    });
+  }
+
   function toggleCriteria(cardId) {
     const body = document.getElementById(cardId).querySelector('.criteria-body');
     const toggle = document.getElementById(cardId.replace('-card','-toggle'));
