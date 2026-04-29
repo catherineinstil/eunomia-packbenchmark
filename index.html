@@ -3,84 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PackBenchmark — Concept Screens</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>EcoPack — Concept Screens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #0F172A; font-size: 14px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
+    body { font-family: 'Inter', sans-serif; background: #F1F5F1; color: #0F172A; font-size: 14px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; }
+
     .header { text-align: center; margin-bottom: 48px; }
-    .brand { font-size: 22px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 8px; }
-    .brand span { color: #1D4ED8; }
-    .sub { font-size: 13px; color: #6B7280; }
-    .badge { display: inline-block; background: #FFF7ED; color: #C2410C; border: 1px solid #FED7AA; border-radius: 99px; font-size: 11px; font-weight: 600; padding: 2px 10px; margin-top: 10px; }
-    .screens { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 900px; width: 100%; }
-    .screen-card { background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 24px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s; }
-    .screen-card:hover { border-color: #93C5FD; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-    .screen-num { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: #9CA3AF; margin-bottom: 8px; }
-    .screen-title { font-size: 15px; font-weight: 700; color: #0F172A; margin-bottom: 6px; }
-    .screen-desc { font-size: 12px; color: #6B7280; line-height: 1.6; margin-bottom: 16px; }
-    .screen-user { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 99px; }
-    .screen-user.caa { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
-    .screen-user.touch { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
-    .screen-user.both { background: #F5F3FF; color: #6D28D9; border: 1px solid #DDD6FE; }
-    .arrow { float: right; color: #D1D5DB; font-size: 16px; margin-top: -2px; }
-    .footer { margin-top: 48px; font-size: 11px; color: #9CA3AF; text-align: center; line-height: 1.8; }
+    .brand { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; color: #0F172A; }
+    .brand span { color: #16A34A; }
+    .sub { font-size: 13px; color: #6B7280; margin-bottom: 12px; }
+    .badge { display: inline-block; background: #FFF7ED; color: #C2410C; border: 1px solid #FED7AA; border-radius: 99px; font-size: 11px; font-weight: 600; padding: 3px 12px; }
+
+    .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #94A3B8; margin-bottom: 12px; max-width: 900px; width: 100%; }
+    .screens { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; max-width: 900px; width: 100%; margin-bottom: 32px; }
+
+    .screen-card { background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 22px 24px; text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s; display: flex; flex-direction: column; gap: 6px; }
+    .screen-card:hover { border-color: #86EFAC; box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+    .screen-card.active { border-color: #16A34A; }
+
+    .screen-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #9CA3AF; }
+    .screen-title { font-size: 15px; font-weight: 700; color: #0F172A; display: flex; justify-content: space-between; align-items: flex-start; }
+    .screen-title .arrow { color: #D1D5DB; font-size: 16px; font-weight: 400; }
+    .screen-desc { font-size: 12px; color: #6B7280; line-height: 1.65; flex: 1; }
+    .screen-footer { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+
+    .pill { display: inline-flex; align-items: center; font-size: 10px; font-weight: 600; padding: 2px 9px; border-radius: 99px; }
+    .pill.caa    { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+    .pill.brand  { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
+    .pill.touch  { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+
+    .divider { max-width: 900px; width: 100%; height: 1px; background: #E5E7EB; margin-bottom: 28px; }
+
+    .footer { margin-top: 16px; font-size: 11px; color: #9CA3AF; text-align: center; line-height: 1.8; }
   </style>
 </head>
 <body>
+
   <div class="header">
-    <div class="brand">Pack<span>Benchmark</span></div>
+    <div class="brand">Eco<span>Pack</span></div>
     <div class="sub">Packaging benchmarking platform — concept screens for Eunomia / CAA pitch</div>
     <div class="badge">⚠ Pre-sales concept · Illustrative data only</div>
   </div>
 
+  <div class="section-label">CAA & regulator screens</div>
   <div class="screens">
     <a class="screen-card" href="screen-1-browser.html">
       <div class="screen-num">Screen 1</div>
-      <div class="screen-title">Product Type Browser <span class="arrow">→</span></div>
-      <div class="screen-desc">Browse and filter packaging categories. Search by product type, material, and recyclability status.</div>
-      <span class="screen-user both">All users</span>
+      <div class="screen-title">Category Browser <span class="arrow">→</span></div>
+      <div class="screen-desc">Browse and filter packaging categories by product type, material and recyclability. Entry point for CAA users exploring the dataset.</div>
+      <div class="screen-footer"><span class="pill caa">CAA — PRO</span></div>
     </a>
 
-    <a class="screen-card" href="screen-2-benchmarking.html">
-      <div class="screen-num">Screen 2</div>
-      <div class="screen-title">Benchmarking View (v1) <span class="arrow">→</span></div>
-      <div class="screen-desc">Attribute-level benchmarking with interactive fee threshold panel. Best / median / worst in class across weight, recycled content, and material composition.</div>
-      <span class="screen-user caa">CAA — PRO</span>
-    </a>
-
-    <a class="screen-card" href="screen-2-benchmarking-v2.html">
-      <div class="screen-num">Screen 2 v2</div>
-      <div class="screen-title">Benchmarking View (RAG) <span class="arrow">→</span></div>
-      <div class="screen-desc">Recyclability benchmarking based on the PackUK RAG framework. Shows RED / AMBER / GREEN distribution and criteria breakdown. CAA sets fee surcharge per band.</div>
-      <span class="screen-user caa">CAA — PRO</span>
+    <a class="screen-card active" href="screen-2-benchmarking-v2.html">
+      <div class="screen-num">Screen 2 · Active</div>
+      <div class="screen-title">Benchmarking Detail <span class="arrow">→</span></div>
+      <div class="screen-desc">Attribute-level benchmark for a selected category — best / median / worst in class across pack weight, recycled content, headspace and more. Includes eco-modulation fee threshold panel.</div>
+      <div class="screen-footer"><span class="pill caa">CAA — PRO</span></div>
     </a>
 
     <a class="screen-card" href="screen-3-upload.html">
       <div class="screen-num">Screen 3</div>
-      <div class="screen-title">Data Entry / Upload <span class="arrow">→</span></div>
-      <div class="screen-desc">Touch data maintainers submit new packaging records — product image, physical attributes, and material composition. Live RAG prediction on entry.</div>
-      <span class="screen-user touch">Touch — Data Maintainer</span>
+      <div class="screen-title">Data Upload <span class="arrow">→</span></div>
+      <div class="screen-desc">Touch data maintainers submit new packaging records — product image, physical attributes, and material composition.</div>
+      <div class="screen-footer"><span class="pill touch">Touch — Data Maintainer</span></div>
     </a>
+  </div>
 
-    <a class="screen-card" href="screen-1-brand-browser.html">
-      <div class="screen-num">Screen 1 — Brand</div>
-      <div class="screen-title">Product Browser (Brand view) <span class="arrow">→</span></div>
-      <div class="screen-desc">Brand users browse all products within a category. Their own product is highlighted with rank, RAG status, and estimated fee surcharge at a glance.</div>
-      <span class="screen-user" style="background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA">Brand tier</span>
+  <div class="section-label">Brand user screens</div>
+  <div class="screens">
+    <a class="screen-card active" href="screen-1-brand-browser.html">
+      <div class="screen-num">Screen 1 — Brand · Active</div>
+      <div class="screen-title">Product Browser <span class="arrow">→</span></div>
+      <div class="screen-desc">Brand users browse all products in a category ranked by eco-modulation tier. Their own product is highlighted with rank and Green / Amber / Red status at a glance.</div>
+      <div class="screen-footer"><span class="pill brand">Brand</span></div>
     </a>
 
     <a class="screen-card" href="screen-2-brand-benchmarking.html">
       <div class="screen-num">Screen 2 — Brand</div>
-      <div class="screen-title">Benchmarking View (Brand view) <span class="arrow">→</span></div>
-      <div class="screen-desc">Brand users see how their product compares against best/median/worst in class, with an improvement panel showing what changes would move them to GREEN and reduce their surcharge.</div>
-      <span class="screen-user" style="background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA">Brand tier</span>
+      <div class="screen-title">Benchmarking (Brand view) <span class="arrow">→</span></div>
+      <div class="screen-desc">Brand users see how their product compares against best / median / worst in class, with their position marked on each attribute bar.</div>
+      <div class="screen-footer"><span class="pill brand">Brand</span></div>
     </a>
   </div>
 
   <div class="footer">
-    Built by Instil for Eunomia · April 2026<br />
-    For pitch use only — not for distribution
+    Built by Instil for Eunomia · April 2026 &nbsp;·&nbsp; For pitch use only — not for distribution
   </div>
+
 </body>
 </html>
