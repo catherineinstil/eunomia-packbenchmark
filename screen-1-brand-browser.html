@@ -311,12 +311,12 @@ const podiumEl = document.getElementById('podium');
 podiumData.forEach(({ p, medal }) => {
   const card = document.createElement('div');
   card.className = 'podium-card' + (p.rank === 1 ? ' rank-1' : '');
+  const rankLabel = p.rank === 1 ? podiumLabel[p.rag] : `#${p.rank}`;
   card.innerHTML = `
-    <div class="medal">${medal}</div>
     <div class="podium-img"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="podium-brand">${p.brand}</div>
     <div class="podium-name">${p.name}</div>
-    <div class="rag-big rag-big-${p.rag}">${podiumLabel[p.rag]}</div>
+    <div class="rag-big rag-big-${p.rag}">${rankLabel}</div>
   `;
   podiumEl.appendChild(card);
 });
