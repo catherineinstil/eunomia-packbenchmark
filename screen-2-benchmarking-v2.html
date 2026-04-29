@@ -862,7 +862,7 @@
         Eco-Modulation Thresholds
         <span class="unsaved-dot" id="unsaved-dot" title="Unsaved changes"></span>
       </div>
-      <div class="fee-panel-sub">Set lightweighting performance thresholds for this category. Surcharges apply to products that exceed the limit.</div>
+      <div class="fee-panel-sub">Set lightweighting performance thresholds for this category. Fee modulation rates apply to products in each tier.</div>
     </div>
 
     <div style="padding:0 22px 20px">
@@ -882,13 +882,13 @@
         <span class="tier-pill tier-1-pill">Tier 1</span>
         <span class="tier-count">12 products</span>
       </div>
-      <div class="tier-desc">Best in class — no surcharge</div>
+      <div class="tier-desc">Best in class — baseline rate</div>
       <div class="tier-threshold-row">
         <span class="tier-threshold-label">Threshold</span>
         <span class="tier-threshold-val">≤ 15.0 g/100ml</span>
       </div>
       <div class="fee-input-row">
-        <span class="fee-input-label">Surcharge</span>
+        <span class="fee-input-label">Fee adjustment</span>
         <div class="fee-input-wrap" style="background:#F9FAFB">
           <input class="fee-input" type="number" value="0" disabled style="color:#9CA3AF;background:#F9FAFB" />
           <span class="fee-input-suffix" style="color:#9CA3AF">%</span>
@@ -908,7 +908,7 @@
         <span class="tier-threshold-val">15.1 – 22.0 g/100ml</span>
       </div>
       <div class="fee-input-row">
-        <span class="fee-input-label">Surcharge</span>
+        <span class="fee-input-label">Fee adjustment</span>
         <div class="fee-input-wrap">
           <input class="fee-input" type="number" id="fee-tier2" value="8" min="0" max="100" onchange="updateImpact()" oninput="markUnsaved()" />
           <span class="fee-input-suffix">%</span>
@@ -928,7 +928,7 @@
         <span class="tier-threshold-val">&gt; 22.0 g/100ml</span>
       </div>
       <div class="fee-input-row">
-        <span class="fee-input-label">Surcharge</span>
+        <span class="fee-input-label">Fee adjustment</span>
         <div class="fee-input-wrap">
           <input class="fee-input" type="number" id="fee-tier3" value="15" min="0" max="100" onchange="updateImpact()" oninput="markUnsaved()" />
           <span class="fee-input-suffix">%</span>
@@ -947,11 +947,11 @@
       </div>
       <div class="impact-row">
         <span class="label">Tier 2 — improvement (21)</span>
-        <span class="value amber" id="impact-tier2">+8% surcharge</span>
+        <span class="value amber" id="impact-tier2">+8% fee adjustment</span>
       </div>
       <div class="impact-row">
         <span class="label">Tier 3 — underperforming (14)</span>
-        <span class="value red" id="impact-tier3">+15% surcharge</span>
+        <span class="value red" id="impact-tier3">+15% fee adjustment</span>
       </div>
       <div style="height:1px;background:#E5E7EB;margin:10px 0"></div>
       <div class="impact-row">
@@ -1004,8 +1004,8 @@
   function updateImpact() {
     const t2 = parseInt(document.getElementById('fee-tier2').value) || 0;
     const t3 = parseInt(document.getElementById('fee-tier3').value) || 0;
-    document.getElementById('impact-tier2').textContent = t2 > 0 ? `+${t2}% surcharge` : 'No surcharge';
-    document.getElementById('impact-tier3').textContent = t3 > 0 ? `+${t3}% surcharge` : 'No surcharge';
+    document.getElementById('impact-tier2').textContent = t2 > 0 ? `+${t2}% fee adjustment` : 'Baseline rate';
+    document.getElementById('impact-tier3').textContent = t3 > 0 ? `+${t3}% fee adjustment` : 'Baseline rate';
     const affected = (t2 > 0 ? 21 : 0) + (t3 > 0 ? 14 : 0);
     const pct = Math.round(affected / 47 * 100);
     document.getElementById('impact-total').textContent = `${affected} of 47 (${pct}%)`;
