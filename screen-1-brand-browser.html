@@ -334,7 +334,7 @@ products.forEach(p => {
       <div class="card-brand">${p.brand}${p.yours ? ' · Your Product' : ''}</div>
       <div class="card-name">${p.name}</div>
     </div>
-    <div class="rag-band ${p.rag}">${surchargeLabel[p.rag]}</div>
+    <div class="rag-band ${p.rag}">${p.rank}</div>
   `;
   grid.appendChild(card);
 });
