@@ -122,7 +122,7 @@
       flex-direction:column;
     }
     .product-card:hover { box-shadow:0 4px 18px rgba(0,0,0,0.09); }
-    .product-card.yours { }
+    .product-card.yours { outline: 2px solid #16A34A; outline-offset: -2px; }
 
     .rank-badge { position:absolute; top:9px; left:9px; background:rgba(255,255,255,0.92); border:1px solid #E5E7EB; border-radius:99px; font-size:10px; font-weight:700; color:#6B7280; padding:2px 7px; z-index:2; backdrop-filter:blur(4px); }
     .product-card.yours .rank-badge { background:#16A34A; color:#fff; border-color:#16A34A; }
@@ -330,9 +330,10 @@ products.forEach(p => {
     ${p.rank === 1  ? '<span class="class-label best-label">Best in Class</span>' : ''}
     ${p.rank === 10 ? '<span class="class-label median-label">Median</span>' : ''}
     ${p.rank === 20 ? '<span class="class-label worst-label">Worst</span>' : p.rank === 19 ? '<span class="class-label worst-label">Worst</span>' : ''}
+    ${p.yours ? '<span class="yours-tag">Your Product</span>' : ''}
     <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="card-label">
-      <div class="card-brand">${p.brand}${p.yours ? ' · Your Product' : ''}</div>
+      <div class="card-brand">${p.brand}</div>
       <div class="card-name">${p.name}</div>
     </div>
     <div class="rag-band ${p.rag}">#${p.rank}</div>
