@@ -288,7 +288,8 @@ const imgs = [
 ];
 
 const ragDot = { green:'green-dot', amber:'amber-dot', red:'red-dot' };
-const surchargeLabel = { green:'', amber:'', red:'' };
+const surchargeLabel = { green:'Eco-Mod Tier: Green', amber:'Eco-Mod Tier: Amber', red:'Eco-Mod Tier: Red' };
+const podiumLabel    = { green:'ECO MOD TIER: GREEN', amber:'ECO MOD TIER: AMBER', red:'ECO MOD TIER: RED' };
 
 // Podium: display as [#2, #1, #3]
 const podiumData = [
@@ -305,7 +306,7 @@ podiumData.forEach(({ p, medal }) => {
     <div class="podium-img"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="podium-brand">${p.brand}</div>
     <div class="podium-name">${p.name}</div>
-    <div class="rag-big rag-big-${p.rag}">${surchargeLabel[p.rag]}</div>
+    <div class="rag-big rag-big-${p.rag}">${podiumLabel[p.rag]}</div>
   `;
   podiumEl.appendChild(card);
 });
@@ -323,7 +324,7 @@ products.forEach(p => {
       <div class="card-brand">${p.brand}</div>
       <div class="card-name">${p.name}</div>
     </div>
-    <div class="rag-band ${p.rag}">${surchargeLabel[p.rag]}</div>
+    <div class="rag-band ${p.rag}"></div>
   `;
   grid.appendChild(card);
 });
