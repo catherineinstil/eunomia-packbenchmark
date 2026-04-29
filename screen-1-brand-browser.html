@@ -131,9 +131,9 @@
     .card-top-strip { height:4px; width:100%; flex-shrink:0; }
     .best-strip { background:#16A34A; }
     .worst-strip { background:#DC2626; }
-    .class-label { position:absolute; top:13px; right:9px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:2px 7px; border-radius:99px; z-index:2; }
-    .best-label { background:#DCFCE7; color:#15803D; }
-    .worst-label { background:#FEE2E2; color:#B91C1C; }
+    .class-label { position:absolute; top:9px; left:9px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:3px 9px; border-radius:99px; z-index:2; }
+    .best-label { background:#DCFCE7; color:#15803D; border:1px solid #BBF7D0; }
+    .worst-label { background:#FEE2E2; color:#B91C1C; border:1px solid #FECACA; }
 
     .card-image { height:140px; background:#fff; display:flex; align-items:center; justify-content:center; padding:10px; }
     .card-image img { height:112px; width:auto; object-fit:contain; }
@@ -326,9 +326,8 @@ products.forEach(p => {
   const card = document.createElement('div');
   card.className = 'product-card' + (p.yours ? ' yours' : '');
   card.innerHTML = `
-    ${p.rank <= 3 ? '<div class="rank-badge">BEST IN CLASS</div>' : p.rank === 20 ? '<div class="rank-badge">WORST IN CLASS</div>' : ''}
     ${p.rank === 1  ? '<span class="class-label best-label">Best in Class</span>' : ''}
-    ${p.rank === 19 ? '<span class="class-label worst-label">Worst in Class</span>' : ''}
+    ${p.rank === 20 ? '<span class="class-label worst-label">Worst in Class</span>' : ''}
     <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="card-label">
       <div class="card-brand">${p.brand}${p.yours ? ' · Your Product' : ''}</div>
