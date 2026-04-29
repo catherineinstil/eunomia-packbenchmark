@@ -288,7 +288,7 @@ const imgs = [
 ];
 
 const ragDot = { green:'green-dot', amber:'amber-dot', red:'red-dot' };
-const surchargeLabel = { green:'Eco-Mod Tier: Green', amber:'Eco-Mod Tier: Amber', red:'Eco-Mod Tier: Red' };
+const surchargeLabel = { green:'Green', amber:'Amber', red:'Red' };
 const podiumLabel    = { green:'ECO MOD TIER: GREEN', amber:'ECO MOD TIER: AMBER', red:'ECO MOD TIER: RED' };
 
 // Podium: display as [#2, #1, #3]
@@ -324,7 +324,7 @@ products.forEach(p => {
       <div class="card-brand">${p.brand}</div>
       <div class="card-name">${p.name}</div>
     </div>
-    <div class="rag-band ${p.rag}"></div>
+    <div class="rag-band ${p.rag}">${surchargeLabel[p.rag]}</div>
   `;
   grid.appendChild(card);
 });
