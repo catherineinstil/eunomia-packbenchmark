@@ -253,25 +253,25 @@
 
 <script>
 const products = [
-  { rank:1,  brand:"EcoFloor",    name:"EcoFloor Natural 1L",           rag:"green" },
-  { rank:2,  brand:"PureClean",   name:"PureClean HDPE Clear 1L",       rag:"green" },
-  { rank:3,  brand:"Flash",        name:"Flash Direct to Floor 1L",      rag:"green" },
-  { rank:4,  brand:"Sainsbury's",  name:"Multi-Surface Cleaner 1L",      rag:"green" },
-  { rank:5,  brand:"Flash",        name:"Flash All Purpose 1L",          rag:"green" },
-  { rank:6,  brand:"AlphaClean",   name:"AlphaClean Eco 1L",             rag:"green" },
-  { rank:7,  brand:"BrightFloor",  name:"BrightFloor Concentrate 1L",    rag:"amber" },
-  { rank:8,  brand:"SterilClean",  name:"SterilClean HDPE 1L",           rag:"amber" },
-  { rank:9,  brand:"Aldi",         name:"Clinair Essig Reiniger 1L",     rag:"amber", yours:true },
-  { rank:10, brand:"ProShield",    name:"ProShield Clean 1L",            rag:"amber" },
-  { rank:11, brand:"BioGuard",     name:"BioGuard Floor 1L",             rag:"amber" },
-  { rank:12, brand:"CrystalLine",  name:"CrystalLine Pro 1L",            rag:"amber" },
-  { rank:13, brand:"SwiftClean",   name:"SwiftClean Daily 1L",           rag:"amber" },
-  { rank:14, brand:"MaxClean",     name:"MaxClean Industrial 1L",        rag:"amber" },
-  { rank:15, brand:"ShineFloor",   name:"ShineFloor Concentrate 1L",     rag:"amber" },
-  { rank:16, brand:"PrimeClean",   name:"PrimeClean Heavy Duty 1L",      rag:"amber" },
-  { rank:17, brand:"TechShield",   name:"TechShield Pro 1L",             rag:"red"   },
-  { rank:18, brand:"CleanShield",  name:"CleanShield Pro 1L",            rag:"red"   },
-  { rank:19, brand:"BulkChem",     name:"BulkChem Industrial 1L",        rag:"red"   },
+  { rank:1,  brand:"Flash",         name:"Flash Direct to Floor 1L",           rag:"green" },
+  { rank:2,  brand:"Sainsbury's",   name:"Multi-Surface Cleaner 1L",           rag:"green" },
+  { rank:3,  brand:"Flash",         name:"Flash All Purpose 1L",               rag:"green" },
+  { rank:4,  brand:"Flash",         name:"Flash Power Spray Mop Refill",       rag:"green" },
+  { rank:5,  brand:"Elbow Grease",  name:"Squirt & Mop Floor Cleaner 1L",      rag:"green" },
+  { rank:6,  brand:"Elbow Grease",  name:"Squirt & Mop Lemon Fresh 1L",        rag:"green" },
+  { rank:7,  brand:"Method",        name:"Wood Floor Cleaner Almond 739ml",    rag:"amber" },
+  { rank:8,  brand:"Elbow Grease",  name:"Squirt & Mop Lemon Fresh 1L",        rag:"amber" },
+  { rank:9,  brand:"Aldi",          name:"Clinair Essig Reiniger 1L",          rag:"amber", yours:true, imgOverride:"product-images/Aldi/Clinair Essig Reiniger.png" },
+  { rank:10, brand:"Cif",           name:"Ocean Fresh Floor Cleaner",          rag:"amber" },
+  { rank:11, brand:"Flash",         name:"Flash Direct to Floor 1L",           rag:"amber" },
+  { rank:12, brand:"Sainsbury's",   name:"Multi-Surface Cleaner 1L",           rag:"amber" },
+  { rank:13, brand:"Flash",         name:"Flash All Purpose 1L",               rag:"amber" },
+  { rank:14, brand:"Flash",         name:"Flash Power Spray Mop Refill",       rag:"amber" },
+  { rank:15, brand:"Elbow Grease",  name:"Squirt & Mop Floor Cleaner 1L",      rag:"red"   },
+  { rank:16, brand:"Elbow Grease",  name:"Squirt & Mop Lemon Fresh 1L",        rag:"red"   },
+  { rank:17, brand:"Method",        name:"Wood Floor Cleaner Almond 739ml",    rag:"red"   },
+  { rank:18, brand:"Elbow Grease",  name:"Squirt & Mop Lemon Fresh 1L",        rag:"red"   },
+  { rank:19, brand:"Pledge",        name:"Expert Care Wood Cleaner 750ml",     rag:"red"   },
 ];
 
 const imgs = [
@@ -302,7 +302,7 @@ podiumData.forEach(({ p, medal }) => {
   card.className = 'podium-card' + (p.rank === 1 ? ' rank-1' : '');
   card.innerHTML = `
     <div class="medal">${medal}</div>
-    <div class="podium-img"><img src="${imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
+    <div class="podium-img"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="podium-brand">${p.brand}</div>
     <div class="podium-name">${p.name}</div>
     <div class="rag-big rag-big-${p.rag}">${surchargeLabel[p.rag]}</div>
@@ -318,7 +318,7 @@ products.forEach(p => {
   card.innerHTML = `
     <div class="rank-badge">#${p.rank}</div>
     ${p.yours ? '<div class="yours-tag">You</div>' : ''}
-    <div class="card-image"><img src="${imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
+    <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="card-label">
       <div class="card-brand">${p.brand}</div>
       <div class="card-name">${p.name}</div>
