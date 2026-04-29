@@ -134,6 +134,7 @@
     .class-label { position:absolute; top:9px; left:9px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:3px 9px; border-radius:99px; z-index:2; }
     .best-label { background:#DCFCE7; color:#15803D; border:1px solid #BBF7D0; }
     .worst-label { background:#FEE2E2; color:#B91C1C; border:1px solid #FECACA; }
+    .median-label { background:#FEF3C7; color:#92400E; border:1px solid #FCD34D; }
 
     .card-image { height:140px; background:#fff; display:flex; align-items:center; justify-content:center; padding:10px; }
     .card-image img { height:112px; width:auto; object-fit:contain; }
@@ -327,6 +328,7 @@ products.forEach(p => {
   card.className = 'product-card' + (p.yours ? ' yours' : '');
   card.innerHTML = `
     ${p.rank === 1  ? '<span class="class-label best-label">Best in Class</span>' : ''}
+    ${p.rank === 10 ? '<span class="class-label median-label">Median</span>' : ''}
     ${p.rank === 20 ? '<span class="class-label worst-label">Worst</span>' : p.rank === 19 ? '<span class="class-label worst-label">Worst</span>' : ''}
     <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="card-label">
