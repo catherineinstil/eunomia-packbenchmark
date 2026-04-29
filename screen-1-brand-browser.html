@@ -327,7 +327,7 @@ products.forEach(p => {
   card.className = 'product-card' + (p.yours ? ' yours' : '');
   card.innerHTML = `
     ${p.rank === 1  ? '<span class="class-label best-label">Best in Class</span>' : ''}
-    ${p.rank === 20 ? '<span class="class-label worst-label">Worst in Class</span>' : p.rank === 19 ? '<span class="class-label worst-label">Worst in Class</span>' : ''}
+    ${p.rank === 20 ? '<span class="class-label worst-label">Worst</span>' : p.rank === 19 ? '<span class="class-label worst-label">Worst</span>' : ''}
     <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="card-label">
       <div class="card-brand">${p.brand}${p.yours ? ' · Your Product' : ''}</div>
