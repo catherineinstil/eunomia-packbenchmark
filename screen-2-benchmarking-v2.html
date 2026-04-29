@@ -11,14 +11,14 @@
 
     /* ── Topbar ── */
     .topbar { background:#fff; border-bottom:1px solid #E5E7EB; padding:0 32px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; }
-    .topbar-brand { font-size:15px; font-weight:700; color:#0F172A; letter-spacing:-0.3px; }
-    .topbar-brand span { color:#1D4ED8; }
+    .topbar-brand { font-size:22px; font-weight:700; color:#0F172A; letter-spacing:-0.3px; }
+    .topbar-brand span { color:#16A34A; }
     .topbar-nav { display:flex; gap:24px; font-size:13px; color:#6B7280; }
     .topbar-nav a { text-decoration:none; color:inherit; }
     .topbar-nav a:hover { color:#0F172A; }
     .topbar-user { display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; }
-    .avatar { width:28px; height:28px; background:#1D4ED8; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600; }
-    .badge-pro { background:#EFF6FF; color:#1D4ED8; font-size:10px; font-weight:600; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:0.4px; }
+    .avatar { width:28px; height:28px; background:#16A34A; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600; }
+    .badge-pro { background:#F0FDF4; color:#16A34A; font-size:10px; font-weight:600; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:0.4px; }
 
     /* ── Layout ── */
     .page-wrap { display:flex; align-items:flex-start; }
@@ -36,17 +36,17 @@
     .page-header h1 { font-size:22px; font-weight:700; color:#0F172A; letter-spacing:-0.4px; margin-bottom:6px; }
     .page-header .meta-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
     .meta-chip { display:inline-flex; align-items:center; gap:5px; background:#F1F5F9; border:1px solid #E5E7EB; border-radius:99px; padding:3px 10px; font-size:12px; color:#475569; font-weight:500; }
-    .meta-chip.material { background:#EFF6FF; border-color:#BFDBFE; color:#1D4ED8; }
+    .meta-chip.material { background:#F0FDF4; border-color:#BBF7D0; color:#16A34A; }
     .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; border:none; font-family:inherit; transition:background 0.15s; white-space:nowrap; }
     .btn-ghost { background:#fff; border:1px solid #E5E7EB; color:#374151; }
     .btn-ghost:hover { background:#F9FAFB; }
-    .btn-primary { background:#1D4ED8; color:#fff; }
-    .btn-primary:hover { background:#1e40af; }
+    .btn-primary { background:#16A34A; color:#fff; }
+    .btn-primary:hover { background:#15803d; }
 
     /* ── Tabs ── */
     .tabs { display:flex; border-bottom:1px solid #E5E7EB; margin-bottom:28px; }
     .tab { padding:10px 18px; font-size:13px; font-weight:500; color:#6B7280; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all 0.15s; white-space:nowrap; }
-    .tab.active { color:#1D4ED8; border-bottom-color:#1D4ED8; }
+    .tab.active { color:#16A34A; border-bottom-color:#16A34A; }
     .tab:hover:not(.active) { color:#374151; }
 
     /* ── Section heading ── */
@@ -110,9 +110,9 @@
     .green-note { font-size:12px; color:#166534; background:#F0FDF4; border:1px solid #BBF7D0; border-radius:6px; padding:10px 14px; line-height:1.5; }
 
     /* ── Info callout ── */
-    .info-callout { background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:flex; gap:10px; align-items:flex-start; }
+    .info-callout { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:flex; gap:10px; align-items:flex-start; }
     .info-callout-icon { font-size:15px; margin-top:1px; }
-    .info-callout-text { font-size:12px; color:#1E40AF; line-height:1.6; }
+    .info-callout-text { font-size:12px; color:#15803D; line-height:1.6; }
     .info-callout-text strong { font-weight:600; }
 
     /* ── Fee Panel (right rail) ── */
@@ -147,8 +147,8 @@
     .impact-row .value.red { color:#C0392B; }
     .impact-row .value.amber { color:#B45309; }
     .impact-row .value.green { color:#166534; }
-    .fee-save-btn { width:100%; padding:9px; background:#1D4ED8; color:#fff; border:none; border-radius:6px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; }
-    .fee-save-btn:hover { background:#1e40af; }
+    .fee-save-btn { width:100%; padding:9px; background:#16A34A; color:#fff; border:none; border-radius:6px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; }
+    .fee-save-btn:hover { background:#15803d; }
     .fee-saved-note { text-align:center; font-size:11px; color:#9CA3AF; margin-top:8px; display:none; }
     .fee-saved-note.visible { display:block; }
     /* ── Tier-based threshold panel ── */
@@ -233,7 +233,7 @@
     .bm-dot.median::after { content:attr(data-label); position:absolute; top:20px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:700; color:#D97706; white-space:nowrap; }
     .bm-dot.worst { background:#C0392B; }
     .bm-track-legend { display:flex; justify-content:space-between; font-size:10px; color:#9CA3AF; margin-top:2px; }
-    .saving-callout { background:linear-gradient(135deg,#1E3A8A,#2563EB); border-radius:10px; padding:16px 20px; margin-bottom:20px; display:flex; gap:12px; align-items:center; }
+    .saving-callout { background:linear-gradient(135deg,#14532D,#16A34A); border-radius:10px; padding:16px 20px; margin-bottom:20px; display:flex; gap:12px; align-items:center; }
     .saving-callout-text { font-size:13px; color:#fff; line-height:1.6; }
     .saving-callout-text strong { font-weight:700; color:#fff; }
   </style>
@@ -243,13 +243,7 @@
 <!-- ── Topbar ── -->
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:32px">
-    <div class="topbar-brand">Best in Class <span>Packaging Tool</span></div>
-    <div class="topbar-nav">
-      <a href="#">Browse</a>
-      <a href="#">Benchmarks</a>
-      <a href="#">Fee Schedule</a>
-      <a href="#">Data Sources</a>
-    </div>
+    <div class="topbar-brand">Eco<span>Pack</span></div>
   </div>
   <div class="topbar-user">
     <div class="avatar">CA</div>
@@ -967,7 +961,7 @@
     btn.style.background = '#166534';
     setTimeout(() => {
       btn.textContent = '✓ Save thresholds';
-      btn.style.background = '#1D4ED8';
+      btn.style.background = '#16A34A';
     }, 2000);
   }
 </script>
