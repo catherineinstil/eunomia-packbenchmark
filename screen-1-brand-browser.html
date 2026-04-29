@@ -118,6 +118,8 @@
       cursor:pointer;
       transition:box-shadow 0.18s;
       position:relative;
+      display:flex;
+      flex-direction:column;
     }
     .product-card:hover { box-shadow:0 4px 18px rgba(0,0,0,0.09); }
     .product-card.yours { border:2px solid #16A34A; box-shadow:0 0 0 3px rgba(22,163,74,0.1); }
@@ -129,7 +131,7 @@
     .card-image { height:140px; background:#fff; display:flex; align-items:center; justify-content:center; padding:10px; }
     .card-image img { height:112px; width:auto; object-fit:contain; }
 
-    .card-label { padding:10px 12px 0; }
+    .card-label { padding:10px 12px 0; flex:1; }
     .card-brand { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.6px; color:#94A3B8; margin-bottom:3px; }
     .card-name { font-size:12px; font-weight:600; color:#0F172A; line-height:1.3; }
 
