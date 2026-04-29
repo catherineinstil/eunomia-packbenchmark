@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Product Record — Best in Class Packaging Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #0F172A; font-size: 14px; line-height: 1.5; }
+
+    /* ── Topbar ── */
+    .topbar { background:#fff; border-bottom:1px solid #E5E7EB; padding:0 32px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; }
+    .topbar-brand { font-size:15px; font-weight:700; color:#0F172A; letter-spacing:-0.3px; }
+    .topbar-brand span { color:#1D4ED8; }
+    .topbar-nav { display:flex; gap:24px; font-size:13px; color:#6B7280; }
+    .topbar-nav a { text-decoration:none; color:inherit; }
+    .topbar-nav a:hover { color:#0F172A; }
+    .topbar-user { display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; }
+    .avatar { width:28px; height:28px; background:#64748B; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600; }
+    .badge-maintainer { background:#F0FDF4; color:#166534; font-size:10px; font-weight:600; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:0.4px; border:1px solid #BBF7D0; }
+
+    /* ── Layout ── */
+    .page-wrap { max-width:1100px; margin:0 auto; padding:28px 32px 80px; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb { font-size:12px; color:#9CA3AF; margin-bottom:14px; display:flex; align-items:center; gap:6px; }
+    .breadcrumb a { color:#6B7280; text-decoration:none; }
+    .breadcrumb a:hover { color:#0F172A; text-decoration:underline; }
+
+    /* ── Page header ── */
+    .page-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:28px; }
+    .page-header h1 { font-size:22px; font-weight:700; color:#0F172A; letter-spacing:-0.4px; margin-bottom:4px; }
+    .page-header .sub { font-size:13px; color:#6B7280; }
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 16px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; border:none; font-family:inherit; transition:background 0.15s; white-space:nowrap; }
+    .btn-ghost { background:#fff; border:1px solid #E5E7EB; color:#374151; }
+    .btn-ghost:hover { background:#F9FAFB; }
+    .btn-primary { background:#1D4ED8; color:#fff; }
+    .btn-primary:hover { background:#1e40af; }
+    .btn-primary:disabled { background:#93C5FD; cursor:not-allowed; }
+
+    /* ── Form layout ── */
+    .form-grid { display:grid; grid-template-columns:300px 1fr; gap:24px; align-items:flex-start; }
+
+    /* ── Cards ── */
+    .card { background:#fff; border:1px solid #E5E7EB; border-radius:10px; margin-bottom:20px; }
+    .card-header { padding:16px 22px; border-bottom:1px solid #E5E7EB; }
+    .card-title { font-size:14px; font-weight:600; color:#0F172A; margin-bottom:2px; }
+    .card-sub { font-size:11px; color:#9CA3AF; }
+    .card-body { padding:20px 22px; }
+
+    /* ── Image upload ── */
+    .upload-zone { border:2px dashed #D1D5DB; border-radius:8px; padding:32px 20px; text-align:center; cursor:pointer; transition:all 0.2s; background:#FAFAFA; }
+    .upload-zone:hover { border-color:#1D4ED8; background:#EFF6FF; }
+    .upload-zone.has-image { border:2px solid #E5E7EB; padding:0; overflow:hidden; background:none; }
+    .upload-icon { font-size:28px; margin-bottom:10px; color:#9CA3AF; }
+    .upload-title { font-size:13px; font-weight:600; color:#374151; margin-bottom:4px; }
+    .upload-sub { font-size:11px; color:#9CA3AF; line-height:1.5; }
+    .upload-browse { color:#1D4ED8; text-decoration:underline; cursor:pointer; }
+    .product-image-preview { width:100%; aspect-ratio:1; object-fit:contain; background:#F8F9FA; }
+    .image-actions { display:flex; gap:8px; margin-top:10px; }
+    .btn-sm { padding:5px 10px; font-size:11px; }
+
+    /* ── Form fields ── */
+    .field { margin-bottom:16px; }
+    .field:last-child { margin-bottom:0; }
+    label { display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:5px; }
+    .field-hint { font-size:11px; color:#9CA3AF; margin-top:3px; }
+    .required { color:#C0392B; margin-left:2px; }
+    input[type="text"], input[type="number"], select, textarea {
+      width:100%; border:1px solid #D1D5DB; border-radius:6px; padding:8px 10px;
+      font-family:inherit; font-size:13px; color:#0F172A; background:#fff;
+      transition:border-color 0.15s; outline:none;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+      border-color:#1D4ED8; box-shadow:0 0 0 3px rgba(29,78,216,0.08);
+    }
+    input[type="text"].error, input[type="number"].error, select.error { border-color:#C0392B; }
+    textarea { resize:vertical; min-height:72px; }
+    .input-unit { position:relative; }
+    .input-unit input { padding-right:36px; }
+    .unit-label { position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:12px; color:#9CA3AF; pointer-events:none; }
+
+    /* ── Tag input ── */
+    .tag-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; border:1px solid #D1D5DB; border-radius:6px; padding:6px 8px; background:#fff; min-height:38px; cursor:text; }
+    .tag-row:focus-within { border-color:#1D4ED8; box-shadow:0 0 0 3px rgba(29,78,216,0.08); }
+    .tag { display:inline-flex; align-items:center; gap:4px; background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; border-radius:99px; padding:2px 8px; font-size:11px; font-weight:500; }
+    .tag-remove { cursor:pointer; color:#93C5FD; font-size:13px; line-height:1; }
+    .tag-remove:hover { color:#1D4ED8; }
+    .tag-input { border:none; outline:none; font-family:inherit; font-size:13px; color:#0F172A; flex:1; min-width:80px; background:transparent; }
+
+    /* ── Select with badge ── */
+    .select-with-badge { position:relative; }
+    .select-badge { position:absolute; right:32px; top:50%; transform:translateY(-50%); font-size:10px; font-weight:600; padding:1px 6px; border-radius:99px; pointer-events:none; }
+    .select-badge.hdpe { background:#EFF6FF; color:#1D4ED8; }
+    .select-badge.pet { background:#F5F3FF; color:#6D28D9; }
+    .select-badge.pp { background:#FFF7ED; color:#C2410C; }
+
+    /* ── Composition section ── */
+    .composition-table { width:100%; border-collapse:collapse; }
+    .composition-table th { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; color:#9CA3AF; text-align:left; padding:8px 10px; border-bottom:1px solid #E5E7EB; }
+    .composition-table td { padding:8px 10px; border-bottom:1px solid #F3F4F6; vertical-align:middle; }
+    .composition-table tr:last-child td { border-bottom:none; }
+    .material-label { font-size:12px; font-weight:500; color:#374151; display:flex; align-items:center; gap:6px; }
+    .material-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .pct-input-wrap { display:flex; align-items:center; border:1px solid #D1D5DB; border-radius:6px; overflow:hidden; }
+    .pct-input { border:none; outline:none; font-family:inherit; font-size:13px; color:#0F172A; padding:6px 6px; width:64px; text-align:right; }
+    .pct-input:focus { background:#EFF6FF; }
+    .pct-suffix { padding:6px 8px 6px 2px; font-size:12px; color:#9CA3AF; }
+    .composition-total { display:flex; align-items:center; justify-content:space-between; padding:10px 10px 0; border-top:1px solid #E5E7EB; margin-top:4px; }
+    .composition-total-label { font-size:12px; font-weight:600; color:#374151; }
+    .composition-total-val { font-size:13px; font-weight:700; }
+    .composition-total-val.ok { color:#166534; }
+    .composition-total-val.warn { color:#C0392B; }
+    .composition-hint { font-size:11px; color:#9CA3AF; margin-top:8px; line-height:1.5; }
+    .rag-preview { display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:6px; margin-top:12px; font-size:12px; }
+    .rag-preview.red { background:#FEF2F2; border:1px solid #FECACA; color:#991B1B; }
+    .rag-preview.amber { background:#FFFBEB; border:1px solid #FDE68A; color:#92400E; }
+    .rag-preview.green { background:#F0FDF4; border:1px solid #BBF7D0; color:#166534; }
+    .rag-preview.unset { background:#F8F9FA; border:1px solid #E5E7EB; color:#9CA3AF; }
+    .rag-preview-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .rag-preview-dot.red { background:#C0392B; }
+    .rag-preview-dot.amber { background:#D97706; }
+    .rag-preview-dot.green { background:#16A34A; }
+    .rag-preview-dot.unset { background:#D1D5DB; }
+
+    /* ── Progress stepper ── */
+    .stepper { display:flex; align-items:center; gap:0; margin-bottom:28px; }
+    .step { display:flex; align-items:center; gap:8px; }
+    .step-num { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; }
+    .step.done .step-num { background:#166534; color:#fff; }
+    .step.active .step-num { background:#1D4ED8; color:#fff; }
+    .step.pending .step-num { background:#F3F4F6; color:#9CA3AF; border:1px solid #E5E7EB; }
+    .step-label { font-size:12px; font-weight:500; }
+    .step.done .step-label { color:#374151; }
+    .step.active .step-label { color:#1D4ED8; }
+    .step.pending .step-label { color:#9CA3AF; }
+    .step-connector { flex:1; height:1px; background:#E5E7EB; margin:0 10px; min-width:24px; }
+    .step.done .step-connector { background:#166534; }
+
+    /* ── Section heading ── */
+    .section-heading { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.7px; color:#9CA3AF; margin-bottom:14px; }
+
+    /* ── Info callout ── */
+    .info-callout { background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:flex; gap:10px; align-items:flex-start; }
+    .info-callout-text { font-size:12px; color:#1E40AF; line-height:1.6; }
+    .info-callout-text strong { font-weight:600; }
+
+    /* ── Form actions bar ── */
+    .form-actions { position:sticky; bottom:0; background:#fff; border-top:1px solid #E5E7EB; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; z-index:100; margin:0 -32px; }
+    .form-actions-left { font-size:12px; color:#9CA3AF; }
+    .form-actions-right { display:flex; gap:10px; }
+
+    /* ── Validation note ── */
+    .error-text { font-size:11px; color:#C0392B; margin-top:3px; display:none; }
+    .error-text.visible { display:block; }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    /* ── Existing records strip ── */
+    .records-strip { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; }
+    .records-strip-label { font-size:12px; color:#6B7280; }
+    .records-strip-count { font-size:13px; font-weight:600; color:#0F172A; }
+    .records-strip-right { display:flex; gap:8px; }
+  </style>
+</head>
+<body>
+
+<!-- ── Topbar ── -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:32px">
+    <div class="topbar-brand">Pack<span>Benchmark</span></div>
+    <div class="topbar-nav">
+      <a href="#">My Records</a>
+      <a href="#">Upload</a>
+      <a href="#">Submissions</a>
+    </div>
+  </div>
+  <div class="topbar-user">
+    <div class="avatar">TU</div>
+    <span>James O'Brien</span>
+    <span class="badge-maintainer">Data Maintainer</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="#">My Records</a>
+    <span>›</span>
+    <span style="color:#0F172A">Add new product record</span>
+  </div>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div>
+      <h1>Add new product record</h1>
+      <div class="sub">Submit a packaging record to the benchmark dataset. All submissions are reviewed before publication.</div>
+    </div>
+  </div>
+
+  <!-- Stepper -->
+  <div class="stepper">
+    <div class="step active">
+      <div class="step-num">1</div>
+      <div class="step-label">Product info</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step pending">
+      <div class="step-num">2</div>
+      <div class="step-label">Attributes</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step pending">
+      <div class="step-num">3</div>
+      <div class="step-label">Composition</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step pending">
+      <div class="step-num">4</div>
+      <div class="step-label">Review &amp; submit</div>
+    </div>
+  </div>
+
+  <!-- Records strip -->
+  <div class="records-strip">
+    <div>
+      <div class="records-strip-count">Touch Reference Dataset · 1L Floor Cleaner Bottle</div>
+      <div class="records-strip-label">47 existing records in this category · Last submission 14 Apr 2026</div>
+    </div>
+    <div class="records-strip-right">
+      <button class="btn btn-ghost" style="font-size:12px">View existing records</button>
+      <button class="btn btn-ghost" style="font-size:12px">↑ Bulk upload (CSV)</button>
+    </div>
+  </div>
+
+  <!-- Form grid -->
+  <div class="form-grid">
+
+    <!-- LEFT: Image + product type -->
+    <div>
+
+      <!-- Image upload -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Product image</div>
+          <div class="card-sub">Front-facing photo of the packaging</div>
+        </div>
+        <div class="card-body">
+          <div class="upload-zone has-image" id="upload-zone">
+            <img class="product-image-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23F1F5F9'/%3E%3Crect x='110' y='40' width='80' height='180' rx='12' fill='%23CBD5E1'/%3E%3Crect x='125' y='30' width='50' height='20' rx='4' fill='%23CBD5E1'/%3E%3Crect x='118' y='60' width='64' height='90' rx='4' fill='%23E2E8F0'/%3E%3Ctext x='150' y='115' font-family='sans-serif' font-size='10' fill='%2394A3B8' text-anchor='middle'%3EFloor Cleaner%3C/text%3E%3Ctext x='150' y='130' font-family='sans-serif' font-size='8' fill='%2394A3B8' text-anchor='middle'%3E1 Litre%3C/text%3E%3Crect x='125' y='200' width='50' height='8' rx='2' fill='%23CBD5E1'/%3E%3Crect x='130' y='215' width='40' height='6' rx='2' fill='%23CBD5E1'/%3E%3C/svg%3E" alt="Product preview" />
+          </div>
+          <div class="image-actions">
+            <button class="btn btn-ghost btn-sm" style="flex:1">↑ Replace image</button>
+            <button class="btn btn-ghost btn-sm">✕</button>
+          </div>
+          <div style="font-size:11px;color:#9CA3AF;margin-top:8px">JPEG or PNG · Max 5MB · Min 600×600px</div>
+        </div>
+      </div>
+
+      <!-- Product type -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Product type</div>
+          <div class="card-sub">Determines which benchmark category this record appears in</div>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Category <span class="required">*</span></label>
+            <select id="category-select" onchange="updateMaterialFramework()">
+              <option value="">Select a category…</option>
+              <option value="plastics-rigids" selected>Plastics Rigids</option>
+              <option value="paper-board">Paper &amp; Board</option>
+              <option value="fibre-composite">Fibre-Based Composites</option>
+              <option value="plastics-flexibles">Plastics Flexibles</option>
+              <option value="aluminium">Aluminium</option>
+              <option value="glass">Glass</option>
+              <option value="steel">Steel</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Product type <span class="required">*</span></label>
+            <select id="product-type-select">
+              <option value="">Select a product type…</option>
+              <option value="floor-cleaner-1l" selected>1L Floor Cleaner Bottle</option>
+              <option value="bleach-750ml">750ml Bleach Bottle</option>
+              <option value="detergent-5l">5L Detergent Jerrycan</option>
+              <option value="spray-trigger">Spray Trigger Bottle</option>
+            </select>
+            <div class="field-hint">Can't find your product type? <a href="#" style="color:#1D4ED8">Request a new category ↗</a></div>
+          </div>
+          <div class="field">
+            <label>Primary material framework</label>
+            <div id="material-framework-badge" style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;font-size:12px;color:#1E40AF;font-weight:500;">
+              ⬡ Plastics Rigids — HDPE/PP · PackUK framework applied
+            </div>
+            <div class="field-hint">The RAG recyclability rating will be auto-calculated from the composition you enter.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <!-- RIGHT: Form sections -->
+    <div>
+
+      <!-- Section 1: Basic product info -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Product information</div>
+          <div class="card-sub">Basic identification details for this record</div>
+        </div>
+        <div class="card-body">
+          <div class="field-row">
+            <div class="field">
+              <label>Product name <span class="required">*</span></label>
+              <input type="text" value="HygienePro 1L Trigger Spray" placeholder="e.g. HygienePro Floor Cleaner 1L" />
+            </div>
+            <div class="field">
+              <label>Brand / manufacturer <span class="required">*</span></label>
+              <input type="text" value="HygienePro Ltd" placeholder="e.g. HygienePro Ltd" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>SKU / barcode</label>
+              <input type="text" value="5011546123894" placeholder="EAN-13 or internal SKU" />
+            </div>
+            <div class="field">
+              <label>Country of manufacture</label>
+              <select>
+                <option>United Kingdom</option>
+                <option>Germany</option>
+                <option>China</option>
+                <option>United States</option>
+                <option>Ireland</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Notes / context</label>
+            <textarea placeholder="Any additional context — e.g. seasonal variant, reformulation, regional market…">Trigger spray variant. Label covers approximately 12% of surface area.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Physical attributes -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Physical attributes</div>
+          <div class="card-sub">Measured values from the physical packaging</div>
+        </div>
+        <div class="card-body">
+          <div class="field-row">
+            <div class="field">
+              <label>Gross weight <span class="required">*</span></label>
+              <div class="input-unit">
+                <input type="number" value="87" placeholder="0" />
+                <span class="unit-label">g</span>
+              </div>
+            </div>
+            <div class="field">
+              <label>Net fill volume</label>
+              <div class="input-unit">
+                <input type="number" value="1000" placeholder="0" />
+                <span class="unit-label">ml</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Height</label>
+              <div class="input-unit">
+                <input type="number" value="265" placeholder="0" />
+                <span class="unit-label">mm</span>
+              </div>
+            </div>
+            <div class="field">
+              <label>Max diameter / width</label>
+              <div class="input-unit">
+                <input type="number" value="88" placeholder="0" />
+                <span class="unit-label">mm</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Neck type</label>
+              <select>
+                <option>PCO-1881 (28mm)</option>
+                <option>PCO-1810 (28mm)</option>
+                <option>Trigger / pump fitment</option>
+                <option>Snap-on lid</option>
+                <option>Screw cap — other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Closure type</label>
+              <select>
+                <option selected>Trigger spray</option>
+                <option>Screw cap</option>
+                <option>Flip-top</option>
+                <option>Push-pull</option>
+                <option>Pump dispenser</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Recycled content %</label>
+              <div class="input-unit">
+                <input type="number" value="30" min="0" max="100" placeholder="0" />
+                <span class="unit-label">%</span>
+              </div>
+              <div class="field-hint">% of total weight that is post-consumer recyclate (PCR)</div>
+            </div>
+            <div class="field">
+              <label>Kerbside collection coverage</label>
+              <select id="kerbside-select" onchange="updateRagPreview()">
+                <option value="75plus">≥75% of local authorities</option>
+                <option value="50to74" selected>50–74% of local authorities</option>
+                <option value="below50">Below 50%</option>
+                <option value="unknown">Unknown</option>
+              </select>
+              <div class="field-hint">Source: WRAP / local authority data</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Material composition -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Material composition <span class="required">*</span></div>
+          <div class="card-sub">Percentage of each material by weight — must total 100%</div>
+        </div>
+        <div class="card-body">
+
+          <div class="info-callout" style="margin-bottom:16px">
+            <div style="font-size:15px;margin-top:1px">⬡</div>
+            <div class="info-callout-text">
+              <strong>This drives the RAG rating.</strong> The system calculates recyclability based on composition, polymer purity, and any disqualifying materials. Enter values as accurately as possible — estimates should be noted below.
+            </div>
+          </div>
+
+          <table class="composition-table">
+            <thead>
+              <tr>
+                <th>Material</th>
+                <th style="width:110px">% by weight</th>
+                <th style="width:80px;text-align:center">Present</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="material-label"><span class="material-dot" style="background:#3B82F6"></span>HDPE (High-Density Polyethylene)</span></td>
+                <td>
+                  <div class="pct-input-wrap">
+                    <input class="pct-input" type="number" id="mat-hdpe" value="72" min="0" max="100" oninput="updateTotal()" />
+                    <span class="pct-suffix">%</span>
+                  </div>
+                </td>
+                <td style="text-align:center"><input type="checkbox" checked /></td>
+              </tr>
+              <tr>
+                <td><span class="material-label"><span class="material-dot" style="background:#8B5CF6"></span>PP (Polypropylene) — cap/closure</span></td>
+                <td>
+                  <div class="pct-input-wrap">
+                    <input class="pct-input" type="number" id="mat-pp" value="15" min="0" max="100" oninput="updateTotal()" />
+                    <span class="pct-suffix">%</span>
+                  </div>
+                </td>
+                <td style="text-align:center"><input type="checkbox" checked /></td>
+              </tr>
+              <tr>
+                <td><span class="material-label"><span class="material-dot" style="background:#F59E0B"></span>PET (Polyethylene Terephthalate)</span></td>
+                <td>
+                  <div class="pct-input-wrap">
+                    <input class="pct-input" type="number" id="mat-pet" value="0" min="0" max="100" oninput="updateTotal()" />
+                    <span class="pct-suffix">%</span>
+                  </div>
+                </td>
+                <td style="text-align:center"><input type="checkbox" /></td>
+              </tr>
+              <tr>
+                <td><span class="material-label"><span class="material-dot" style="background:#EF4444"></span>PVC (Polyvinyl Chloride)</span></td>
+                <td>
+                  <div class="pct-input-wrap">
+                    <input class="pct-input" type="number" id="mat-pvc" value="0" min="0" max="100" oninput="updateTotal(); updateRagPreview()" />
+                    <span class="pct-suffix">%</span>
+                  </div>
+                </td>
+                <td style="text-align:center"><input type="checkbox" /></td>
+              </tr>
+              <tr>
+                <td><span class="material-label"><span class="material-dot" style="background:#6EE7B7"></span>Paper / card (label)</span></td>
+                <td>
+                  <div class="pct-input-wrap">
+                    <input class="pct-input" type="number" id="mat-paper" value="13" min="0" max="100" oninput="updateTotal(); updateRagPreview()" />
+                    <span class="pct-suffix">%</span>
+                  </div>
+                </td>
+                <td style="text-align:center"><input type="checkbox" checked /></td>
+              </tr>
+              <tr>
+                <td><span class="material-label"><span class="material-dot" style="background:#94A3B8"></span>Other / unknown</span></td>
+                <td>
+                  <div class="pct-input-wrap">
+                    <input class="pct-input" type="number" id="mat-other" value="0" min="0" max="100" oninput="updateTotal()" />
+                    <span class="pct-suffix">%</span>
+                  </div>
+                </td>
+                <td style="text-align:center"><input type="checkbox" /></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="composition-total">
+            <span class="composition-total-label">Total</span>
+            <span class="composition-total-val ok" id="total-val">100%  ✓</span>
+          </div>
+
+          <!-- Additional flags -->
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+            <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:12px;font-weight:400;color:#374151">
+              <input type="checkbox" id="cb-carbon-black" style="width:auto;margin-top:2px" onchange="updateRagPreview()" />
+              <span>Contains <strong>carbon black pigment</strong> (prevents NIR sorting)</span>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:12px;font-weight:400;color:#374151">
+              <input type="checkbox" id="cb-oxo" style="width:auto;margin-top:2px" onchange="updateRagPreview()" />
+              <span>Contains <strong>oxo-degradable additives</strong></span>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:12px;font-weight:400;color:#374151">
+              <input type="checkbox" id="cb-foam" style="width:auto;margin-top:2px" onchange="updateRagPreview()" />
+              <span>Contains <strong>foam or foamed plastic</strong> component</span>
+            </label>
+          </div>
+
+          <div class="composition-hint">
+            Values are estimates unless otherwise noted. If values are estimated, add a note in the product information section above.
+          </div>
+
+          <!-- RAG preview -->
+          <div class="rag-preview amber" id="rag-preview">
+            <div class="rag-preview-dot amber" id="rag-dot"></div>
+            <div>
+              <strong>Predicted RAG: AMBER</strong> — <span id="rag-reason">Paper label exceeds 10% surface area threshold (13%). Kerbside collection at 50–74%.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /right col -->
+
+  </div><!-- /form-grid -->
+
+</div><!-- /page-wrap -->
+
+<!-- ── Sticky form actions ── -->
+<div class="form-actions">
+  <div class="form-actions-left">Step 1 of 4 · Product info &amp; composition</div>
+  <div class="form-actions-right">
+    <button class="btn btn-ghost">Save draft</button>
+    <button class="btn btn-primary" onclick="nextStep()">Continue to attributes →</button>
+  </div>
+</div>
+
+<script>
+  function updateTotal() {
+    const ids = ['mat-hdpe','mat-pp','mat-pet','mat-pvc','mat-paper','mat-other'];
+    const total = ids.reduce((sum, id) => sum + (parseFloat(document.getElementById(id).value) || 0), 0);
+    const el = document.getElementById('total-val');
+    const rounded = Math.round(total * 10) / 10;
+    if (Math.abs(total - 100) < 0.1) {
+      el.textContent = '100%  ✓';
+      el.className = 'composition-total-val ok';
+    } else if (total > 100) {
+      el.textContent = rounded + '%  — exceeds 100%';
+      el.className = 'composition-total-val warn';
+    } else {
+      el.textContent = rounded + '%  — remaining: ' + Math.round((100 - total) * 10) / 10 + '%';
+      el.className = 'composition-total-val warn';
+    }
+    updateRagPreview();
+  }
+
+  function updateRagPreview() {
+    const pvc = parseFloat(document.getElementById('mat-pvc').value) || 0;
+    const paper = parseFloat(document.getElementById('mat-paper').value) || 0;
+    const hdpe = parseFloat(document.getElementById('mat-hdpe').value) || 0;
+    const carbonBlack = document.getElementById('cb-carbon-black').checked;
+    const oxo = document.getElementById('cb-oxo').checked;
+    const foam = document.getElementById('cb-foam').checked;
+    const kerbside = document.getElementById('kerbside-select').value;
+
+    const preview = document.getElementById('rag-preview');
+    const dot = document.getElementById('rag-dot');
+    const reason = document.getElementById('rag-reason');
+
+    // RED conditions
+    if (carbonBlack) {
+      setRag('red', 'Contains carbon black pigment — prevents NIR sorting. Product is not practically recyclable.');
+      return;
+    }
+    if (pvc > 5) {
+      setRag('red', `PVC content (${pvc}%) exceeds 5% threshold — disqualifying contaminant.`);
+      return;
+    }
+    if (foam) {
+      setRag('red', 'Foamed plastic component present — not recyclable in standard stream.');
+      return;
+    }
+    if (hdpe < 95 && hdpe > 0) {
+      setRag('red', `HDPE purity (${hdpe}%) is below the 95% threshold required for Plastics Rigids (HDPE) stream.`);
+      return;
+    }
+
+    // AMBER conditions
+    const amberReasons = [];
+    if (paper > 10) amberReasons.push(`Paper/card label at ${paper}% exceeds 10% surface area threshold`);
+    if (oxo) amberReasons.push('Oxo-degradable additives present');
+    if (kerbside === '50to74') amberReasons.push('Kerbside collection at 50–74% of local authorities only');
+    if (kerbside === 'below50') amberReasons.push('Kerbside collection below 50% of local authorities');
+
+    if (amberReasons.length > 0) {
+      setRag('amber', amberReasons.join('. ') + '.');
+      return;
+    }
+
+    // GREEN
+    setRag('green', 'No RED or AMBER criteria triggered. Product is widely recyclable under the PackUK framework.');
+  }
+
+  function setRag(band, reasonText) {
+    const preview = document.getElementById('rag-preview');
+    const dot = document.getElementById('rag-dot');
+    const reason = document.getElementById('rag-reason');
+    const labels = { red: 'RED — Not practically recyclable', amber: 'AMBER — Recyclable with caveats', green: 'GREEN — Widely recyclable' };
+    preview.className = `rag-preview ${band}`;
+    dot.className = `rag-preview-dot ${band}`;
+    preview.querySelector('strong').textContent = `Predicted RAG: ${labels[band].split('—')[0].trim()}`;
+    reason.textContent = reasonText;
+  }
+
+  function nextStep() {
+    alert('In the full product, this would advance to Step 2: Physical Attributes.');
+  }
+</script>
+</body>
+</html>

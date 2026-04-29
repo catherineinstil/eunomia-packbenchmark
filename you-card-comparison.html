@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YOU card — style comparison</title>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; background: #F8FAFC; padding: 40px; }
+  h1 { font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 8px; }
+  .subtitle { font-size: 13px; color: #64748B; margin-bottom: 40px; }
+  .grid { display: flex; gap: 32px; flex-wrap: wrap; }
+  .variant { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #64748B; }
+
+  /* BASE CARD */
+  .card {
+    width: 170px;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .rank-badge { position: absolute; top: 9px; left: 9px; background: rgba(255,255,255,0.92); border: 1px solid #E5E7EB; border-radius: 99px; font-size: 10px; font-weight: 700; color: #6B7280; padding: 2px 7px; z-index: 2; }
+  .card-image { height: 140px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 10px; }
+  .card-image img { height: 112px; width: auto; object-fit: contain; }
+  .card-label { padding: 10px 12px 0; flex: 1; }
+  .card-brand { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: #94A3B8; margin-bottom: 3px; }
+  .card-name { font-size: 12px; font-weight: 600; color: #0F172A; line-height: 1.3; }
+  .rag-band { margin-top: 12px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; letter-spacing: 0.6px; }
+  .rag-amber { background: #FEF9C3; color: #B45309; }
+
+  /* === OPTION A: Current (border) === */
+  .a-card { border: 2px solid #16A34A; box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
+  .a-card .rank-badge { background: #16A34A; color: #fff; border-color: #16A34A; }
+  .you-tag { position: absolute; top: 9px; right: 9px; background: #16A34A; color: #fff; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 8px; border-radius: 99px; z-index: 2; }
+
+  /* === OPTION B: Background tint === */
+  .b-card { background: #F0FDF4; border: 1px solid #BBF7D0; }
+  .b-card .rank-badge { background: #16A34A; color: #fff; border-color: #16A34A; }
+  .b-card .card-image { background: #F0FDF4; }
+
+  /* === OPTION C: Left accent bar === */
+  .c-card { border-left: 4px solid #16A34A; }
+  .c-card .rank-badge { background: #16A34A; color: #fff; border-color: #16A34A; }
+
+  /* === OPTION D: Top banner strip === */
+  .d-banner { background: #16A34A; color: #fff; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; text-align: center; padding: 4px 0; }
+  .d-card .rank-badge { background: #16A34A; color: #fff; border-color: #16A34A; }
+
+  .current-tag { display: inline-block; margin-left: 6px; font-size: 9px; color: #94A3B8; font-weight: 400; text-transform: none; letter-spacing: 0; }
+</style>
+</head>
+<body>
+<h1>YOU card — style comparison</h1>
+<p class="subtitle">Which treatment says "this is yours" without looking selected?</p>
+
+<div class="grid">
+
+  <!-- A: Current (border) -->
+  <div class="variant">
+    <div class="label">A — Current <span class="current-tag">(looks selected)</span></div>
+    <div class="card a-card">
+      <span class="rank-badge">#9</span>
+      <span class="you-tag">YOU</span>
+      <div class="card-image">
+        <img src="product-images/Aldi/Clinair Essig Reiniger.png" onerror="this.style.display='none'">
+      </div>
+      <div class="card-label">
+        <div class="card-brand">Aldi</div>
+        <div class="card-name">Clinair Essig Reiniger 1L</div>
+      </div>
+      <div class="rag-band rag-amber">AMBER</div>
+    </div>
+  </div>
+
+  <!-- B: Background tint -->
+  <div class="variant">
+    <div class="label">B — Background tint</div>
+    <div class="card b-card">
+      <span class="rank-badge">#9</span>
+      <span class="you-tag">YOU</span>
+      <div class="card-image">
+        <img src="product-images/Aldi/Clinair Essig Reiniger.png" onerror="this.style.display='none'">
+      </div>
+      <div class="card-label">
+        <div class="card-brand">Aldi</div>
+        <div class="card-name">Clinair Essig Reiniger 1L</div>
+      </div>
+      <div class="rag-band rag-amber">AMBER</div>
+    </div>
+  </div>
+
+  <!-- C: Left accent bar -->
+  <div class="variant">
+    <div class="label">C — Left accent bar</div>
+    <div class="card c-card">
+      <span class="rank-badge">#9</span>
+      <span class="you-tag">YOU</span>
+      <div class="card-image">
+        <img src="product-images/Aldi/Clinair Essig Reiniger.png" onerror="this.style.display='none'">
+      </div>
+      <div class="card-label">
+        <div class="card-brand">Aldi</div>
+        <div class="card-name">Clinair Essig Reiniger 1L</div>
+      </div>
+      <div class="rag-band rag-amber">AMBER</div>
+    </div>
+  </div>
+
+  <!-- D: Top banner strip -->
+  <div class="variant">
+    <div class="label">D — Top banner strip</div>
+    <div class="card d-card">
+      <div class="d-banner">Your Product</div>
+      <span class="rank-badge">#9</span>
+      <div class="card-image">
+        <img src="product-images/Aldi/Clinair Essig Reiniger.png" onerror="this.style.display='none'">
+      </div>
+      <div class="card-label">
+        <div class="card-brand">Aldi</div>
+        <div class="card-name">Clinair Essig Reiniger 1L</div>
+      </div>
+      <div class="rag-band rag-amber">AMBER</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

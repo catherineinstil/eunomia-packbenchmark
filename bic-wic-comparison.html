@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Best/Worst in Class — comparison</title>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; background: #F8FAFC; padding: 40px; }
+  h1 { font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: #64748B; margin-bottom: 36px; }
+  .section { margin-bottom: 48px; }
+  .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #94A3B8; margin-bottom: 16px; border-bottom: 1px solid #E5E7EB; padding-bottom: 8px; }
+  .row { display: flex; gap: 20px; align-items: flex-start; }
+
+  /* BASE CARD */
+  .card { width: 160px; background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+  .card-image { height: 130px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 10px; }
+  .card-image img { height: 105px; width: auto; object-fit: contain; }
+  .card-label { padding: 9px 11px 0; flex: 1; }
+  .card-brand { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: #94A3B8; margin-bottom: 3px; }
+  .card-name { font-size: 11px; font-weight: 600; color: #0F172A; line-height: 1.3; }
+  .rag-band { margin-top: 10px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+  .green { background: #DCFCE7; color: #15803D; }
+  .red { background: #FEE2E2; color: #B91C1C; }
+
+  /* OPTION A: Text label in badge */
+  .rank-badge { position: absolute; top: 9px; left: 9px; background: rgba(255,255,255,0.92); border: 1px solid #E5E7EB; border-radius: 99px; font-size: 10px; font-weight: 700; color: #6B7280; padding: 2px 7px; z-index: 2; white-space: nowrap; }
+  .a-best .rank-badge { background: #FFFBEB; border-color: #FCD34D; color: #92400E; }
+  .a-worst .rank-badge { background: #FEF2F2; border-color: #FCA5A5; color: #991B1B; }
+
+  /* OPTION B: Icon in badge */
+  .b-best .rank-badge { background: #FFFBEB; border-color: #FCD34D; color: #92400E; }
+  .b-worst .rank-badge { background: #FEF2F2; border-color: #FCA5A5; color: #991B1B; }
+
+  /* OPTION C: Coloured card top strip */
+  .c-strip { height: 4px; width: 100%; }
+  .c-best .c-strip { background: #16A34A; }
+  .c-worst .c-strip { background: #DC2626; }
+  .c-best .rank-badge, .c-worst .rank-badge { background: rgba(255,255,255,0.92); border-color: #E5E7EB; color: #6B7280; }
+  .c-label { position: absolute; top: 13px; right: 9px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 99px; z-index: 2; }
+  .c-best .c-label { background: #DCFCE7; color: #15803D; }
+  .c-worst .c-label { background: #FEE2E2; color: #B91C1C; }
+
+  /* OPTION D: Corner ribbon */
+  .d-best::before { content: 'Best in Class'; position: absolute; top: 14px; right: -22px; background: #16A34A; color: #fff; font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 3px 28px; transform: rotate(35deg); z-index: 3; }
+  .d-worst::before { content: 'Worst in Class'; position: absolute; top: 14px; right: -24px; background: #DC2626; color: #fff; font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 3px 28px; transform: rotate(35deg); z-index: 3; }
+</style>
+</head>
+<body>
+
+<h1>Best / Worst in Class — card treatments</h1>
+<p class="subtitle">Four options for marking rank #1 (Best) and rank #19 (Worst) in the grid.</p>
+
+<!-- OPTION A -->
+<div class="section">
+  <div class="section-title">A — Label inside rank badge</div>
+  <div class="row">
+    <div class="card a-best">
+      <span class="rank-badge">#1 · Best in Class</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.54.56.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Cif</div>
+        <div class="card-name">Ocean Fresh 1L</div>
+      </div>
+      <div class="rag-band green">Green</div>
+    </div>
+    <div class="card a-worst">
+      <span class="rank-badge">#19 · Worst in Class</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.57.41.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Dettol</div>
+        <div class="card-name">Anti-Bacterial Floor Cleaner 1L</div>
+      </div>
+      <div class="rag-band red">Red</div>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION B -->
+<div class="section">
+  <div class="section-title">B — Icon + rank in badge</div>
+  <div class="row">
+    <div class="card b-best">
+      <span class="rank-badge">🏆 #1</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.54.56.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Cif</div>
+        <div class="card-name">Ocean Fresh 1L</div>
+      </div>
+      <div class="rag-band green">Green</div>
+    </div>
+    <div class="card b-worst">
+      <span class="rank-badge">⚠️ #19</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.57.41.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Dettol</div>
+        <div class="card-name">Anti-Bacterial Floor Cleaner 1L</div>
+      </div>
+      <div class="rag-band red">Red</div>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION C -->
+<div class="section">
+  <div class="section-title">C — Coloured top strip + label tag</div>
+  <div class="row">
+    <div class="card c-best">
+      <div class="c-strip"></div>
+      <span class="rank-badge">#1</span>
+      <span class="c-label">Best in Class</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.54.56.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Cif</div>
+        <div class="card-name">Ocean Fresh 1L</div>
+      </div>
+      <div class="rag-band green">Green</div>
+    </div>
+    <div class="card c-worst">
+      <div class="c-strip"></div>
+      <span class="rank-badge">#19</span>
+      <span class="c-label">Worst in Class</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.57.41.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Dettol</div>
+        <div class="card-name">Anti-Bacterial Floor Cleaner 1L</div>
+      </div>
+      <div class="rag-band red">Red</div>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION D -->
+<div class="section">
+  <div class="section-title">D — Corner ribbon</div>
+  <div class="row">
+    <div class="card d-best" style="overflow:hidden;">
+      <span class="rank-badge">#1</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.54.56.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Cif</div>
+        <div class="card-name">Ocean Fresh 1L</div>
+      </div>
+      <div class="rag-band green">Green</div>
+    </div>
+    <div class="card d-worst" style="overflow:hidden;">
+      <span class="rank-badge">#19</span>
+      <div class="card-image"><img src="product-images/Screenshot 2026-04-27 at 09.57.41.png"></div>
+      <div class="card-label">
+        <div class="card-brand">Dettol</div>
+        <div class="card-name">Anti-Bacterial Floor Cleaner 1L</div>
+      </div>
+      <div class="rag-band red">Red</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Type Browser — Best in Class Packaging Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F8F9FA;
+      color: #0F172A;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Top nav ── */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 0 32px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-brand {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.3px;
+    }
+    .topbar-brand span { color: #1D4ED8; }
+    .topbar-nav {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: #6B7280;
+    }
+    .topbar-nav a { text-decoration: none; color: inherit; }
+    .topbar-nav a.active { color: #0F172A; font-weight: 600; }
+    .topbar-nav a:hover { color: #0F172A; }
+    .topbar-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #374151;
+    }
+    .avatar {
+      width: 28px; height: 28px;
+      background: #1D4ED8;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-pro {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* ── Layout: sidebar + main ── */
+    .layout {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 32px 64px;
+      gap: 28px;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .sidebar-section {
+      margin-bottom: 24px;
+    }
+    .sidebar-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #9CA3AF;
+      margin-bottom: 10px;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #374151;
+      cursor: pointer;
+      margin-bottom: 2px;
+      transition: background 0.1s;
+    }
+    .sidebar-item:hover { background: #F3F4F6; }
+    .sidebar-item.active {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-weight: 600;
+    }
+    .sidebar-item .count {
+      font-size: 11px;
+      color: #9CA3AF;
+      font-weight: 400;
+      background: #F3F4F6;
+      padding: 1px 7px;
+      border-radius: 99px;
+    }
+    .sidebar-item.active .count {
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    /* ── Main content ── */
+    .main { flex: 1; min-width: 0; }
+
+    /* ── Page header ── */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.3px;
+    }
+    .page-header .meta {
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-top: 2px;
+    }
+
+    /* ── Search + toolbar ── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .search-wrap {
+      flex: 1;
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9CA3AF;
+      font-size: 14px;
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      padding: 8px 12px 8px 36px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      background: #fff;
+      color: #0F172A;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: #1D4ED8; }
+    .search-input::placeholder { color: #9CA3AF; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .btn-ghost {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      color: #374151;
+    }
+    .btn-ghost:hover { background: #F9FAFB; }
+    .btn-ghost.active {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #1D4ED8;
+    }
+
+    /* Sort / filter chips */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 12px;
+      color: #9CA3AF;
+      font-weight: 500;
+    }
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid #E5E7EB;
+      background: #fff;
+      color: #374151;
+      cursor: pointer;
+    }
+    .filter-chip:hover { background: #F9FAFB; }
+    .filter-chip.active {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #1D4ED8;
+    }
+    .filter-chip .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    /* View toggle */
+    .view-toggle {
+      display: flex;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .view-btn {
+      padding: 6px 11px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #9CA3AF;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+    }
+    .view-btn:hover { color: #374151; background: #F9FAFB; }
+    .view-btn.active { background: #EFF6FF; color: #1D4ED8; }
+
+    /* Results count */
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .results-count {
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+    .results-count strong { color: #374151; }
+    .sort-select {
+      font-size: 12px;
+      font-family: inherit;
+      color: #374151;
+      border: 1px solid #E5E7EB;
+      border-radius: 5px;
+      padding: 4px 24px 4px 8px;
+      background: #fff;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+    }
+
+    /* ── Grid cards ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .category-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.18s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+    .category-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.09); }
+
+    .card-emoji-panel {
+      height: 180px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #F3F4F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      position: relative;
+    }
+    .card-count-badge {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #6B7280;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #E5E7EB;
+      border-radius: 99px;
+      padding: 2px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-body {
+      padding: 12px 14px 0;
+    }
+    .card-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .card-sector {
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-bottom: 10px;
+    }
+
+    .card-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px 0;
+      border-top: 1px solid #F3F4F6;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+    }
+    .stat-good    { background: #F0FDF4; border-color: #BBF7D0; }
+    .stat-warn    { background: #FFFBEB; border-color: #FDE68A; }
+    .stat-bad     { background: #FEF2F2; border-color: #FECACA; }
+    .stat-neutral { background: #F9FAFB; border-color: #E5E7EB; }
+    .stat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+    .stat-lbl {
+      font-size: 10px;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .bar-red   { background: linear-gradient(90deg, #FCA5A5, #DC2626); }
+
+    .threshold-band {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .threshold-band.set   { background: #DCFCE7; color: #166534; }
+    .threshold-band.pending { background: #FEF3C7; color: #92400E; }
+
+    /* ── Annotation bar ── */
+    .annotation-bar {
+      background: #FEFCE8;
+      border: 1px solid #FDE68A;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .annotation-bar .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .annotation-bar p { font-size: 12px; color: #78350F; line-height: 1.5; }
+    .annotation-bar p strong { font-weight: 600; }
+
+    /* ── Summary stats strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stats-strip-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+    .stats-strip-card .val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+    }
+    .stats-strip-card .lbl {
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-top: 2px;
+    }
+    .stats-strip-card .delta {
+      font-size: 11px;
+      color: #2D7D46;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top nav -->
+<nav class="topbar">
+  <div class="topbar-brand">Best in Class <span>Packaging Tool</span></div>
+  <div class="topbar-nav">
+    <a href="#" class="active">Categories</a>
+    <a href="#">Reports</a>
+    <a href="#">Fee Thresholds</a>
+    <a href="#">Admin</a>
+  </div>
+  <div class="topbar-user">
+    <div class="avatar">CA</div>
+    <span>CAA User</span>
+    <span class="badge-pro">Pro</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Sector</div>
+      <div class="sidebar-item active">All Categories <span class="count">42</span></div>
+      <div class="sidebar-item">Household Cleaning <span class="count">14</span></div>
+      <div class="sidebar-item">Food &amp; Beverage <span class="count">16</span></div>
+      <div class="sidebar-item">Personal Care <span class="count">8</span></div>
+      <div class="sidebar-item">Garden &amp; Outdoor <span class="count">4</span></div>
+    </div>
+
+
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Annotation -->
+    <div class="annotation-bar">
+      <div class="icon">📌</div>
+      <p><strong>Design annotation:</strong> This is Screen 1 — Product Type Browser. Entry point for all users. CAA users browse to a category then drill into the Benchmarking View (Screen 2). Yellow bar is a design note — remove before including in pitch deck.</p>
+    </div>
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div>
+        <h1>Packaging Categories</h1>
+      </div>
+    </div>
+
+
+    <!-- Search + toolbar -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" type="text" placeholder="Search product types, e.g. "floor cleaner", "bleach"…" />
+      </div>
+      <button class="btn btn-ghost">⇅ Sort</button>
+      <div class="view-toggle">
+        <button class="view-btn active" title="Grid view">▦</button>
+        <button class="view-btn" title="List view">☰</button>
+      </div>
+    </div>
+
+    <!-- Results count + sort -->
+    <div class="results-bar">
+      <div class="results-count">Showing <strong>42</strong> product categories</div>
+      <select class="sort-select">
+        <option>Sort: Most products</option>
+        <option>Sort: A–Z</option>
+        <option>Sort: Recently updated</option>
+        <option>Sort: Best-in-class rating</option>
+      </select>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid">
+
+      <!-- Card 1 -->
+      <a href="screen-2-benchmarking.html" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/floor-cleaner.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">234</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">1L Floor Cleaner Bottle</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">28g</span></div>
+            </div>
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">85%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">89</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/bleach.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">187</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">750ml Bleach Bottle</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">34g</span></div>
+            </div>
+            <div class="stat stat-warn">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">62%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">102</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/tomato-paste.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">312</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">500g Tomato Paste Jar</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat stat-bad">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">145g</span></div>
+            </div>
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">100%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">41</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/washing-up-liquid.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">156</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">500ml Washing-Up Liquid</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">22g</span></div>
+            </div>
+            <div class="stat stat-warn">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">70%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">67</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/milk-bottle.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">421</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">2L Milk Bottle (HDPE)</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">38g</span></div>
+            </div>
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">90%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">58</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/shampoo.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">98</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">250ml Shampoo Bottle</div>
+          <div class="card-sector">Personal Care</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">18g</span></div>
+            </div>
+            <div class="stat stat-bad">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">45%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">51</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 7 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/cooking-oil.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">203</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">1L Cooking Oil Bottle</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">31g</span></div>
+            </div>
+            <div class="stat stat-warn">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">78%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">88</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 8 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/spray-cleaner.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">144</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">500ml Spray Cleaner</div>
+          <div class="card-sector">Household Cleaning</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">26g</span></div>
+            </div>
+            <div class="stat stat-warn">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">55%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">79</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 9 -->
+      <a href="#" class="category-card">
+        <div class="card-emoji-panel"><img src="category-images/water-bottle.png" style="width:100%;height:100%;object-fit:contain;padding:12px"><div class="card-count-badge">567</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">500ml Water Bottle (PET)</div>
+          <div class="card-sector">Food &amp; Beverage</div>
+          <div class="card-stats">
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Best weight</span><span class="stat-val">12g</span></div>
+            </div>
+            <div class="stat stat-good">
+              <div class="stat-header"><span class="stat-lbl">Recycled content</span><span class="stat-val">100%</span></div>
+            </div>
+            <div class="stat stat-neutral">
+              <div class="stat-header"><span class="stat-lbl">Products Paying Surcharge</span><span class="stat-val">34</span></div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
+
