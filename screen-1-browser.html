@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Type Browser — Best in Class Packaging Tool</title>
+  <title>Category Browser — EcoPack</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +35,7 @@
       color: #0F172A;
       letter-spacing: -0.3px;
     }
-    .topbar-brand span { color: #1D4ED8; }
+    .topbar-brand span { color: #16A34A; }
     .topbar-nav {
       display: flex;
       gap: 24px;
@@ -54,7 +54,7 @@
     }
     .avatar {
       width: 28px; height: 28px;
-      background: #1D4ED8;
+      background: #16A34A;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       color: #fff;
@@ -62,8 +62,9 @@
       font-weight: 600;
     }
     .badge-pro {
-      background: #EFF6FF;
-      color: #1D4ED8;
+      background: #F0FDF4;
+      color: #16A34A;
+      border: 1px solid #BBF7D0;
       font-size: 10px;
       font-weight: 600;
       padding: 2px 7px;
@@ -111,8 +112,8 @@
     }
     .sidebar-item:hover { background: #F3F4F6; }
     .sidebar-item.active {
-      background: #EFF6FF;
-      color: #1D4ED8;
+      background: #F0FDF4;
+      color: #16A34A;
       font-weight: 600;
     }
     .sidebar-item .count {
@@ -124,8 +125,8 @@
       border-radius: 99px;
     }
     .sidebar-item.active .count {
-      background: #DBEAFE;
-      color: #1D4ED8;
+      background: #DCFCE7;
+      color: #16A34A;
     }
     .sidebar-sub-item {
       display: flex;
@@ -195,7 +196,7 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .search-input:focus { border-color: #1D4ED8; }
+    .search-input:focus { border-color: #16A34A; }
     .search-input::placeholder { color: #9CA3AF; }
 
     .btn {
@@ -218,9 +219,9 @@
     }
     .btn-ghost:hover { background: #F9FAFB; }
     .btn-ghost.active {
-      background: #EFF6FF;
-      border-color: #BFDBFE;
-      color: #1D4ED8;
+      background: #F0FDF4;
+      border-color: #BBF7D0;
+      color: #16A34A;
     }
 
     /* Sort / filter chips */
@@ -251,9 +252,9 @@
     }
     .filter-chip:hover { background: #F9FAFB; }
     .filter-chip.active {
-      background: #EFF6FF;
-      border-color: #BFDBFE;
-      color: #1D4ED8;
+      background: #F0FDF4;
+      border-color: #BBF7D0;
+      color: #16A34A;
     }
     .filter-chip .dot {
       width: 7px; height: 7px;
@@ -280,7 +281,7 @@
       font-family: inherit;
     }
     .view-btn:hover { color: #374151; background: #F9FAFB; }
-    .view-btn.active { background: #EFF6FF; color: #1D4ED8; }
+    .view-btn.active { background: #F0FDF4; color: #16A34A; }
 
     /* Results count */
     .results-bar {
@@ -399,6 +400,9 @@
     .tier-dot.green { background: #16A34A; }
     .tier-dot.amber { background: #D97706; }
     .tier-dot.red   { background: #DC2626; }
+    .tier-chip.green { background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; padding:2px 8px; border-radius:99px; }
+    .tier-chip.amber { background:#FEF3C7; color:#92400E; border:1px solid #FCD34D; padding:2px 8px; border-radius:99px; }
+    .tier-chip.red   { background:#FEE2E2; color:#991B1B; border:1px solid #FECACA; padding:2px 8px; border-radius:99px; }
     .card-meta-row {
       display: flex;
       align-items: center;
@@ -411,8 +415,8 @@
       border-radius: 99px;
       letter-spacing: 0.3px;
     }
-    .threshold-pill.set     { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
-    .threshold-pill.pending { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+    .threshold-pill.set     { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+    .threshold-pill.pending { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
     .updated-date {
       font-size: 10px;
       color: #9CA3AF;
@@ -519,7 +523,7 @@
 
 <!-- Top nav -->
 <nav class="topbar">
-  <div class="topbar-brand">Best in Class <span>Packaging Tool</span></div>
+  <div class="topbar-brand">Eco<span>Pack</span></div>
   <div class="topbar-nav">
     <a href="#" class="active">Categories</a>
     <a href="#">Reports</a>
@@ -528,7 +532,7 @@
   </div>
   <div class="topbar-user">
     <div class="avatar">CA</div>
-    <span>CAA User</span>
+    <span>CAA Admin</span>
     <span class="badge-pro">Pro</span>
   </div>
 </nav>
@@ -595,14 +599,14 @@
     <div class="grid">
 
       <!-- Card 1 -->
-      <a href="screen-2-benchmarking.html" class="category-card">
+      <a href="screen-2-benchmarking-v2.html" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">234 SAMPLES</div><img src="category-images/floor-cleaner.png" alt="Floor Cleaner"></div>
         <div class="card-label"><div class="card-sector">Floor Cleaners</div><div class="card-name">1L Floor Cleaner Bottle</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>6 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>10 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>4 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>6 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>10 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>4 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill set">✓ Thresholds Set</span>
@@ -617,9 +621,9 @@
         <div class="card-label"><div class="card-sector">Bleach</div><div class="card-name">750ml Bleach Bottle</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>12 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>5 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>3 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>12 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>5 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>3 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill set">✓ Thresholds Set</span>
@@ -634,9 +638,9 @@
         <div class="card-label"><div class="card-sector">Kitchen Cleaners</div><div class="card-name">750ml All-Purpose Cleaner</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>4 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>8 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>8 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>4 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>8 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>8 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill set">✓ Thresholds Set</span>
@@ -651,9 +655,9 @@
         <div class="card-label"><div class="card-sector">Kitchen Cleaners</div><div class="card-name">500ml Washing-Up Liquid</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>9 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>7 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>4 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>9 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>7 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>4 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill set">✓ Thresholds Set</span>
@@ -668,9 +672,9 @@
         <div class="card-label"><div class="card-sector">Bathroom Cleaners</div><div class="card-name">500ml Bathroom Cleaner</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>3 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>9 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>8 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>3 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>9 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>8 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill pending">⚠ Pending Review</span>
@@ -685,9 +689,9 @@
         <div class="card-label"><div class="card-sector">Bathroom Cleaners</div><div class="card-name">750ml Toilet Cleaner</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>6 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>8 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>6 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>6 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>8 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>6 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill pending">⚠ Pending Review</span>
@@ -702,9 +706,9 @@
         <div class="card-label"><div class="card-sector">Kitchen Cleaners</div><div class="card-name">500ml Kitchen Degreaser</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>2 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>6 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>10 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>2 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>6 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>10 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill pending">⚠ Pending Review</span>
@@ -719,9 +723,9 @@
         <div class="card-label"><div class="card-sector">Specialist Cleaners</div><div class="card-name">500ml Spray Cleaner</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>5 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>8 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>7 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>5 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>8 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>7 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill pending">⚠ Pending Review</span>
@@ -736,9 +740,9 @@
         <div class="card-label"><div class="card-sector">Specialist Cleaners</div><div class="card-name">500ml Window &amp; Glass Cleaner</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip"><div class="tier-dot green"></div>8 no surcharge</div>
-            <div class="tier-chip"><div class="tier-dot amber"></div>4 +8%</div>
-            <div class="tier-chip"><div class="tier-dot red"></div>4 +15%</div>
+            <div class="tier-chip green"><div class="tier-dot green"></div>8 Green</div>
+            <div class="tier-chip amber"><div class="tier-dot amber"></div>4 Amber</div>
+            <div class="tier-chip red"><div class="tier-dot red"></div>4 Red</div>
           </div>
           <div class="card-meta-row">
             <span class="threshold-pill set">✓ Thresholds Set</span>
