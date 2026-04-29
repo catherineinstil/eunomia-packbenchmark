@@ -326,7 +326,7 @@ products.forEach(p => {
   const card = document.createElement('div');
   card.className = 'product-card' + (p.yours ? ' yours' : '');
   card.innerHTML = `
-    <div class="rank-badge">${p.rank <= 3 ? 'BEST IN CLASS' : p.rank === 20 ? 'WORST IN CLASS' : '#' + p.rank}</div>
+    ${p.rank <= 3 ? '<div class="rank-badge">BEST IN CLASS</div>' : p.rank === 20 ? '<div class="rank-badge">WORST IN CLASS</div>' : ''}
     ${p.rank === 1  ? '<span class="class-label best-label">Best in Class</span>' : ''}
     ${p.rank === 19 ? '<span class="class-label worst-label">Worst in Class</span>' : ''}
     <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
