@@ -122,11 +122,18 @@
       flex-direction:column;
     }
     .product-card:hover { box-shadow:0 4px 18px rgba(0,0,0,0.09); }
-    .product-card.yours { border:2px solid #16A34A; box-shadow:0 0 0 3px rgba(22,163,74,0.1); }
+    .product-card.yours { }
 
     .rank-badge { position:absolute; top:9px; left:9px; background:rgba(255,255,255,0.92); border:1px solid #E5E7EB; border-radius:99px; font-size:10px; font-weight:700; color:#6B7280; padding:2px 7px; z-index:2; backdrop-filter:blur(4px); }
     .product-card.yours .rank-badge { background:#16A34A; color:#fff; border-color:#16A34A; }
     .yours-tag { position:absolute; top:9px; right:9px; background:#16A34A; color:#fff; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; padding:3px 8px; border-radius:99px; z-index:2; }
+
+    .card-top-strip { height:4px; width:100%; flex-shrink:0; }
+    .best-strip { background:#16A34A; }
+    .worst-strip { background:#DC2626; }
+    .class-label { position:absolute; top:13px; right:9px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:2px 7px; border-radius:99px; z-index:2; }
+    .best-label { background:#DCFCE7; color:#15803D; }
+    .worst-label { background:#FEE2E2; color:#B91C1C; }
 
     .card-image { height:140px; background:#fff; display:flex; align-items:center; justify-content:center; padding:10px; }
     .card-image img { height:112px; width:auto; object-fit:contain; }
@@ -245,7 +252,7 @@
         <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#D97706;margin-right:3px"></span>Amber Tier (10)</div>
         <div class="chip"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#C0392B;margin-right:3px"></span>Red Tier (4)</div>
       </div>
-      <div class="sort-wrap">Sort by <select><option>Rank</option><option>RAG Rating</option><option>Weight</option></select></div>
+      
     </div>
   </div>
 
@@ -320,10 +327,11 @@ products.forEach(p => {
   card.className = 'product-card' + (p.yours ? ' yours' : '');
   card.innerHTML = `
     <div class="rank-badge">#${p.rank}</div>
-    ${p.yours ? '<div class="yours-tag">You</div>' : ''}
+    ${p.rank === 1  ? '<span class="class-label best-label">Best in Class</span>' : ''}
+    ${p.rank === 19 ? '<span class="class-label worst-label">Worst in Class</span>' : ''}
     <div class="card-image"><img src="${p.imgOverride || imgs[p.rank % imgs.length]}" alt="${p.brand}"></div>
     <div class="card-label">
-      <div class="card-brand">${p.brand}</div>
+      <div class="card-brand">${p.brand}${p.yours ? ' · Your Product' : ''}</div>
       <div class="card-name">${p.name}</div>
     </div>
     <div class="rag-band ${p.rag}">${surchargeLabel[p.rag]}</div>
