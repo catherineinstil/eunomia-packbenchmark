@@ -397,28 +397,18 @@
     }
     .tier-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
     .tier-chip {
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      color: #374151;
     }
-    .tier-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .tier-dot.green { background: #16A34A; }
-    .tier-dot.amber { background: #D97706; }
-    .tier-dot.red   { background: #DC2626; }
-    .tier-chip.green { background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; padding:2px 8px; border-radius:99px; }
-    .tier-chip.amber { background:#FEF3C7; color:#92400E; border:1px solid #FCD34D; padding:2px 8px; border-radius:99px; }
-    .tier-chip.red   { background:#FEE2E2; color:#991B1B; border:1px solid #FECACA; padding:2px 8px; border-radius:99px; }
+    .tier-dot { display: none; }
+    .tier-chip.green { background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; padding:5px 12px; border-radius:99px; }
+    .tier-chip.amber { background:#FEF3C7; color:#92400E; border:1px solid #FCD34D; padding:5px 12px; border-radius:99px; }
+    .tier-chip.red   { background:#FEE2E2; color:#991B1B; border:1px solid #FECACA; padding:5px 12px; border-radius:99px; }
     .card-meta-row {
       display: flex;
       align-items: center;
@@ -642,9 +632,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Floor Cleaners</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>6 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>10 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>4 Red</div>
+            <div class="tier-chip green">6 x Green</div>
+            <div class="tier-chip amber">10 x Amber</div>
+            <div class="tier-chip red">4 x Red</div>
           </div>
         </div>
       </a>
@@ -655,9 +645,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Bathroom Cleaners</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>3 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>9 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>8 Red</div>
+            <div class="tier-chip green">3 x Green</div>
+            <div class="tier-chip amber">9 x Amber</div>
+            <div class="tier-chip red">8 x Red</div>
           </div>
         </div>
       </a>
@@ -668,9 +658,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Bleach</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>12 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>5 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>3 Red</div>
+            <div class="tier-chip green">12 x Green</div>
+            <div class="tier-chip amber">5 x Amber</div>
+            <div class="tier-chip red">3 x Red</div>
           </div>
         </div>
       </a>
@@ -681,9 +671,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Sink &amp; Drain Unblockers</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>4 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>7 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>5 Red</div>
+            <div class="tier-chip green">4 x Green</div>
+            <div class="tier-chip amber">7 x Amber</div>
+            <div class="tier-chip red">5 x Red</div>
           </div>
         </div>
       </a>
@@ -694,9 +684,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Specialist Cleaners</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>5 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>8 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>7 Red</div>
+            <div class="tier-chip green">5 x Green</div>
+            <div class="tier-chip amber">8 x Amber</div>
+            <div class="tier-chip red">7 x Red</div>
           </div>
         </div>
       </a>
@@ -707,9 +697,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Kitchen &amp; Oven Cleaners</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>2 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>6 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>10 Red</div>
+            <div class="tier-chip green">2 x Green</div>
+            <div class="tier-chip amber">6 x Amber</div>
+            <div class="tier-chip red">10 x Red</div>
           </div>
         </div>
       </a>
@@ -720,9 +710,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Toilet Cleaners</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>8 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>12 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>4 Red</div>
+            <div class="tier-chip green">8 x Green</div>
+            <div class="tier-chip amber">12 x Amber</div>
+            <div class="tier-chip red">4 x Red</div>
           </div>
         </div>
       </a>
@@ -733,9 +723,9 @@
         <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Window Cleaners</div></div>
         <div class="card-footer">
           <div class="tier-row">
-            <div class="tier-chip green"><div class="tier-dot green"></div>5 Green</div>
-            <div class="tier-chip amber"><div class="tier-dot amber"></div>9 Amber</div>
-            <div class="tier-chip red"><div class="tier-dot red"></div>7 Red</div>
+            <div class="tier-chip green">5 x Green</div>
+            <div class="tier-chip amber">9 x Amber</div>
+            <div class="tier-chip red">7 x Red</div>
           </div>
         </div>
       </a>
