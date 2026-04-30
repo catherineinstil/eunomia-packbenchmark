@@ -78,14 +78,20 @@
       display: flex;
       max-width: 100%;
       margin: 0;
-      padding: 28px 24px 64px;
-      gap: 28px;
+      padding: 0;
+      gap: 0;
+      min-height: calc(100vh - 52px);
+      align-items: stretch;
     }
 
     /* ── Sidebar ── */
     .sidebar {
       width: 240px;
       flex-shrink: 0;
+      background: #fff;
+      border-right: 1px solid #E5E7EB;
+      padding: 24px 16px;
+      min-height: 100%;
     }
     .sidebar-section {
       background: #fff;
@@ -163,7 +169,7 @@
     .sidebar-sub-item:hover { background: #F9FAFB; color: #374151; }
 
     /* ── Main content ── */
-    .main { flex: 1; min-width: 0; }
+    .main { flex: 1; min-width: 0; padding: 28px 24px 64px; }
 
     /* ── Page header ── */
     .page-header {
