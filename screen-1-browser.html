@@ -356,18 +356,13 @@
     }
     .card-image-panel img { height: 175px; width: auto; object-fit: contain; }
 
-    .card-rank-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 10px;
-      font-weight: 700;
-      color: #6B7280;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid #E5E7EB;
-      border-radius: 99px;
-      padding: 2px 8px;
-      backdrop-filter: blur(4px);
+    .card-rank-badge { display: none; }
+
+    .card-sample-count {
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 500;
+      margin-top: 4px;
     }
 
     .card-label {
@@ -632,7 +627,7 @@
       <!-- Floor Cleaners -->
       <a href="screen-2-benchmarking-v2.html" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">234 SAMPLES</div><img src="category-images/floor-cleaner.png" alt="Floor Cleaners"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Floor Cleaners</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Floor Cleaners</div><div class="card-sample-count">234 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">6 x Green</div>
@@ -645,7 +640,7 @@
       <!-- Bathroom Cleaners -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">143 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Bathroom Cleaners"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Bathroom Cleaners</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Bathroom Cleaners</div><div class="card-sample-count">143 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">3 x Green</div>
@@ -658,7 +653,7 @@
       <!-- Bleach -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">187 SAMPLES</div><img src="category-images/bleach.png" alt="Bleach"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Bleach</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Bleach</div><div class="card-sample-count">187 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">12 x Green</div>
@@ -671,7 +666,7 @@
       <!-- Sink & Drain Unblockers -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">64 SAMPLES</div><img src="category-images/bleach.png" alt="Sink & Drain Unblockers"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Sink &amp; Drain Unblockers</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Sink &amp; Drain Unblockers</div><div class="card-sample-count">64 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">4 x Green</div>
@@ -684,7 +679,7 @@
       <!-- Specialist Cleaners -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">144 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Specialist Cleaners"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Specialist Cleaners</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Specialist Cleaners</div><div class="card-sample-count">144 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">5 x Green</div>
@@ -697,7 +692,7 @@
       <!-- Kitchen & Oven Cleaners -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">98 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Kitchen & Oven Cleaners"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Kitchen &amp; Oven Cleaners</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Kitchen &amp; Oven Cleaners</div><div class="card-sample-count">98 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">2 x Green</div>
@@ -710,7 +705,7 @@
       <!-- Toilet Cleaners -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">74 SAMPLES</div><img src="category-images/bleach.png" alt="Toilet Cleaners"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Toilet Cleaners</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Toilet Cleaners</div><div class="card-sample-count">74 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">8 x Green</div>
@@ -723,7 +718,7 @@
       <!-- Window Cleaners -->
       <a href="#" class="category-card">
         <div class="card-image-panel"><div class="card-rank-badge">61 SAMPLES</div><img src="category-images/spray-cleaner.png" alt="Window Cleaners"></div>
-        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Window Cleaners</div></div>
+        <div class="card-label"><div class="card-sector">Household Cleaning</div><div class="card-name">Window Cleaners</div><div class="card-sample-count">61 samples analysed</div></div>
         <div class="card-footer">
           <div class="tier-row">
             <div class="tier-chip green">5 x Green</div>
