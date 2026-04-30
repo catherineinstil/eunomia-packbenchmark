@@ -189,26 +189,30 @@
     }
     .search-icon {
       position: absolute;
-      left: 12px;
+      left: 18px;
       top: 50%;
       transform: translateY(-50%);
       color: #9CA3AF;
-      font-size: 14px;
+      font-size: 16px;
       pointer-events: none;
     }
     .search-input {
       width: 100%;
-      padding: 8px 12px 8px 36px;
-      border: 1px solid #E5E7EB;
-      border-radius: 6px;
-      font-size: 13px;
+      padding: 13px 18px 13px 48px;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 999px;
+      font-size: 14px;
       font-family: inherit;
       background: #fff;
       color: #0F172A;
       outline: none;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
-    .search-input:focus { border-color: #16A34A; }
+    .search-input:focus {
+      border-color: #16A34A;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+    }
     .search-input::placeholder { color: #9CA3AF; }
 
     .btn {
@@ -584,11 +588,6 @@
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
         <input class="search-input" type="text" placeholder="Search product types, e.g. "floor cleaner", "bleach"…" />
-      </div>
-      <button class="btn btn-ghost">⇅ Sort</button>
-      <div class="view-toggle">
-        <button class="view-btn active" title="Grid view">▦</button>
-        <button class="view-btn" title="List view">☰</button>
       </div>
     </div>
 
