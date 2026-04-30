@@ -144,17 +144,7 @@
       transition: background 0.1s;
       position: relative;
     }
-    .sidebar-sub-item::before {
-      content: '';
-      position: absolute;
-      left: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #D1D5DB;
-    }
+    .sidebar-sub-item::before { display: none; }
     .sidebar-sub-item:hover { background: #F9FAFB; color: #374151; }
 
     .sidebar-divider {
