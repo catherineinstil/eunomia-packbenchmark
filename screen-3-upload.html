@@ -99,6 +99,17 @@
 
     /* ── Composition section ── */
     .composition-table { width:100%; border-collapse:collapse; }
+
+    /* ── Separable components section ── */
+    .components-table { width:100%; border-collapse:collapse; }
+    .components-table th { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; color:#9CA3AF; text-align:left; padding:8px 10px; border-bottom:1px solid #E5E7EB; }
+    .components-table td { padding:7px 10px; border-bottom:1px solid #F3F4F6; vertical-align:middle; }
+    .components-table tr:last-child td { border-bottom:none; }
+    .component-num { width:22px; height:22px; border-radius:50%; background:#F3F4F6; color:#6B7280; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .components-table select, .components-table input[type="number"] { padding:5px 40px 5px 8px; font-size:12px; }
+    .components-table input[type="number"] { padding:5px 8px; width:72px; }
+    .add-component-btn { margin-top:12px; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:#16A34A; background:none; border:1px dashed #BBF7D0; border-radius:6px; padding:6px 14px; cursor:pointer; }
+    .add-component-btn:hover { background:#F0FDF4; }
     .composition-table th { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; color:#9CA3AF; text-align:left; padding:8px 10px; border-bottom:1px solid #E5E7EB; }
     .composition-table td { padding:8px 10px; border-bottom:1px solid #F3F4F6; vertical-align:middle; }
     .composition-table tr:last-child td { border-bottom:none; }
@@ -433,8 +444,8 @@
             <div class="field">
               <label>Closure type</label>
               <select>
-                <option selected>Trigger spray</option>
-                <option>Screw cap</option>
+                <option>Trigger spray</option>
+                <option selected>Screw cap</option>
                 <option>Flip-top</option>
                 <option>Push-pull</option>
                 <option>Pump dispenser</option>
@@ -482,7 +493,84 @@
         </div>
       </div>
 
-      <!-- Section 3: Material composition -->
+      <!-- Section 3: Separable plastic components -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Separable plastic components <span class="required">*</span></div>
+          <div class="card-sub">List each distinct plastic component that can be physically separated</div>
+        </div>
+        <div class="card-body">
+          <table class="components-table">
+            <thead>
+              <tr>
+                <th style="width:32px">#</th>
+                <th>Component</th>
+                <th>Material</th>
+                <th>Weight (g)</th>
+                <th style="width:32px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="component-num">1</div></td>
+                <td>
+                  <select style="width:100%">
+                    <option selected>Bottle body</option>
+                    <option>Cap / lid</option>
+                    <option>Pump</option>
+                    <option>Trigger spray</option>
+                    <option>Label</option>
+                    <option>Seal / tamper band</option>
+                    <option>Handle</option>
+                    <option>Other</option>
+                  </select>
+                </td>
+                <td>
+                  <select style="width:100%">
+                    <option selected>HDPE</option>
+                    <option>PP</option>
+                    <option>PET</option>
+                    <option>PVC</option>
+                    <option>Mixed / unknown</option>
+                  </select>
+                </td>
+                <td><input type="number" value="76" /></td>
+                <td style="color:#D1D5DB;cursor:pointer;text-align:center">✕</td>
+              </tr>
+              <tr>
+                <td><div class="component-num">2</div></td>
+                <td>
+                  <select style="width:100%">
+                    <option>Bottle body</option>
+                    <option selected>Cap / lid</option>
+                    <option>Pump</option>
+                    <option>Trigger spray</option>
+                    <option>Label</option>
+                    <option>Seal / tamper band</option>
+                    <option>Handle</option>
+                    <option>Other</option>
+                  </select>
+                </td>
+                <td>
+                  <select style="width:100%">
+                    <option>HDPE</option>
+                    <option selected>PP</option>
+                    <option>PET</option>
+                    <option>PVC</option>
+                    <option>Mixed / unknown</option>
+                  </select>
+                </td>
+                <td><input type="number" value="9" /></td>
+                <td style="color:#D1D5DB;cursor:pointer;text-align:center">✕</td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="add-component-btn">+ Add component</button>
+          <div class="field-hint" style="margin-top:10px">Total separable components: <strong>2</strong> — one of three primary metrics used for eco-modulation benchmarking.</div>
+        </div>
+      </div>
+
+      <!-- Section 4: Material composition -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">Material composition <span class="required">*</span></div>
