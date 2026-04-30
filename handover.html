@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoPack — Handover Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: #0F172A; font-size: 14px; line-height: 1.7; max-width: 760px; margin: 0 auto; padding: 56px 40px 80px; }
+
+    .brand { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 4px; }
+    .brand span { color: #16A34A; }
+    .doc-title { font-size: 28px; font-weight: 800; letter-spacing: -0.6px; margin: 24px 0 6px; }
+    .meta { font-size: 12px; color: #9CA3AF; margin-bottom: 40px; }
+
+    h2 { font-size: 16px; font-weight: 700; color: #0F172A; margin: 36px 0 10px; padding-bottom: 8px; border-bottom: 2px solid #F3F4F6; }
+    h3 { font-size: 13px; font-weight: 700; color: #374151; margin: 20px 0 6px; }
+    p { font-size: 13px; color: #374151; margin-bottom: 10px; }
+    ul { margin: 8px 0 12px 20px; }
+    li { font-size: 13px; color: #374151; margin-bottom: 5px; }
+
+    .link-box {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    .link-box a { color: #15803D; font-weight: 600; text-decoration: none; }
+    .link-box a:hover { text-decoration: underline; }
+    .link-box .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #86EFAC; margin-bottom: 4px; }
+
+    .file-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+    .file-table th { text-align: left; padding: 8px 12px; background: #F9FAFB; border: 1px solid #E5E7EB; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #9CA3AF; }
+    .file-table td { padding: 10px 12px; border: 1px solid #E5E7EB; vertical-align: top; }
+    .file-table tr:hover td { background: #FAFAFA; }
+    .file-name { font-weight: 600; color: #0F172A; font-family: 'Courier New', monospace; font-size: 11px; }
+
+    .step { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+    .step-num { width: 26px; height: 26px; background: #16A34A; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-body h3 { margin-top: 0; }
+
+    .colour-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+    .swatch { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+    .swatch-dot { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.08); flex-shrink: 0; }
+
+    .pill { display: inline-flex; font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 99px; margin-right: 4px; }
+    .pill.green { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+    .pill.amber { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
+    .pill.blue  { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+
+    .warn { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #78350F; margin: 16px 0; }
+    .warn strong { font-weight: 600; }
+
+    .footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #F3F4F6; font-size: 11px; color: #9CA3AF; }
+  </style>
+</head>
+<body>
+
+  <div class="brand">Eco<span>Pack</span></div>
+  <div class="doc-title">Project Handover</div>
+  <div class="meta">Prepared by Cat, Instil · April 2026 · For internal use</div>
+
+  <!-- Overview -->
+  <h2>Overview</h2>
+  <p>EcoPack is a packaging benchmarking concept built for Eunomia's pitch to CAA (California Circular Action Alliance). The work consists of HTML concept screens showing what the platform could look like — not a working prototype, but enough to make the concept feel real for the pitch.</p>
+  <p>All screens are live and accessible via a single URL. The source code lives in a GitHub repository.</p>
+
+  <!-- Links -->
+  <h2>Key Links</h2>
+  <div class="link-box">
+    <div class="label">Live screens</div>
+    <a href="https://catherineinstil.github.io/eunomia-packbenchmark/" target="_blank">https://catherineinstil.github.io/eunomia-packbenchmark/</a>
+  </div>
+  <div class="link-box">
+    <div class="label">GitHub repository (source code)</div>
+    <a href="https://github.com/catherineinstil/eunomia-packbenchmark" target="_blank">https://github.com/catherineinstil/eunomia-packbenchmark</a>
+  </div>
+
+  <!-- Screens -->
+  <h2>What's Been Built</h2>
+  <table class="file-table">
+    <thead>
+      <tr><th>File</th><th>Screen</th><th>User</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="file-name">screen-1-browser.html</span></td>
+        <td>Category Browser — desktop. Lists Household Cleaning sub-categories with tier chips and sample counts.</td>
+        <td><span class="pill blue">CAA PRO</span></td>
+      </tr>
+      <tr>
+        <td><span class="file-name">screen-1-browser-mobile.html</span></td>
+        <td>Category Browser — mobile (390px). Same content with horizontal category pills and 2-column grid.</td>
+        <td><span class="pill blue">CAA PRO</span></td>
+      </tr>
+      <tr>
+        <td><span class="file-name">screen-2-benchmarking-v2.html</span></td>
+        <td>Benchmarking Detail — attribute-level view for a product category. Best/median/worst in class bars. Fee threshold panel for CAA.</td>
+        <td><span class="pill blue">CAA PRO</span></td>
+      </tr>
+      <tr>
+        <td><span class="file-name">screen-3-upload.html</span></td>
+        <td>Data Upload — Touch data maintainers submit product records. Image upload, attributes, separable components.</td>
+        <td><span class="pill green">Touch</span></td>
+      </tr>
+      <tr>
+        <td><span class="file-name">screen-1-brand-browser.html</span></td>
+        <td>Product Browser (Brand view) — brands see all products in a category ranked by eco-modulation tier.</td>
+        <td><span class="pill amber">Brand</span></td>
+      </tr>
+      <tr>
+        <td><span class="file-name">screen-2-brand-benchmarking.html</span></td>
+        <td>Benchmarking Detail (Brand view) — brand sees their product vs best in class across all attributes. Improvement opportunities listed.</td>
+        <td><span class="pill amber">Brand</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Making changes -->
+  <h2>How to Make Changes</h2>
+  <p>All screens are plain HTML files — no build tools, no framework. You edit the file, save it, and push to GitHub. Changes go live automatically via GitHub Pages within ~1 minute.</p>
+
+  <h3>Option A — Use GitHub Copilot CLI (recommended, no coding needed)</h3>
+  <p>If you have GitHub Copilot CLI installed, navigate to the project folder and describe the change you want in plain English. Copilot will make the edit, commit and deploy it for you.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Get access to the repository</h3>
+      <p>Ask Cat to add you as a collaborator on <strong>catherineinstil/eunomia-packbenchmark</strong> via GitHub Settings → Collaborators.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Clone the project</h3>
+      <p>In your terminal: <code>git clone https://github.com/catherineinstil/eunomia-packbenchmark.git</code></p>
+      <p>Then: <code>cd eunomia-packbenchmark && git checkout iteration-2</code></p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Open Copilot and describe your change</h3>
+      <p>Run <code>gh copilot</code> (or open the Copilot CLI) in the project folder. Describe what you want in plain English, e.g. <em>"Change the heading on screen-1-browser from Household Cleaning to Personal Care"</em>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Deploy</h3>
+      <p>After Copilot makes the change, push to deploy:</p>
+      <p><code>git push origin iteration-2 && git checkout main && git merge iteration-2 && git push origin main && git checkout iteration-2</code></p>
+      <p>The live site updates within ~1 minute.</p>
+    </div>
+  </div>
+
+  <h3>Option B — Edit the HTML directly</h3>
+  <p>Open any <code>.html</code> file in a text editor (VS Code recommended). All content is clearly commented e.g. <code>&lt;!-- Floor Cleaners --&gt;</code>. Make your edit, save and push as above.</p>
+
+  <div class="warn">
+    <strong>Always work on the <code>iteration-2</code> branch</strong>, not <code>main</code>. Merge to main only when you're ready to publish. The deploy command above handles this automatically.
+  </div>
+
+  <!-- Design system -->
+  <h2>Design System</h2>
+  <h3>Colours</h3>
+  <div class="colour-row">
+    <div class="swatch"><div class="swatch-dot" style="background:#16A34A"></div><span>#16A34A — Primary green</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#14532D"></div><span>#14532D — Dark green</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#F0FDF4"></div><span>#F0FDF4 — Light green bg</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#DCFCE7"></div><span>#DCFCE7 — Green chip fill</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#FEF3C7"></div><span>#FEF3C7 — Amber chip fill</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#FEE2E2"></div><span>#FEE2E2 — Red chip fill</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#0F172A"></div><span>#0F172A — Heading text</span></div>
+    <div class="swatch"><div class="swatch-dot" style="background:#F8F9FA; border:1px solid #E5E7EB"></div><span>#F8F9FA — Page background</span></div>
+  </div>
+
+  <h3>Typography</h3>
+  <ul>
+    <li>Font: <strong>Inter</strong> (Google Fonts) — loaded via CDN on all screens</li>
+    <li>Wordmark: <code>font-size: 22px; font-weight: 700</code> — "Eco" in dark, "Pack" in green (#16A34A)</li>
+    <li>Page headings: <code>font-size: 24px; font-weight: 700</code></li>
+    <li>Card names: <code>font-size: 14px; font-weight: 700</code></li>
+  </ul>
+
+  <h3>Tier system</h3>
+  <ul>
+    <li><span class="pill green">Green</span> Best in class — meeting or beating the benchmark threshold</li>
+    <li><span class="pill amber">Amber</span> Mid-range — some improvement needed</li>
+    <li>Red — Worst in class, significant improvement required</li>
+  </ul>
+
+  <!-- Images -->
+  <h2>Product & Category Images</h2>
+  <p>All images live in two folders within the project:</p>
+  <ul>
+    <li><code>category-images/</code> — thumbnail images for category cards (e.g. <code>hh-floor-cleaners.png</code>)</li>
+    <li><code>product-images/</code> — individual product shots used on detail screens (e.g. Clinair Essig Reiniger)</li>
+  </ul>
+  <p>To swap an image: replace the file in the relevant folder with the same filename, or update the <code>src=""</code> attribute in the HTML to point to the new file.</p>
+
+  <!-- Data -->
+  <h2>Data</h2>
+  <div class="warn">
+    <strong>All data on these screens is illustrative.</strong> Sample counts, tier distributions, benchmark values and product specs are representative placeholders based on Eunomia's PDF brief — not real CAA or Touch data. Do not present as factual without updating with real values.
+  </div>
+
+  <!-- Contact -->
+  <h2>Questions</h2>
+  <ul>
+    <li><strong>Design / screens:</strong> Cat, Instil</li>
+    <li><strong>Project / pitch:</strong> JK or Brendan McCarthy, Eunomia</li>
+    <li><strong>Source data / methodology:</strong> Sarah Edwards, Eunomia</li>
+  </ul>
+
+  <div class="footer">
+    EcoPack concept screens · Built by Instil for Eunomia · April 2026 · Pre-sales only — not for distribution
+  </div>
+
+</body>
+</html>
